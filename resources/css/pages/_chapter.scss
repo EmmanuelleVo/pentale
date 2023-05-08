@@ -1,0 +1,56 @@
+.chapter {
+    position: relative;
+    &__body {
+        margin: rem(50px) 0;
+    }
+
+    &__note {
+        border-top: $cGrey 1px solid;
+        padding-top: rem(30px);
+        margin-top: rem(80px);
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+        gap: rem(30px);
+        @include mq($until: tablet) {
+            flex-direction: column;
+        }
+
+        &-container {
+            display: flex;
+            gap: rem(20px);
+            @include mq($until: tablet) {
+                justify-content: flex-end;
+            }
+
+            &--bottom {
+                justify-content: flex-end;
+                margin-top: rem(50px);
+            }
+
+            &--top {
+                margin: rem(20px) 0;
+            }
+
+            & svg:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    &__form {
+        display: flex;
+        align-items: center;
+        gap: rem(10px);
+
+        & .form__label, .form__button {
+            display: none !important;
+        }
+
+        & .form__field {
+            margin-bottom: 0;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 @props(['review'])
 
 <li class="reviews__item review">
-    <div class="review__container">
+    <div class="review__container review__container--header">
         <figure class="review__figure avatar">
             <img src="{{ $review->user->avatar }}" alt="'s avatar" class="review__img">
         </figure>

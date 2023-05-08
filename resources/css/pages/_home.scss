@@ -2,5 +2,8 @@
     &__updates {
         padding: rem(50px) 0;
         margin-top: rem(80px);
+        @include mq($until: tablet) {
+            margin-top: 0;
+        }
     }
 }

@@ -12,9 +12,17 @@
                 <x-breadcrumbs.breadcrumb-separator/>
                 <x-breadcrumbs.breadcrumb-link :title="'Chapter ' . $chapter->chapter_number . ' : ' . $chapter->title" link="/novels/{{ $book->slug }}/chapter-{{ $chapter->chapter_number }}" index="3"/>
             </x-breadcrumbs.breadcrumb>
+            <div class="chapter__actions-container chapter__actions-container--top">
+                <x-commons.button title="Bookmark the novel" link="#"><span class="u-visually-hidden">Bookmark</span><x-svg.bookmark/></x-commons.button>
+                <x-commons.button class="chapterOption" title="Display reader preferences" link="#">
+                    <x-svg.settings/>
+                    <span>Reader preferences</span>
+                </x-commons.button>
+            </div>
 
             <div class="chapter__actions">
                 <form action="" class="chapter__form form">
+                    @csrf
                     <x-forms.select name="chapter" label_name="Choose chapter">
                         @foreach($chapters as $chapter)
                             <x-forms.option name="Chapter {{$chapter->chapter_number}} : {{$chapter->title}}" :value="$chapter->chapter_number"/>

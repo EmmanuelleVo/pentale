@@ -14,6 +14,11 @@ class Chapter extends Model
     protected $with = ['book'];
     protected array $dates = ['published_at', 'updated_at'];
 
+    public function incrementViewsCount() {
+        $this->views++;
+        return $this->save();
+    }
+
     public function book(): BelongsTo
     {
         return $this->belongsTo(Book::class, 'book_id');

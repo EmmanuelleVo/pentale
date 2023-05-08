@@ -1,6 +1,102 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./resources/js/components/NumberInput.ts":
+/*!************************************************!*\
+  !*** ./resources/js/components/NumberInput.ts ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.NumberInput = void 0;
+var quantity_js_1 = __webpack_require__(/*! ../quantity.js */ "./resources/js/quantity.js");
+var NumberInput = /** @class */function () {
+  function NumberInput() {
+    var quantities = document.querySelectorAll('[data-quantity]');
+    if (quantities instanceof Node) quantities = [quantities];
+    if (quantities instanceof NodeList) quantities = [].slice.call(quantities);
+    if (quantities instanceof Array) {
+      quantities.forEach(function (div) {
+        return div.quantity = new quantity_js_1["default"](div, 'Down', 'Up');
+      });
+    }
+  }
+  return NumberInput;
+}();
+exports.NumberInput = NumberInput;
+
+/***/ }),
+
+/***/ "./resources/js/components/PasswordVisibility.ts":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/PasswordVisibility.ts ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.PasswordVisibility = void 0;
+var PasswordVisibility = /** @class */function () {
+  function PasswordVisibility() {
+    var _this = this;
+    this.passwordVisibilityCheckbox = document.querySelector('#password-visibility');
+    this.password = document.querySelector('#password');
+    this.passwordConfirmationVisibilityCheckbox = document.querySelector('#password-confirmation-visibility');
+    this.passwordConfirmation = document.querySelector('#password_confirmation');
+    this.registerPasswordVisibilityCheckbox = document.querySelector('#register-password-visibility');
+    this.registerPassword = document.querySelector('#register-password');
+    this.passwordCheckboxLabel = document.querySelector('label[for="password-visibility"]');
+    this.passwordConfirmationCheckboxLabel = document.querySelector('label[for="password-confirmation-visibility"]');
+    this.registerPasswordCheckboxLabel = document.querySelector('label[for="register-password-visibility"]');
+    if (this.passwordVisibilityCheckbox) {
+      this.passwordVisibilityCheckbox.addEventListener('change', function (e) {
+        if (_this.password.type === 'text') {
+          _this.password.type = 'password';
+          _this.passwordCheckboxLabel.textContent = 'Show';
+        } else {
+          _this.password.type = 'text';
+          _this.passwordCheckboxLabel.textContent = 'Hide';
+        }
+      });
+    }
+    if (this.passwordConfirmationVisibilityCheckbox) {
+      this.passwordConfirmationVisibilityCheckbox.addEventListener('change', function (e) {
+        if (_this.passwordConfirmation.type === 'text') {
+          _this.passwordConfirmation.type = 'password';
+          _this.passwordConfirmationCheckboxLabel.textContent = 'Show';
+        } else {
+          _this.passwordConfirmation.type = 'text';
+          _this.passwordConfirmationCheckboxLabel.textContent = 'Hide';
+        }
+      });
+    }
+    if (this.registerPasswordVisibilityCheckbox) {
+      this.registerPasswordVisibilityCheckbox.addEventListener('change', function (e) {
+        if (_this.registerPassword.type === 'text') {
+          _this.registerPassword.type = 'password';
+          _this.registerPasswordCheckboxLabel.textContent = 'Show';
+        } else {
+          _this.registerPassword.type = 'text';
+          _this.registerPasswordCheckboxLabel.textContent = 'Hide';
+        }
+      });
+    }
+  }
+  return PasswordVisibility;
+}();
+exports.PasswordVisibility = PasswordVisibility;
+
+/***/ }),
+
 /***/ "./resources/js/components/Rating.ts":
 /*!*******************************************!*\
   !*** ./resources/js/components/Rating.ts ***!
@@ -108,10 +204,14 @@ Object.defineProperty(exports, "__esModule", ({
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 var Tabs_1 = __webpack_require__(/*! ./components/Tabs */ "./resources/js/components/Tabs.ts");
 var Rating_1 = __webpack_require__(/*! ./components/Rating */ "./resources/js/components/Rating.ts");
+var NumberInput_1 = __webpack_require__(/*! ./components/NumberInput */ "./resources/js/components/NumberInput.ts");
+var PasswordVisibility_1 = __webpack_require__(/*! ./components/PasswordVisibility */ "./resources/js/components/PasswordVisibility.ts");
 var Main = /** @class */function () {
   function Main() {
     var tabs = new Tabs_1.Tabs();
     var rating = new Rating_1.Rating();
+    var numberInput = new NumberInput_1.NumberInput();
+    var passwordVisibility = new PasswordVisibility_1.PasswordVisibility();
   }
   return Main;
 }();
@@ -161,6 +261,95 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+
+/***/ }),
+
+/***/ "./resources/js/quantity.js":
+/*!**********************************!*\
+  !*** ./resources/js/quantity.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ QuantityInput)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+/**
+ *  @class
+ *  @function Quantity
+ *  @param {DOMobject} element to create a quantity wrapper around
+ */
+var QuantityInput = /*#__PURE__*/function () {
+  function QuantityInput(self, decreaseText, increaseText) {
+    var _this = this;
+    _classCallCheck(this, QuantityInput);
+    // Create input
+    this.input = document.createElement('input');
+    this.input.value = 1;
+    this.input.type = 'number';
+    this.input.name = 'quantity';
+    this.input.pattern = '[0-9]+';
+
+    // Get text for buttons
+    this.decreaseText = decreaseText || 'Decrease quantity';
+    this.increaseText = increaseText || 'Increase quantity';
+
+    // Button constructor
+    function Button(text, className) {
+      this.button = document.createElement('button');
+      this.button.type = 'button';
+      this.button.innerHTML = text;
+      this.button.title = text;
+      this.button.classList.add(className);
+      return this.button;
+    }
+
+    // Create buttons
+    this.subtract = new Button(this.decreaseText, 'sub');
+    this.add = new Button(this.increaseText, 'add');
+
+    // Add functionality to buttons
+    this.subtract.addEventListener('click', function () {
+      return _this.change_quantity(-1);
+    });
+    this.add.addEventListener('click', function () {
+      return _this.change_quantity(1);
+    });
+
+    // Add input and buttons to wrapper
+    self.appendChild(this.subtract);
+    self.appendChild(this.input);
+    self.appendChild(this.add);
+  }
+  _createClass(QuantityInput, [{
+    key: "change_quantity",
+    value: function change_quantity(change) {
+      // Get current value
+      var quantity = Number(this.input.value);
+
+      // Ensure quantity is a valid number
+      if (isNaN(quantity)) quantity = 1;
+
+      // Change quantity
+      quantity += change;
+
+      // Ensure quantity is always a number
+      quantity = Math.max(quantity, 1);
+
+      // Output number
+      this.input.value = quantity;
+    }
+  }]);
+  return QuantityInput;
+}();
+
 
 /***/ }),
 

@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Chapter;
 use Butschster\Head\Facades\Meta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class ChapterController extends Controller
 {
@@ -41,12 +42,21 @@ class ChapterController extends Controller
         $page_title = $chapter->title;
         Meta::prependTitle($chapter->title);
         $chapters = $book->chapters()->orderBy('chapter_number')->get();
+        $fonts = ['Times New Roman', 'Roboto', 'Inter', 'Lato'];
+
+        /*if(Cookie::get($chapter->id)!=''){
+            Cookie::set('$post->id', '1', .06);
+            $chapter->incrementViewsCount();
+        }*/
+
+        $chapter->incrementViewsCount();
 
         return view('chapter.show', compact(
             'book',
             'chapter',
             'page_title',
             'chapters',
+            'fonts'
         ));
     }
 

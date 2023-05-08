@@ -23,7 +23,7 @@
 
         &-meta {
             flex-direction: row;
-            gap: rem(50px);
+            gap: rem(10px) rem(50px);
         }
 
         &-genres {
@@ -33,6 +33,9 @@
         &-actions {
             display: flex;
             gap: rem(20px);
+            @include mq($until: mobile) {
+                justify-content: space-between;
+            }
         }
     }
 
@@ -108,6 +111,14 @@
         &-form {
             display: flex;
             gap: rem(50px);
+            @include mq($until: tablet) {
+                flex-direction: column;
+                gap: rem(30px);
+            }
+
+            & .form__container {
+                gap: 0;
+            }
 
             & .form__container:nth-child(2) {
                 width: 100%;

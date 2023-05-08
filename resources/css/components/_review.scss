@@ -20,11 +20,21 @@
     border: $cGrey 1px solid;
     display: flex;
     gap: rem(50px);
+    @include mq($until: tablet) {
+        flex-direction: column;
+    }
 
     &__container {
         display: flex;
         flex-direction: column;
         gap: rem(30px);
+
+        &--header {
+            @include mq($until: tablet) {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
     }
 
     &__stars {
@@ -55,7 +65,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: rem(50px);
+        gap: rem(15px) rem(50px);
+        flex-wrap: wrap;
     }
 
     &__likes {

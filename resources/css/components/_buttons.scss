@@ -19,6 +19,7 @@
 .c-btn {
     display: inline-flex !important; /* [1] */
     align-items: center; /* [2] */
+    justify-content: center;
     font: inherit; /* [3] */
     text-align: center; /* [4] */
     margin: 0; /* [4] */

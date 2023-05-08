@@ -1,7 +1,7 @@
 @props(['name', 'label_name', 'place_holder', 'type' => 'text'])
 
 <x-forms.field>
-    <div class="{{ $name === 'password' || $name === 'password_confirmation' || $name === 'register-password' ? 'flex justify-between' : '' }}">
+    <div class="{{ $name === 'password' || $name === 'password_confirmation' || $name === 'register-password' ? 'form__label-container' : '' }}">
         <x-forms.label name="{{ $name }}" label_name="{{ $label_name }}"></x-forms.label>
         @if($name === 'password' || $name === 'password_confirmation' || $name === 'register-password')
             @php

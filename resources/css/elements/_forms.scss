@@ -9,6 +9,13 @@
         &--checkbox {
             margin-bottom: 0;
         }
+
+        &--number {
+            display: grid;
+            align-items: center;
+            grid-template-columns: 1fr 3fr;
+            gap: rem(30px);
+        }
     }
 
     &__container {
@@ -47,6 +54,11 @@
             margin-bottom: rem(10px);
             display: block;
         }
+
+        &-container {
+            display: flex;
+            justify-content: space-between;
+        }
     }
 
     &__input--checkbox:checked + label {
@@ -54,7 +66,7 @@
         border-color: $cBlue;
     }
 
-    &__input, &__textarea {
+    &__input, &__textarea, &__select {
         border: $cDarkBlue solid 1px;
         padding: rem(10px) rem(20px);
         border-radius: 5px;
@@ -68,6 +80,22 @@
 
     &__input {
         position: relative;
+
+        &--visibility-input {
+            display: none;
+        }
+
+        &--visibility-label {
+            font-size: rem(16px);
+            color: $cBlue;
+            cursor: pointer;
+            transition: color .3s ease;
+
+            &:hover {
+                color: darken($cBlue, 15%);
+                transition: color .3s ease;
+            }
+        }
     }
 
     &__textarea {
@@ -76,6 +104,12 @@
 
     &__actions {
         align-items: flex-start;
+
+        &-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: rem(20px);
+        }
     }
 
     &__checkbox {
@@ -86,9 +120,24 @@
         }
     }
 
+    select::-ms-expand {
+        display: none;
+    }
+
+    &__select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 15.487 8.855'%3E%3Cpath id='Icon_ionic-ios-arrow-down' data-name='Icon ionic-ios-arrow-down' d='M13.934 17.432l5.856-5.861a1.1 1.1 0 0 1 1.563 0 1.116 1.116 0 0 1 0 1.568l-6.635 6.64a1.1 1.1 0 0 1-1.526.032L6.51 13.144a1.107 1.107 0 1 1 1.563-1.568Z' transform='translate(-6.188 -11.246)'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position-x: calc(100% - 30px);
+        background-position-y: 50%;
+    }
+
     &__search {
         &--nav {
             position: relative;
+            display: flex;
+            gap: rem(15px);
 
             & input {
                 padding: rem(10px) rem(40px);

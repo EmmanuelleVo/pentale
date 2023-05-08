@@ -7,14 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Maize\Markable\Markable;
+use Maize\Markable\Models\Bookmark;
 
 class Book extends Model
 {
-    use HasFactory;
+    use HasFactory, Markable;
 
     protected $guarded = [];
     protected $with = ['user', 'genres', 'tags'];
     protected array $dates = ['published_at'];
+
+    protected static $marks = [
+        Bookmark::class,
+    ];
 
     public function user(): BelongsTo
     {

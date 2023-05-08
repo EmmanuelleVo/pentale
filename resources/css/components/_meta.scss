@@ -5,7 +5,8 @@
 
     &__container {
         display: flex;
-        gap: rem(30px);
+        flex-wrap: wrap;
+        gap: rem(10px) rem(30px);
     }
 
     &__term {

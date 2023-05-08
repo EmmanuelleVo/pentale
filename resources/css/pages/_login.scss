@@ -12,6 +12,12 @@
             flex-direction: column;
             align-items: center;
             gap: rem(80px);
+            @include mq($until: tablet) {
+                width: 60%;
+            }
+            @include mq($until: mobile) {
+                width: 90%;
+            }
         }
 
         & .form {
