@@ -1,0 +1,72 @@
+$titleSizeOne: 36px;
+$titleSizeTwo: 32px;
+$titleSizeThree: 28px;
+$titleSizeFour: 24px;
+$titleSizeFive: 20px;
+
+.title {
+    line-height: 1.3em;
+    font-weight: 700;
+    margin-bottom: rem(30px);
+    display: block;
+    font-family: $global-font-title-stack;
+
+    &--big {
+        text-transform: uppercase;
+        font-size: rem($titleSizeOne) !important;
+        @include mq($until: tablet) {
+            font-size: rem($titleSizeTwo) !important;
+        }
+        @include mq($until: mobile) {
+            font-size: rem($titleSizeThree) !important;
+        }
+    }
+
+    &--medium {
+        font-size: rem($titleSizeTwo) !important;
+        @include mq($until: tablet) {
+            font-size: rem($titleSizeThree) !important;
+        }
+        @include mq($until: mobile) {
+            font-size: rem($titleSizeFour) !important;
+        }
+    }
+
+    &--small {
+        font-size: rem($titleSizeFive) !important;
+        margin-bottom: rem(15px);
+        @include mq($until: tablet) {
+            font-size: rem($titleSizeFive) !important;
+            margin-bottom: rem(10px);
+        }
+        @include mq($until: mobile) {
+            font-size: rem($titleSizeFive) !important;
+        }
+    }
+
+    &--white {
+        color: $cWhite;
+    }
+
+    &--black {
+        color: $cBlack;
+    }
+
+    &--section {
+        text-transform: uppercase;
+        font-size: rem($titleSizeThree) !important;
+        @include mq($until: tablet) {
+            font-size: rem($titleSizeFour) !important;
+        }
+        @include mq($until: mobile) {
+            font-size: rem($titleSizeFive) !important;
+        }
+    }
+
+    &--card {
+        font-size: rem($titleSizeFive) !important;
+        margin-bottom: rem(15px);
+    }
+
+
+}

@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="21.591"><path data-name="Icon material-report-problem" d="M0 21.591h25L12.5 0Zm13.636-3.409h-2.272v-2.273h2.273Zm0-4.545h-2.272V9.091h2.273Z" fill="#5158bb"/></svg>

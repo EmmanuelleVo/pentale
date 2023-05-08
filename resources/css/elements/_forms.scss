@@ -1,0 +1,148 @@
+.form {
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: rem(8px);
+        margin-bottom: rem(30px);
+        width: 100%;
+
+        &--checkbox {
+            margin-bottom: 0;
+        }
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: rem(30px);
+    }
+
+    &__meta {
+        margin: rem(10px) 0 rem(15px);
+        display: block;
+        font-size: rem(16px);
+    }
+
+    &__label {
+        font-weight: 700;
+        font-size: rem(18px);
+
+        &--checkbox {
+            text-align: center;
+            border-radius: 5px;
+            border: $cGrey 1px solid;
+            padding: rem(10px) rem(15px);
+            cursor: pointer;
+            background-color: $cWhite;
+            transition: backgroung-color .3s ease;
+            font-weight: 400;
+
+            &:hover {
+                background-color: $cLightGrey;
+                transition: background-color .3s ease;
+            }
+        }
+
+        &--title {
+            margin-bottom: rem(10px);
+            display: block;
+        }
+    }
+
+    &__input--checkbox:checked + label {
+        color: $cBlue;
+        border-color: $cBlue;
+    }
+
+    &__input, &__textarea {
+        border: $cDarkBlue solid 1px;
+        padding: rem(10px) rem(20px);
+        border-radius: 5px;
+        font-size: rem(18px);
+        line-height: 1.5;
+
+        &:focus, &:focus-visible {
+            outline: $cBlue 1px solid;
+        }
+    }
+
+    &__input {
+        position: relative;
+    }
+
+    &__textarea {
+        resize: none;
+    }
+
+    &__actions {
+        align-items: flex-start;
+    }
+
+    &__checkbox {
+        &-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: rem(30px);
+        }
+    }
+
+    &__search {
+        &--nav {
+            position: relative;
+
+            & input {
+                padding: rem(10px) rem(40px);
+            }
+
+            & svg {
+                position: absolute;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+
+    & .star {
+        color: $cBlue;
+        cursor: pointer;
+        font-size: rem(24px);
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        &--active {
+            opacity: 0;
+            animation: animate .5s calc(var(--i) * .1s) ease-in-out forwards;
+        }
+
+        &__container {
+            display: flex;
+            gap: rem(3px);
+        }
+    }
+
+    &__error {
+        color: red;
+    }
+
+    &__text {
+        margin-bottom: 30px;
+    }
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

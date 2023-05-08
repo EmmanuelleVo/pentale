@@ -1,0 +1,119 @@
+.novel {
+    &__info {
+        &-stars {
+            margin: rem(15px) 0;
+            display: flex;
+            align-items: center;
+            gap: rem(10px);
+
+            & .star {
+                color: $cYellow;
+                font-size: rem(24px);
+
+                &__container {
+                    display: flex;
+                    gap: rem(3px);
+                }
+            }
+
+            & span {
+                font-size: rem(24px);
+            }
+        }
+
+        &-meta {
+            flex-direction: row;
+            gap: rem(50px);
+        }
+
+        &-genres {
+            margin: rem(20px) 0;
+        }
+
+        &-actions {
+            display: flex;
+            gap: rem(20px);
+        }
+    }
+
+    &__about {
+        display: flex;
+        flex-direction: column;
+        gap: rem(50px);
+        &-synopsis {
+            width: 80%;
+        }
+    }
+
+    &__chapters {
+        &-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: rem(50px);
+            align-items: center;
+            margin-bottom: rem(30px);
+
+            & .pagination {
+                margin-top: 0;
+            }
+        }
+
+        &-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: rem(20px) rem(30px);
+        }
+
+        & .chapter {
+            position: relative;
+            border-radius: 5px;
+            border: $cGrey 1px solid;
+            padding: rem(20px);
+            display: flex;
+            gap: rem(30px);
+            transition: box-shadow .3s ease;
+
+            &:hover {
+                box-shadow: $cLightGrey 3px 3px 3px 0px;
+                transition: box-shadow .3s ease;
+            }
+
+            &__number {
+                font-weight: 700;
+                display: block;
+                width: max-content;
+            }
+
+            &__container {
+                display: flex;
+                flex-direction: column;
+                gap: rem(10px);
+            }
+
+            &__date {
+                color: $cDarkGrey;
+            }
+        }
+    }
+
+    &__reviews {
+        &-container {
+            border-radius: 5px;
+            border: 1px solid $cGrey;
+            width: 70%;
+            margin: auto;
+            padding: rem(50px);
+        }
+
+        &-form {
+            display: flex;
+            gap: rem(50px);
+
+            & .form__container:nth-child(2) {
+                width: 100%;
+            }
+        }
+
+
+    }
+}

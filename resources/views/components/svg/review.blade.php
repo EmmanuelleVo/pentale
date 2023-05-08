@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path data-name="Icon material-comment" d="M17.991 1.8A1.8 1.8 0 0 0 16.2 0H1.8A1.805 1.805 0 0 0 0 1.8v10.8a1.805 1.805 0 0 0 1.8 1.8h12.6L18 18Zm-3.591 9H3.6V9h10.8Zm0-2.7H3.6V6.3h10.8Zm0-2.7H3.6V3.6h10.8Z"/></svg>

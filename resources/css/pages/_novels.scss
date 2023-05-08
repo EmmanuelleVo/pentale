@@ -1,0 +1,31 @@
+.novels {
+    &__actions {
+        padding: rem(30px);
+        border-radius: 5px;
+        border: $cGrey 1px solid;
+        margin-bottom: rem(50px);
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: rem(30px);
+
+
+
+        & .genres__link {
+            background-color: $cLightGrey;
+            color: $cBlack;
+        }
+    }
+
+    & .form {
+        display: flex;
+        flex-direction: column;
+        gap: rem(30px);
+
+        & .form__button {
+            align-self: flex-start;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.tab {
+    display: flex;
+    gap: rem(50px);
+    margin-bottom: rem(50px);
+    margin-top: rem(50px);
+    &__link {
+        font-weight: 700;
+        font-size: rem(32px);
+        opacity: .7;
+
+        &--active {
+            opacity: 1;
+        }
+    }
+
+    &__content {
+        display: none;
+
+        &--active {
+            display: block;
+        }
+    }
+}

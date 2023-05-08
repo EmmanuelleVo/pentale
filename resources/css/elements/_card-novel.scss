@@ -1,0 +1,18 @@
+.novel__item {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20px);
+
+    &-figure {
+        position: relative;
+        & img {
+            border-radius: 5px;
+        }
+    }
+
+    & .novel__chapter {
+        display: flex;
+        justify-content: space-between;
+    }
+
+}

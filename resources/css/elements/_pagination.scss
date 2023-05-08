@@ -1,0 +1,57 @@
+.pagination {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: rem($marginMedium);
+
+
+    &__container {
+        border-radius: 5px;
+        border: $cBlue 1px solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    & li + li {
+        border-left: $cBlue 1px solid;
+    }
+
+    & li {
+        padding: rem(10px) rem(15px);
+        color: $cDarkGrey;
+
+        &:hover {
+
+        }
+
+        &.active {
+            color: $cWhite;
+            background-color: $cBlue;
+            font-weight: 900;
+        }
+
+        & a {
+
+        }
+    }
+
+    &__prev,
+    &__next {
+        display: inline-block;
+        background-color: $cLightGrey;
+        padding: rem(10px);
+
+        & svg {
+            & g {
+                fill: $cWhite;
+            }
+        }
+    }
+
+    &__prev {
+        & svg {
+            transform: rotate(180deg);
+        }
+    }
+}

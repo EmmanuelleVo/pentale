@@ -1,0 +1,38 @@
+.tags, .genres {
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: rem(15px);
+    }
+
+    &__item {
+
+    }
+
+    &__link {
+        background-color: $cWhite;
+        padding: rem(8px) rem(10px);
+        display: block;
+        border-radius: 5px;
+
+        &--filter {
+            background-color: $cLightGrey;
+            color: $cBlack;
+
+        }
+
+        &--filter--active {
+            background-color: $cBlue;
+            color: $cWhite;
+        }
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    & .title {
+        margin-bottom: rem(10px);
+    }
+}

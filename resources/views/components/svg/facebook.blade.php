@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="29.654" viewBox="0 0 30 29.654" class="group">
+    <path class="group-hover:fill-green duration-150 ease-in-out" id="Icon_ionic-logo-facebook" data-name="Icon ionic-logo-facebook" d="M32.844,4.5H6.156A1.648,1.648,0,0,0,4.5,6.137v26.38a1.648,1.648,0,0,0,1.656,1.637H19.5V22.416H15.914V18.092H19.5v-3.2c0-3.83,2.688-5.915,6.148-5.915,1.656,0,3.438.124,3.852.178v4H26.742c-1.883,0-2.242.88-2.242,2.178v2.757h4.484L28.4,22.416H24.5V34.154h8.344A1.648,1.648,0,0,0,34.5,32.517V6.137A1.648,1.648,0,0,0,32.844,4.5Z" transform="translate(-4.5 -4.5)" fill="#171738"/>
+</svg>

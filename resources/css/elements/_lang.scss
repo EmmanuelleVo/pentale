@@ -1,0 +1,58 @@
+.lang{
+  &__current{
+    display: flex;
+    align-items: center;
+    position: relative;
+    text-transform: uppercase;
+    color: $cBlack;
+    margin-left: rem(10px);
+    padding: rem(15px) 0;
+    cursor: pointer;
+
+    & span{
+      display: inline-block;
+      margin-right: rem(5px);
+    }
+
+    &--open{
+      & .lang__choice{
+        visibility: visible;
+        opacity: 1;
+        transition: 300ms ease visibility, 300ms ease opacity,
+        300ms ease transform;
+        transform: translateY(0) scaleY(1);
+      }
+    }
+  }
+  &__name{
+    text-transform: uppercase;
+    color: $cWhite;
+  }
+  &__choice{
+    position: absolute;
+    top: 50px;
+    visibility: hidden;
+    opacity: 0;
+    padding: rem(10px);
+    background-color: $cBlack;
+    border-radius: rem(5px);
+    transform: translateY(rem(10px)) scaleY(0.98);
+    z-index: 11;
+    transition: 300ms ease visibility, 300ms ease opacity, 300ms ease transform;
+    &:before {
+      position: absolute;
+      top: rem(-4px);
+      margin: 0 auto;
+      z-index: 2;
+      content: "";
+      width: rem(8px);
+      height: rem(8px);
+      border-radius: rem(1px);
+      background-color: $cBlack;
+      transform: rotate(45deg);
+      @include mq($until: laptop) {
+        content: none;
+      }
+    }
+  }
+}

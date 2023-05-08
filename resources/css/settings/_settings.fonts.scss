@@ -1,0 +1,66 @@
+///* ========================================================================
+//   #FONTS
+//   ======================================================================== */
+// This file contains all fonts imported in the project.
+/* stylelint-disable */
+
+// @include font-face('Gotham', 'gotham/GothamBook', ttf)
+@font-face {
+    font-family: "Gotham";
+    src: url("/fonts/gotham/Gotham-Book.otf");
+    /*src: url('../fonts/Gotham-Book.woff') format('woff'),
+         url('../fonts/Gotham-Book.woff2') format('woff2'),
+         url('../fonts/Gotham-Book.ttf') format('truetype');*/
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gotham";
+    src: url("/fonts/gotham/Gotham-Bold.otf");
+    /*src: url('../fonts/Gotham-Book.woff') format('woff'),
+         url('../fonts/Gotham-Book.woff2') format('woff2'),
+         url('../fonts/Gotham-Book.ttf') format('truetype');*/
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gotham";
+    src: url("/fonts/gotham/Gotham-Medium.otf");
+    /*src: url('../fonts/Gotham-Book.woff') format('woff'),
+         url('../fonts/Gotham-Book.woff2') format('woff2'),
+         url('../fonts/Gotham-Book.ttf') format('truetype');*/
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gotham";
+    src: url("/fonts/gotham/Gotham-BookItalic.otf");
+    /*src: url('../fonts/Gotham-Book.woff') format('woff'),
+         url('../fonts/Gotham-Book.woff2') format('woff2'),
+         url('../fonts/Gotham-Book.ttf') format('truetype');*/
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Gotham";
+    src: url("/fonts/gotham/Gotham-MediumItalic.otf");
+    /*src: url('../fonts/Gotham-Book.woff') format('woff'),
+         url('../fonts/Gotham-Book.woff2') format('woff2'),
+         url('../fonts/Gotham-Book.ttf') format('truetype');*/
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Gotham";
+    src: url("/fonts/gotham/Gotham-BoldItalic.otf");
+    /*src: url('../fonts/Gotham-Book.woff') format('woff'),
+         url('../fonts/Gotham-Book.woff2') format('woff2'),
+         url('../fonts/Gotham-Book.ttf') format('truetype');*/
+    font-weight: 700;
+    font-style: italic;
+}

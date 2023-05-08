@@ -1,0 +1,15 @@
+.meta {
+    display: flex;
+    align-items: center;
+    gap: rem(10px);
+
+    &__container {
+        display: flex;
+        gap: rem(30px);
+    }
+
+    &__term {
+        font-weight: 700;
+        font-size: rem(18px);
+    }
+}

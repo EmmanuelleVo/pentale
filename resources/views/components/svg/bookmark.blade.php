@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="20"><path data-name="Icon awesome-bookmark" d="M0 20V1.875A1.875 1.875 0 0 1 1.875 0h11.25A1.875 1.875 0 0 1 15 1.875V20l-7.5-4.375Z" fill="#5158bb"/></svg>

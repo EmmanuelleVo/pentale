@@ -1,0 +1,125 @@
+/* ==========================================================================
+   #PAGE
+   ========================================================================== */
+
+/**
+ * Simple page-level setup.
+ *
+ * 1. Set the default `font-size` and `line-height` for the entire project,
+ *    sourced from our default variables. The `font-size` is calculated to exist
+ *    in ems, the `line-height` is calculated to exist unitlessly.
+ * 2. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
+ *    navigating between pages that do/do not have enough content to produce
+ *    scrollbars naturally.
+ * 3. Ensure the page always fills at least the entire height of the viewport.
+ */
+
+html {
+    font-size: calc($global-font-size / 18px) * 1em; /* [1] */
+    line-height: calc($global-line-height / $global-font-size); /* [1] */
+    overflow-y: scroll; /* [2] */
+    min-height: 100%; /* [3] */
+    font-family: $global-font-title-stack !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.grecaptcha-badge {
+    visibility: hidden !important;
+}
+
+.page {
+    &__wrapper {
+        padding: rem($paddingBig) 0;
+        @include mq($until: tablet) {
+            padding: rem($paddingMedium) 0;
+        }
+        @include mq($until: mobile) {
+            padding: rem($paddingSmall) 0;
+        }
+    }
+
+    &__error {
+        padding: rem($paddingBig) 0;
+        text-align: center;
+        @include mq($until: tablet) {
+            padding: rem($paddingMedium) 0;
+        }
+        @include mq($until: mobile) {
+            padding: rem($paddingSmall) 0;
+        }
+
+        & .wysiwyg {
+            margin-bottom: rem($marginSmall);
+        }
+    }
+
+    &__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: rem($marginMedium);
+    }
+
+    &__archive {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 50px;
+        @include mq($until: laptop) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @include mq($until: mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+
+// -- GLOBAL -- //
+
+body {
+    background-color: $cWhite;
+}
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: rem(20px);
+}
+
+.colored {
+    color: $cBlue;
+}
+
+img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    color: $cBlue;
+    text-decoration: none;
+    transition: color .3s ease;
+    &:hover {
+        transition: color .3s ease;
+        color: darken($cBlue, 20%);
+    }
+}
+
+.wysiwyg  {
+    font-family: $global-font-stack !important;
+    line-height: 1.6;
+    font-size: rem(18px);
+}
+
+.avatar {
+    max-width: rem(200px);
+    & img {
+        border-radius: 50%;
+    }
+}

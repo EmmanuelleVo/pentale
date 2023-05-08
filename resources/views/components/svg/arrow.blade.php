@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="11.747" height="6.716"><path data-name="Icon ionic-ios-arrow-down" d="M5.875 4.692 10.312.247a.836.836 0 0 1 1.186 0 .847.847 0 0 1 0 1.189L6.465 6.472a.838.838 0 0 1-1.158.024L.244 1.44A.84.84 0 1 1 1.43.254Z"/></svg>

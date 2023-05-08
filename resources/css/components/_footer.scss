@@ -1,0 +1,24 @@
+.footer {
+    padding: rem(30px) 0;
+    border-top: $cGrey 1px solid;
+    margin-top: rem(80px);
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__copyright {
+
+    }
+
+    &__nav {
+        display: flex;
+        gap: rem(20px);
+        &__link-container {
+            & .nav__link {
+                padding: 0;
+            }
+        }
+    }
+}

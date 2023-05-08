@@ -1,0 +1,46 @@
+.novel {
+    &__item--full {
+        position: relative;
+        display: grid;
+        grid-template-columns: 2fr 4fr;
+        gap: rem(30px);
+        border-radius: 5px;
+        border: $cGrey 1px solid;
+        transition: box-shadow .3s ease;
+
+        &:hover {
+            box-shadow: 0 2px 18px 0 rgba(0, 18, 66, 0.2);
+            transition: box-shadow .3s ease;
+        }
+
+        .novel__item-container--right {
+            padding: rem(20px) rem(20px) rem(20px) 0;
+        }
+
+        & .meta__container {
+            gap: rem(20px);
+        }
+
+        & .meta__content {
+            font-size: rem(15px);
+        }
+
+        & .novel__item {
+            &-figure {
+                height: 100%;
+            }
+
+            &-img {
+                border-radius: 0;
+            }
+
+            &-genres {
+                margin-top: rem(15px);
+            }
+
+            &-description {
+                margin-top: rem(10px);
+            }
+        }
+    }
+}
