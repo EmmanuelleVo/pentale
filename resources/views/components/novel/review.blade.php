@@ -21,7 +21,7 @@
                   datetime="{{ $review->published_at }}">{{ \Carbon\Carbon::parse($review->published_at)->diffForHumans() }}</time>
         </div>
         <div class="wysiwyg review__content">
-            {{ $review->body }}
+            {!! $review->body !!}
         </div>
         <div class="review__actions">
             <div class="review__likes">

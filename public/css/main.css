@@ -393,6 +393,9 @@ table {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9998;
 }
+.overlay.is-active {
+  display: block;
+}
 
 .pagination {
   width: -moz-fit-content;
@@ -547,14 +550,37 @@ table {
   display: flex;
   gap: 0.9375rem;
 }
+@media (max-width: 63.99em) {
+  .form__search--nav {
+    order: -1;
+  }
+}
 .form__search--nav input {
   padding: 0.625rem 2.5rem;
+}
+@media (max-width: 63.99em) {
+  .form__search--nav input {
+    border: none;
+    color: #FFF;
+    background-color: #888dd0;
+  }
+  .form__search--nav input::-moz-placeholder {
+    color: #FFF;
+  }
+  .form__search--nav input::placeholder {
+    color: #FFF;
+  }
 }
 .form__search--nav svg {
   position: absolute;
   left: 15px;
   top: 50%;
   transform: translateY(-50%);
+}
+@media (max-width: 63.99em) {
+  .form__search--nav svg path {
+    fill: #FFF;
+  }
 }
 .form .star {
   color: #5158BB;
@@ -989,11 +1015,9 @@ p {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.875rem;
-}
-@media (max-width: 63.99em) {
-  .card-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  /*@include mq($until: laptop) {
+      grid-template-columns: repeat(2, 1fr);
+  }*/
 }
 
 .lang__current {
@@ -1178,6 +1202,14 @@ p {
 .novel__item .novel__chapter {
   display: flex;
   justify-content: space-between;
+}
+.novel__item .novel__chapter-date {
+  color: #999999;
+}
+@media (max-width: 63.99em) {
+  .novel__item .novel__chapter-date {
+    display: none;
+  }
 }
 
 .novel__item--full {
@@ -1449,19 +1481,17 @@ p {
     top: 0;
     right: 0;
     left: auto;
-    width: 300px;
+    width: 350px;
     height: 100%;
     z-index: 5;
-    /*transform: translateX(100%); TODO: uncomment */
+    transform: translateX(100%);
     opacity: 0;
     padding: 1.875rem;
-    transform: translateX(300px);
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     margin-right: 0;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column-reverse;
-    justify-content: flex-end;
+    flex-direction: column;
     align-items: center;
   }
 }
@@ -1486,6 +1516,7 @@ p {
     color: #FFF;
     font-size: 1.25rem;
     width: 100%;
+    padding: 0.9375rem 0;
   }
 }
 .nav__link__textWrapper {
@@ -1493,8 +1524,8 @@ p {
   align-items: center;
 }
 @media (max-width: 63.99em) {
-  .nav__link__textWrapper {
-    justify-content: center;
+  .nav__link__textWrapper svg {
+    display: none;
   }
 }
 .nav__link__textWrapper svg {
@@ -1566,14 +1597,23 @@ p {
 }
 @media (max-width: 63.99em) {
   .nav__dropdown {
+    padding-left: 1.25rem;
     width: 100%;
-    position: relative;
-    top: 30px;
-    left: auto;
+    position: static;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    opacity: 1;
+    visibility: visible;
+    background-color: inherit;
+    transform: none;
+    box-shadow: none;
+  }
+}
+@media (max-width: 63.99em) {
+  .nav__link-container {
+    width: 100%;
   }
 }
 .nav__link-dropdown {
@@ -1582,6 +1622,11 @@ p {
   color: #000;
   text-decoration: none;
   cursor: auto;
+}
+@media (max-width: 63.99em) {
+  .nav__link-dropdown {
+    color: #FFF;
+  }
 }
 .nav__link--dropdown:hover .nav__dropdown--animated, .nav__link--dropdown:focus .nav__dropdown--animated {
   transition: 300ms ease visibility, 300ms ease opacity, 300ms ease transform;
@@ -1600,13 +1645,20 @@ p {
 .nav__sublink:first-child {
   padding-top: 0.625rem;
 }
+@media (max-width: 47.99em) {
+  .nav__sublink:first-child {
+    padding-top: 0.9375rem;
+  }
+}
 .nav__sublink:last-child {
   margin-bottom: 0;
   padding-bottom: 0.625rem;
 }
-.nav__sublink:hover {
-  background-color: #F2F2F2;
-  transition: background-color 0.3s ease;
+@media (min-width: 64em) {
+  .nav__sublink:hover {
+    background-color: #F2F2F2;
+    transition: background-color 0.3s ease;
+  }
 }
 .nav__sublink__label {
   font-size: 1rem;
@@ -1618,6 +1670,7 @@ p {
 @media (max-width: 63.99em) {
   .nav__sublink__label {
     margin-left: 0;
+    color: #FFF;
   }
 }
 .nav__sublink__label::before {
@@ -1648,9 +1701,9 @@ p {
     overflow-x: hidden;
     transform: translateX(0);
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    z-index: 5;
-    background-color: #000;
+    background-color: #5158BB;
     z-index: 9999;
+    align-items: flex-start;
   }
 }
 
@@ -2449,9 +2502,11 @@ a {
   text-decoration: none;
   transition: color 0.3s ease;
 }
-a:hover {
-  transition: color 0.3s ease;
-  color: #2f3377;
+@media (min-width: 48em) {
+  a:hover {
+    transition: color 0.3s ease;
+    color: #2f3377;
+  }
 }
 
 .wysiwyg {

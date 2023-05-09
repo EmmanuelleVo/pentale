@@ -20,6 +20,9 @@ return new class extends Migration
         Schema::table('books', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()->onUpdate('cascade');
         });
+        Schema::table('characters', function (Blueprint $table) {
+            $table->foreignId('book_id')->constrained()->onUpdate('cascade');
+        });
         Schema::table('threads', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()->onUpdate('cascade');
         });
@@ -58,6 +61,9 @@ return new class extends Migration
         });
         Schema::table('books', function (Blueprint $table) {
             $table->foreignId('user_id');
+        });
+        Schema::table('characters', function (Blueprint $table) {
+            $table->foreignId('book_id');
         });
         Schema::table('threads', function (Blueprint $table) {
             $table->foreignId('user_id');

@@ -105,9 +105,11 @@ a {
     color: $cBlue;
     text-decoration: none;
     transition: color .3s ease;
-    &:hover {
-        transition: color .3s ease;
-        color: darken($cBlue, 20%);
+    @include mq($from: tablet) {
+        &:hover {
+            transition: color .3s ease;
+            color: darken($cBlue, 20%);
+        }
     }
 }
 

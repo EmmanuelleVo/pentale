@@ -1,62 +1,46 @@
 export class BurgerMenu {
     menu: HTMLMenuElement;
     burger: HTMLAnchorElement;
-    private logoText: Element;
-    private header: Element;
-    private main: HTMLElement;
-    private menuList: string[];
-    private headerList: string[];
-    private logoSite: Element;
+    private overlay: Element;
+    private top: Element;
+    private nav: Element;
 
     constructor() {
-        this.menu = document.querySelector('.menu-js')
-        this.burger = document.querySelector('.burger-js')
-        this.logoText = document.querySelector('.logo-text')
-        this.header = document.querySelector('.header')
-        this.main = document.querySelector('main')
-        this.logoSite = document.querySelector('.logo-ddw')
+        this.top = document.querySelector('.top')
+        this.nav = document.body.querySelector('.nav__links-container')
+        this.burger = document.querySelector('.hamburger')
+        this.overlay = document.querySelector('.overlay')
 
-        this.menuList = ['bg-dark-blue', 'text-white', 'z-50', 'fixed', 'inset-0', 'top-[125px]', 'opacity-100', 'h-screen', 'w-screen', 'overflow-x-hidden']
-        this.headerList = ['inset-x-0', 'z-50', 'fixed', 'w-full']
-
-        this.burger.addEventListener('click', (e)=>{
+        this.burger.addEventListener('click', (e) => {
+            e.preventDefault()
             this.toggleMenu()
+        })
+
+        document.addEventListener('click', (e) => {
+            if (this.top.classList.contains('menu-open')) {
+                console.log(e.target)
+                if (e.target !== this.nav
+                    && e.target !== this.burger
+                    && e.target !== document.querySelector('.hamburger-inner')
+                    && e.target !== document.querySelector('.hamburger-box')
+                    && e.target !== document.querySelector('input[type="search"]')
+                    && e.target !== document.querySelector('.nav__link-dropdown .nav__link__textWrapper')
+                ) {
+                    this.top.classList.remove('menu-open')
+                    this.burger.classList.remove('is-active')
+                    //this.overlay.classList.remove('is-active')
+                }
+            }
+
+
         })
     }
 
     toggleMenu() {
-        if(!this.menu.classList.contains('max-lg:hidden')){ // desktop
-            //this.menu.className += "max-lg:hidden absolute";
-            document.body.classList.add('fixed')
-            this.menu.classList.add('max-lg:hidden')
-            this.menu.classList.remove(...this.menuList)
-            //this.logoText.classList.remove('hidden')
-            this.header.classList.remove(...this.headerList)
-            this.burger.querySelectorAll('p').forEach(burgerLine => {
-                burgerLine.classList.add('bg-dark-blue')
-                burgerLine.classList.remove('bg-white')
+        this.top.classList.toggle('menu-open')
+        this.burger.classList.toggle('is-active')
+        //this.overlay.classList.toggle('is-active')
 
-            })
-        } else { // mobile
-            this.menu.classList.remove('max-lg:hidden')
-            this.menu.classList.add(...this.menuList)
-            //this.logoText.classList.add('hidden')
-            this.header.classList.add(...this.headerList)
-            document.body.classList.remove('fixed')
-            this.burger.querySelectorAll('p').forEach(burgerLine => {
-                burgerLine.classList.remove('bg-dark-blue')
-                burgerLine.classList.add('bg-white')
-            })
-        }
-
-        if (this.menu.classList.contains('bg-dark-blue')) {
-            this.logoText.classList.add('text-white')
-            this.logoSite.querySelector('#W').classList.add('fill-white')
-            //document.querySelector('#logo-bar').classList.add('')
-        } else {
-            this.logoText.classList.remove('text-white')
-            this.logoSite.querySelector('#W').classList.remove('fill-white')
-
-        }
     }
 }
+

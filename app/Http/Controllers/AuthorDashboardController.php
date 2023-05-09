@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Butschster\Head\Facades\Meta;
 use Illuminate\Http\Request;
 
 class AuthorDashboardController extends Controller
@@ -11,7 +12,9 @@ class AuthorDashboardController extends Controller
      */
     public function index()
     {
-        //
+        Meta::prependTitle('My dashboard');
+
+        return view('dashboard.index');
     }
 
     /**

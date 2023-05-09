@@ -139,8 +139,21 @@
             display: flex;
             gap: rem(15px);
 
+            @include mq($until: laptop) {
+                order: -1;
+            }
+
             & input {
                 padding: rem(10px) rem(40px);
+
+                @include mq($until: laptop) {
+                    border: none;
+                    color: $cWhite;
+                    background-color: lighten($cBlue, 15%);
+                    &::placeholder {
+                        color: $cWhite;
+                    }
+                }
             }
 
             & svg {
@@ -148,6 +161,11 @@
                 left: 15px;
                 top: 50%;
                 transform: translateY(-50%);
+                @include mq($until: laptop) {
+                    & path {
+                        fill: $cWhite;
+                    }
+                }
             }
         }
     }

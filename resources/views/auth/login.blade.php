@@ -12,7 +12,7 @@
                     <x-forms.input name="email" label_name="Email" place_holder="test@test.com" type="email"/>
                     <x-forms.input name="password" label_name="Password" place_holder="" type="password"/>
                     <span class="form__text"><a href="{{ route('forgotten-password') }}">Forgot your password?</a></span>
-                    <x-forms.button value="Sign up"/>
+                    <x-forms.button value="Sign in"/>
                 </form>
 
                 <div class="login__google">

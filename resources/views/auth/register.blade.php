@@ -1,66 +1,43 @@
-<x-header></x-header>
-<div class="px-6 py-8">
-    <div class="container flex justify-between mx-auto">
-        <div class="w-full">
-            <h1 class="text-center font-extrabold lg:uppercase">Register</h1>
-        </div>
-    </div>
-</div>
-<main class="px-6 py-8">
-    <div class="container flex justify-between mx-auto">
-        <div class="w-full lg:w-8/12">
-            <div class="flex items-center justify-between">
-                <h1 class="text-xl font-bold text-gray-700 md:text-2xl">Register to the blog</h1>
-            </div>
-            <div class="mt-6">
-                <form action="/register"
-                      method="post">
-
+<x-layout>
+    <x-header.page-header title="Sign up - Pentale"/>
+    <main id="main" class="login register">
+        <div class="login__container">
+            <div class="o-wrapper">
+                <div class="login__header">
+                    <x-titles.section-title title="Sign up"/>
+                    <p class="login__header-content">Not a member yet?</p>
+                </div>
+                <form action="/register" method="post" class="form">
                     @csrf
-
-                    <label for="name"
-                           class="block mb-2 @error('name') text-red-600 @enderror">Name</label>
-                    @error('name')
-                    <div class="text-red-600 py-1">{{ $message }}</div>
-                    @enderror
-                    <input id="name"
-                           type="text"
-                           name="name"
-                           class="p-4 w-full rounded-md shadow-sm @error('name') outline outline-red-400 @enderror focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           value="{{old('name')}}">
-
-                    <label for="email"
-                           class="block mt-8 mb-2 @error('email') text-red-600 @enderror">Email</label>
-                    @error('email')
-                    <div class="text-red-600 py-1">{{ $message }}</div>
-                    @enderror
-                    <input id="email"
-                           type="text"
-                           name="email"
-                           class="p-4 w-full rounded-md shadow-sm @error('email') outline outline-red-400 @enderror focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           value="{{old('email')}}">
-
-                    <label for="password"
-                           class="block mt-8 mb-2 @error('password') text-red-600 @enderror">Password</label>
-                    @error('password')
-                    <div class="text-red-600 py-1">{{ $message }}</div>
-                    @enderror
-                    <input name="password"
-                           type="password"
-                           id="password"
-                           rows="5"
-                           class="p-4 w-full rounded-md border-gray-300 shadow-sm @error('password') outline outline-red-400 @enderror focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           value="{{old('password')}}">
-                    <button type="submit"
-                            class="float-right mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
-                        Login
-                    </button>
+                    <x-forms.input name="username" label_name="Username" place_holder="username123"/>
+                    <x-forms.input name="email" label_name="Email" place_holder="test@test.com" type="email"/>
+                    <x-forms.input name="password" label_name="Password" place_holder="" type="password"/>
+                    <x-forms.button value="Register"/>
                 </form>
+
+                <div class="login__google">
+                    <p class="login__separator"><span class="login__separator-content">Or</span></p>
+                    <span class="login__google-link">
+                        <x-svg.google/>
+                        <a href="" title="Sign up with Google">Sign up with Google</a>
+                    </span>
+                </div>
+
+                <div class="login__option">
+                    <span>Already have an account? <a href="{{ route('login') }}" title="Sign in">Sign in</a></span>
+                </div>
             </div>
         </div>
-    </div>
-</main>
-<x-footer></x-footer>
-</div>
-</body>
-</html>
+    </main>
+    <x-footer.footer/>
+</x-layout>
+
+
+
+
+
+
+
+
+
+

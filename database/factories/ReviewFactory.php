@@ -26,7 +26,7 @@ class ReviewFactory extends Factory
         $overall = ($writing_quality + $story_development + $characters)/3;
 
         return [
-            'body' => fake()->sentence(150),
+            'body' => '<p>' . implode('</p><p>', fake()->paragraphs(7)) . '</p>',
             'writing_quality' => $writing_quality,
             'story_development' => $story_development,
             'characters' => $characters,

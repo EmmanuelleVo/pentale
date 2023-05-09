@@ -7,6 +7,7 @@ import {Tabs} from "./components/Tabs";
 import {Rating} from "./components/Rating";
 import {NumberInput} from "./components/NumberInput";
 import {PasswordVisibility} from "./components/PasswordVisibility";
+import {BurgerMenu} from "./components/BurgerMenu";
 
 class Main {
 
@@ -16,6 +17,7 @@ class Main {
         const rating = new Rating()
         const numberInput = new NumberInput()
         const passwordVisibility = new PasswordVisibility()
+        const burgerMenu = new BurgerMenu()
     }
 
 }

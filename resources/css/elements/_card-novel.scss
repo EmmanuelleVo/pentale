@@ -15,4 +15,11 @@
         justify-content: space-between;
     }
 
+    & .novel__chapter-date {
+        color: $cGrey;
+        @include mq($until: laptop) {
+            display: none;
+        }
+    }
+
 }

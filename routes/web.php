@@ -7,11 +7,11 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\RegisterSessionController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TermsAndConditionsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -31,23 +31,32 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //-- ABOUT --//
-
 Route::get('/about', AboutController::class)->name('about');
 
 
 //-- CONTACT SUPPORT --//
-
-Route::get('/contact', ContactController::class)->name('contact');
+Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 
 
 //-- NOVELS --//
 Route::get('/novels', [BookController::class, 'index'])->name('novel.index');
 Route::get('/novels/{book:slug}', [BookController::class, 'show'])->name('novels.show');
-
-
+// Novels dashboard
+Route::get('/dashboard/novels', [BookController::class, 'indexDashboard'])->name('dashboard.novels');
+Route::get('/dashboard/novels/{book:slug}', [BookController::class, 'showDashboard'])->name('dashboard.novels.book:slug');
+Route::get('/dashboard/novels/create', [BookController::class, 'create'])->name('book.create');
+Route::post('/dashboard/novels/store', [BookController::class, 'store']);
+Route::get('/dashboard/novels/{book:slug}/edit', [BookController::class, 'edit'])->name('book.edit');
+Route::patch('/dashboard/novels/{book:slug}/update', [BookController::class, 'update']);
+Route::post('/dashboard/novels/{book:slug}/destroy', [BookController::class, 'destroy']);
 
 //-- CHAPTERS --//
 Route::get('/novels/{book:slug}/chapter-{chapter:chapter_number}', [ChapterController::class, 'show'])->name('chapter.show');
+Route::get('/dashboard/novels/{book:slug}/create', [ChapterController::class, 'create'])->name('chapter.create');
+Route::post('/dashboard/novels/{book:slug}/store', [ChapterController::class, 'store']);
+Route::get('/dashboard/novels/{book:slug}/chapter-{chapter:chapter_number}/edit', [ChapterController::class, 'edit'])->name('chapter.edit');
+Route::patch('/dashboard/novels/{book:slug}/chapter-{chapter:chapter_number}/update', [ChapterController::class, 'update']);
+Route::post('/dashboard/novels/{book:slug}/chapter-{chapter:chapter_number}/destroy', [ChapterController::class, 'destroy']);
 
 
 //-- FORUM --//
@@ -58,6 +67,7 @@ Route::get('/profile/{user:slug}', [UserController::class, 'show'])->name('profi
 Route::get('/profile/{user:slug}/edit', [UserController::class, 'edit'])->name('profile.user:slug.edit');
 Route::patch('/profile/{user:slug}/update', [UserController::class, 'update'])->name('profile.user:slug.update');
 
+
 //-- NOTIFICATIONS --//
 
 
@@ -66,10 +76,10 @@ Route::get('/search', SearchController::class);
 
 
 //-- USER LIBRARY --//
-//Route::get('/library', SearchController::class);
+Route::get('/library', LibraryController::class);
+
 
 //-- PRIVACY POLICY AND TERMS & CONDITIONS --//
-
 Route::get('/privacy-policy', PrivacyPolicyController::class)->name('privacy-policy');
 Route::get('/terms-and-conditions', TermsAndConditionsController::class)->name('terms-and-conditions');
 

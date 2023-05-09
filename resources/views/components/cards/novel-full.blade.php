@@ -28,7 +28,7 @@
                 </ul>
             </div>
             <div class="novel__item-description wysiwyg">
-                {{ \Illuminate\Support\Str::limit($book->synopsis, 100, $end='...') }}
+                {!! \Illuminate\Support\Str::limit($book->synopsis, 100, $end='...') !!}
             </div>
         </div>
     </div>

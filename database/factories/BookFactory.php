@@ -25,7 +25,8 @@ class BookFactory extends Factory
         return [
             'title' => $title,
             'slug' => Str::slug($title),
-            'synopsis' => fake()->paragraph(8),
+            'synopsis' => '<p>' . implode('</p><p>', fake()->paragraphs(7)) . '</p>',
+
             'cover' => fake()->imageUrl(300, 300, true),
             'status' => 'ongoing',
             'published_at' => $created_at->addDays(rand(0, 1) * rand(2, 20)),

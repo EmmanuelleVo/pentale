@@ -28,7 +28,7 @@ class ThreadFactory extends Factory
             'thumbnail' => fake()->imageUrl(128, 128, true, 'people', $title),
             'is_pinned' => false,
             'is_solved' => false,
-            'body' => fake()->sentence(150),
+            'body' => '<p>' . implode('</p><p>', fake()->paragraphs(8)) . '</p>',
             'created_at' => $created_at,
             'published_at' => $created_at->addDays(rand(0, 1) * rand(2, 20)),
             'updated_at' => rand(0, 10) ? $created_at : $created_at->addWeeks(rand(2, 8)),

@@ -47,6 +47,11 @@ class Book extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function characters(): HasMany
+    {
+        return $this->hasMany(Characters::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

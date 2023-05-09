@@ -4,7 +4,7 @@
     <div class="novel__about-container">
         <x-titles.small-title title="Synopsis"/>
         <div class="wysiwyg novel__about-synopsis">
-            {{ $synopsis }}
+            {!! $synopsis !!}
         </div>
     </div>
 

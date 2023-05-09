@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Review;
@@ -17,6 +18,8 @@ class BookController extends Controller
      */
     public function index()
     {
+        Meta::prependTitle('All novels');
+
         $books = Book::paginate(20);
         $genres = Genre::all();
         $status = ['all', 'ongoing', 'completed', 'hiatus'];
@@ -32,12 +35,14 @@ class BookController extends Controller
     public function create()
     {
         Meta::prependTitle('Create a new novel');
+
+        return view('novel.index');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
         //
     }
@@ -97,15 +102,17 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Book $book)
     {
-        //
+        Meta::prependTitle('Dashboard');
+
+        return view('dashboard.index', compact('book'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BookRequest $request, Book $book)
     {
         //
     }
@@ -113,8 +120,32 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Book $book)
     {
         //
+    }
+
+
+
+
+    /**
+     * DASHBOARD
+     */
+    public function indexDashboard()
+    {
+        Meta::prependTitle('Dashboard');
+
+        return view('dashboard.index',
+
+        );
+    }
+
+    public function showDashboard()
+    {
+        Meta::prependTitle('All my novels');
+
+        return view('dashboard.index',
+
+        );
     }
 }

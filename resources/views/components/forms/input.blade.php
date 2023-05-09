@@ -1,4 +1,4 @@
-@props(['name', 'label_name', 'place_holder', 'type' => 'text'])
+@props(['name', 'label_name', 'place_holder' => '', 'type' => 'text'])
 
 <x-forms.field>
     <div class="{{ $name === 'password' || $name === 'password_confirmation' || $name === 'register-password' ? 'form__label-container' : '' }}">

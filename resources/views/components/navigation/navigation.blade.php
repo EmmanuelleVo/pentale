@@ -32,10 +32,15 @@
                         <x-navigation.link name="Login" link="/login"/>
                     @endguest
                     @auth()
-                        <x-navigation.sub-navigation name="User">
+                        <x-navigation.sub-navigation name="{{ auth()->user()->username }}">
                             <x-navigation.sublink name="My profile" link="/profile"/>
                             <x-navigation.sublink name="Notifications" link="/notifications"/>
-                            <x-navigation.sublink name="Logout" link="/logout"/>
+                            <form action="/logout" method="post" class="form">
+                                @csrf
+                                <button class="nav__sublink">
+                                    <span class="nav__sublink__label">Logout</span>
+                                </button>
+                            </form>
                         </x-navigation.sub-navigation>
                     @endauth
                 </div>

@@ -53,7 +53,7 @@ class UserController extends Controller
         $page_title = 'Profile of' . $user->username;
         Meta::prependTitle('Profile of' . $user->username);
 
-        return view('profile.create', compact('page_title', 'user'));
+        return view('profile.edit', compact('page_title', 'user'));
     }
 
     /**

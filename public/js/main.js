@@ -1,6 +1,54 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./resources/js/components/BurgerMenu.ts":
+/*!***********************************************!*\
+  !*** ./resources/js/components/BurgerMenu.ts ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.BurgerMenu = void 0;
+var BurgerMenu = /** @class */function () {
+  function BurgerMenu() {
+    var _this = this;
+    this.top = document.querySelector('.top');
+    this.nav = document.body.querySelector('.nav__links-container');
+    this.burger = document.querySelector('.hamburger');
+    this.overlay = document.querySelector('.overlay');
+    this.burger.addEventListener('click', function (e) {
+      e.preventDefault();
+      _this.toggleMenu();
+    });
+    document.addEventListener('click', function (e) {
+      if (_this.top.classList.contains('menu-open')) {
+        console.log(e.target);
+        if (e.target !== _this.nav && e.target !== _this.burger && e.target !== document.querySelector('.hamburger-inner') && e.target !== document.querySelector('.hamburger-box') && e.target !== document.querySelector('input[type="search"]') && e.target !== document.querySelector('.nav__link-dropdown .nav__link__textWrapper')) {
+          _this.top.classList.remove('menu-open');
+          _this.burger.classList.remove('is-active');
+          //this.overlay.classList.remove('is-active')
+        }
+      }
+    });
+  }
+
+  BurgerMenu.prototype.toggleMenu = function () {
+    this.top.classList.toggle('menu-open');
+    this.burger.classList.toggle('is-active');
+    //this.overlay.classList.toggle('is-active')
+  };
+
+  return BurgerMenu;
+}();
+exports.BurgerMenu = BurgerMenu;
+
+/***/ }),
+
 /***/ "./resources/js/components/NumberInput.ts":
 /*!************************************************!*\
   !*** ./resources/js/components/NumberInput.ts ***!
@@ -206,12 +254,14 @@ var Tabs_1 = __webpack_require__(/*! ./components/Tabs */ "./resources/js/compon
 var Rating_1 = __webpack_require__(/*! ./components/Rating */ "./resources/js/components/Rating.ts");
 var NumberInput_1 = __webpack_require__(/*! ./components/NumberInput */ "./resources/js/components/NumberInput.ts");
 var PasswordVisibility_1 = __webpack_require__(/*! ./components/PasswordVisibility */ "./resources/js/components/PasswordVisibility.ts");
+var BurgerMenu_1 = __webpack_require__(/*! ./components/BurgerMenu */ "./resources/js/components/BurgerMenu.ts");
 var Main = /** @class */function () {
   function Main() {
     var tabs = new Tabs_1.Tabs();
     var rating = new Rating_1.Rating();
     var numberInput = new NumberInput_1.NumberInput();
     var passwordVisibility = new PasswordVisibility_1.PasswordVisibility();
+    var burgerMenu = new BurgerMenu_1.BurgerMenu();
   }
   return Main;
 }();
