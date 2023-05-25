@@ -1,0 +1,16 @@
+.dashboard {
+    .novel {
+        &__form {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: rem(30px);
+        }
+
+        &__info {
+            & .story__item {
+                border: none;
+                padding: 0;
+            }
+        }
+    }
+}

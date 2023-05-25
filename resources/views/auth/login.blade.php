@@ -1,10 +1,10 @@
 <x-layout>
-    <x-header.page-header title="Sign in - Pentale"/>
+    <x-header.page-header title="Login - Pentale"/>
     <main id="main" class="login">
         <div class="login__container">
             <div class="o-wrapper">
                 <div class="login__header">
-                    <x-titles.section-title title="Sign up"/>
+                    <x-titles.section-title title="Login"/>
                     <p class="login__header-content">Welcome back !</p>
                 </div>
                 <form action="/login" method="post" class="form">

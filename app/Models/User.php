@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $guarded = [];
-    protected $with = ['role'];
+    //protected $with = ['role'];
 
     /**
      * The attributes that should be hidden for serialization.

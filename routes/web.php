@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AccessibilityController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\AuthorDashboardController;
 use App\Http\Controllers\BookController;
@@ -42,9 +43,10 @@ Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::get('/novels', [BookController::class, 'index'])->name('novel.index');
 Route::get('/novels/{book:slug}', [BookController::class, 'show'])->name('novels.show');
 // Novels dashboard
+Route::get('/dashboard', [AuthorDashboardController::class, 'index'])->name('dashboard');
 Route::get('/dashboard/novels', [BookController::class, 'indexDashboard'])->name('dashboard.novels');
-Route::get('/dashboard/novels/{book:slug}', [BookController::class, 'showDashboard'])->name('dashboard.novels.book:slug');
 Route::get('/dashboard/novels/create', [BookController::class, 'create'])->name('book.create');
+Route::get('/dashboard/novels/{book:slug}', [BookController::class, 'showDashboard'])->name('dashboard.novels.book:slug');
 Route::post('/dashboard/novels/store', [BookController::class, 'store']);
 Route::get('/dashboard/novels/{book:slug}/edit', [BookController::class, 'edit'])->name('book.edit');
 Route::patch('/dashboard/novels/{book:slug}/update', [BookController::class, 'update']);
@@ -82,6 +84,8 @@ Route::get('/library', LibraryController::class);
 //-- PRIVACY POLICY AND TERMS & CONDITIONS --//
 Route::get('/privacy-policy', PrivacyPolicyController::class)->name('privacy-policy');
 Route::get('/terms-and-conditions', TermsAndConditionsController::class)->name('terms-and-conditions');
+//-- ACCESSIBILITY --//
+Route::get('/accessibility', AccessibilityController::class)->name('accessibility');
 
 
 //-- CONNECTION --//
@@ -97,4 +101,3 @@ Route::get('/reset-password/{token}', [PasswordController::class, 'createResetPa
 Route::post('/reset-password', [PasswordController::class, 'storeResetPassword'])->middleware('guest');
 
 //-- AUTHOR DASHBOARD --//
-Route::get('/dashboard', [AuthorDashboardController::class, 'index'])->name('dashboard');

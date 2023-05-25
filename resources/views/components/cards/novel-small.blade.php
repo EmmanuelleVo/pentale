@@ -1,20 +1,28 @@
-@props(['title', 'img_link', 'link', 'chapter_number', 'chapter_link', 'chapter_time'])
+@props(['book'])
 
 <div class="novel__item novel__item--small">
-    <a href="{{ $link }}" title="Learn more about {{$title}}" class="u-absolute"></a>
+    <a href="/novels/{{ $book->slug }}" title="Learn more about {{ $book->title }}" class="u-absolute"></a>
     <figure class="novel__item-figure">
-        <a href="{{ $link }}" class="u-absolute" title="Learn more about {{$title}}"></a>
-        <img src="{{ $img_link }}" alt="" class="novel__item-img">
+        <img src="{{ $book->cover }}" alt="" class="novel__item-img">
     </figure>
     <div class="novel__item-content">
-        <h3 class="title title--card" aria-level="3" role="heading">{{$title}}</h3>
-        {{--TODO: ADD STARS--}}
+        <div class="novel__info-stars starContainer">
+            <div class="star__container">
+                <i class='bx bx-star star' style="--i: 1;"></i>
+                <i class='bx bx-star star' style="--i: 2;"></i>
+                <i class='bx bx-star star' style="--i: 3;"></i>
+                <i class='bx bx-star star' style="--i: 4;"></i>
+                <i class='bx bx-star star' style="--i: 5;"></i>
+            </div>
+            <span class="book__average">4.91</span>
+        </div>
+        <h3 class="title title--card" aria-level="3" role="heading">{{ $book->title }}</h3>
         <div class="novel__item-genres genres">
             <span class="u-visually-hidden">Genres :</span>
             <ul class="genres__list">
                 @foreach($book->genres()->orderBy('name')->paginate(3) as $book_genre)
                     <li class="genres__item">
-                        <a href="#" class="genres__link">
+                        <a href="#" class="genres__link genres__link--filter">
                             <x-commons.tag name="{{ $book_genre->name }}"/>
                         </a>
                     </li>

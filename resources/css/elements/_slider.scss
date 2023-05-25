@@ -1,0 +1,21 @@
+@import 'swiper/swiper-bundle.min.css';
+@import 'swiper/swiper.min.css';
+
+.swiper {
+    &-button-prev, &-button-next {
+        color: $cWhite;
+        background-color: rgba($cDarkGrey, .2);
+        padding: rem(10px);
+        border-radius: 5px;
+        transition: background-color .3s ease;
+
+        &:hover {
+            background-color: rgba($cDarkGrey, .4);
+            transition: background-color .3s ease;
+        }
+
+        &:after {
+            font-size: rem(16px);
+        }
+    }
+}

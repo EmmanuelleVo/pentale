@@ -13,7 +13,7 @@ class Review extends Model
     use HasFactory, Markable;
 
     protected $guarded = [];
-    protected $with = ['user'];
+    //protected $with = ['user'];
     protected array $dates = ['published_at'];
 
     protected static $marks = [

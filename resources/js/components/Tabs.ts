@@ -12,7 +12,7 @@ export class Tabs {
         this.tabLinks = document.querySelectorAll('#tabLink')
         this.tabContents = document.querySelectorAll('.tab__content')
         this.tabBar = document.querySelector('.tab')
-        if (this.tabLinks) {
+        if (this.tabLinks && this.tabLinks.length !== 0) {
             this.openTab()
         }
     }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('synopsis');
             $table->string('status');
+            $table->string('patreon')->nullable();
+            $table->string('language')->default('en');
             $table->string('cover')->nullable();
             $table->timestamp('published_at')->useCurrent();
             $table->timestamps();

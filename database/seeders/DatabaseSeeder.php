@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BooksSeeder::class);
         $this->call(ChaptersSeeder::class);
         $this->call(ReviewsSeeder::class);
+        $this->call(CommentsSeeder::class);
         $this->call(CharactersSeeder::class);
         $this->call(ThreadCategoryRelationshipSeeder::class);
         $this->call(BookTagRelationshipSeeder::class);

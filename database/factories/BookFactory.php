@@ -26,9 +26,10 @@ class BookFactory extends Factory
             'title' => $title,
             'slug' => Str::slug($title),
             'synopsis' => '<p>' . implode('</p><p>', fake()->paragraphs(7)) . '</p>',
-
+            'language' => 'en',
             'cover' => fake()->imageUrl(300, 300, true),
             'status' => 'ongoing',
+            'patreon' => fake()->url(),
             'published_at' => $created_at->addDays(rand(0, 1) * rand(2, 20)),
             'created_at' => $created_at,
             'updated_at' => rand(0, 10) ? $created_at : $created_at->addWeeks(rand(2, 8)),

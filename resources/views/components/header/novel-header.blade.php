@@ -13,11 +13,17 @@
                 <div class="novel__info-container">
                     <h2 aria-level="2" role="heading" class="title title--section title--page">{{ $book->title }}</h2>
                     <dl class="novel__info-meta meta__container">
-                        <x-commons.meta-image name="Views count" attribute="1.1M views"></x-commons.meta-image>
-                        <x-commons.meta-image name="Chapters count" attribute="298 chapters"></x-commons.meta-image>
-                        <x-commons.meta-image name="Reviews count" attribute="29 reviews"></x-commons.meta-image>
+                        <x-commons.meta-image name="Views count" attribute="1.1M views">
+                            <x-svg.star/>
+                        </x-commons.meta-image>
+                        <x-commons.meta-image name="Chapters count" attribute="298 chapters">
+                            <x-svg.chapter/>
+                        </x-commons.meta-image>
+                        <x-commons.meta-image name="Reviews count" attribute="29 reviews">
+                            <x-svg.review/>
+                        </x-commons.meta-image>
                     </dl>
-                    <div class="novel__info-stars">
+                    <div id="starContainer" class="novel__info-stars">
                         <div class="star__container">
                             <i class='bx bx-star star' style="--i: 1;"></i>
                             <i class='bx bx-star star' style="--i: 2;"></i>
@@ -25,7 +31,7 @@
                             <i class='bx bx-star star' style="--i: 4;"></i>
                             <i class='bx bx-star star' style="--i: 5;"></i>
                         </div>
-                        <span>{{ $book_average }}</span>
+                        <span class="book__average">{{ $book_average }}</span>
                     </div>
                     <dl class="novel__info-meta tags__container">
                         <x-commons.meta-text name="Author" attribute="{{ $book->user->username }}"/>
@@ -60,7 +66,8 @@
 
                 <div class="novel__info-actions">
                     <x-commons.button link="/novels/{{ $book->slug }}/chapter-1" title="Read first chapter">Start reading</x-commons.button>
-                    <x-commons.button class="c-btn--secondary" link="#" title="Bookmark {{ $book->title }}">Bookmark</x-commons.button>
+                    {{--<x-commons.button class="c-btn--secondary" link="#" title="Bookmark {{ $book->title }}">Bookmark</x-commons.button>--}}
+                    @livewire('bookmark', [$book])
                 </div>
             </div>
         </div>

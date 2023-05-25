@@ -10,10 +10,9 @@
     {{--@vite(['resources/js/app.ts', 'js/tinymce/tinymce.min.js'])--}}
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link type="text/css" rel="stylesheet" href="css/lightgallery-bundle.css" />
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    @livewireStyles
     {{--<x-head.tinymce-config/>--}}
 </head>
 <body itemscope itemtype="https://schema.org/Organization" class="sans text-lg bg-white overflow-x-hidden leading-9">
@@ -21,10 +20,7 @@
 {{ $slot }}
 
 {{--<x-commons.flash-message/>--}}
-<script src="js/lightgallery.umd.js"></script>
-<!-- lightgallery plugins -->
-<script src="js/plugins/lg-thumbnail.umd.js"></script>
-<script src="js/plugins/lg-zoom.umd.js"></script>
+@livewireScripts
 <script src="{{ asset('js/main.js') }}" defer></script>
 </body>
 

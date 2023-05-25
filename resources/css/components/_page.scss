@@ -86,8 +86,13 @@ body {
 .title-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: rem(20px);
+    margin-bottom: rem(30px);
+
+    & h2 {
+        margin-bottom: 0;
+    }
 }
 
 .colored {
@@ -123,5 +128,48 @@ a {
     max-width: rem(200px);
     & img {
         border-radius: 50%;
+    }
+}
+
+.link {
+    color: $cBlack;
+    &--arrow {
+        display: flex;
+        align-items: center;
+        gap: rem(12px);
+            transition: gap .3s ease;
+
+        &:hover {
+            gap: rem(8px);
+            transition: gap .3s ease;
+        }
+
+        & svg {
+            width: rem(18px);
+        }
+    }
+}
+
+.date {
+    color: $cGrey;
+    font-size: rem(15px);
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.dropdown {
+    &__btn {
+
+    }
+
+    &__container {
+        display: none;
+        background-color: $cLightGrey;
+    }
+
+    &__link {
+
     }
 }

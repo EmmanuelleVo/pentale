@@ -20,18 +20,34 @@
             <x-titles.small-title title="Novels of the same genre"/>
             <x-commons.button link="#" title="View other novels of the same genre">View all</x-commons.button>
         </div>
-        <ul class="novel__about-list">
-            @foreach($books as $book)
-                <li class="novel__about-item">
-                    @dd($books)
-                    <x-cards.novel :title="$book->title"
-                                   :img_link="$book->cover"
-                                   link="/novels/{{ $book->slug }}"
-                                   :chapter_number="$book->chapter_number"
-                                   chapter_link="/novels/{{ $book->slug }}/chapter-{{ $latestRelease->chapter_number }}"
-                    />
-                </li>
-            @endforeach
+        <ul class="novel__about-list swiper">
+            <div class="swiper-wrapper">
+                @foreach($books[0] as $book)
+                    <li class="novel__about-item swiper-slide">
+                        <div class="novel__item">
+                            <figure class="novel__item-figure">
+                                <a href="#" class="u-absolute" title="Learn more about {{ $book->title }}"></a>
+                                <img src="{{ $book->cover }}" alt="" class="novel__item-img">
+                            </figure>
+                            <div class="novel__item-content">
+                                <h3 class="title title--card" aria-level="3" role="heading">
+                                    {{ $book->title }}
+                                </h3>
+                                <div class="novel__info-stars starContainer">
+                                    <div class="star__container">
+                                        <i class='bx bx-star star' style="--i: 1;"></i>
+                                        <i class='bx bx-star star' style="--i: 2;"></i>
+                                        <i class='bx bx-star star' style="--i: 3;"></i>
+                                        <i class='bx bx-star star' style="--i: 4;"></i>
+                                        <i class='bx bx-star star' style="--i: 5;"></i>
+                                    </div>
+                                    <span class="book__average">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                @endforeach
+            </div>
         </ul>
     </div>
 

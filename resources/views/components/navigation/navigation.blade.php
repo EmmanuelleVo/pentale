@@ -20,7 +20,7 @@
                         <x-navigation.sublink name="Latest Releases" link="/novels"/>
                         <x-navigation.sublink name="Newest novels" link="/novels"/>
                     </x-navigation.sub-navigation>
-                    <x-navigation.link name="Write" link="/"/>
+                    <x-navigation.link name="Write" link="{{ route('dashboard') }}"/>
                     <x-navigation.link name="Forum" link="/forum"/>
                     @auth()
                         <x-navigation.link name="My library" link="/library"/>

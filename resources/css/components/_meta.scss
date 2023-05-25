@@ -13,4 +13,18 @@
         font-weight: 700;
         font-size: rem(18px);
     }
+
+    &--dashboard {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: rem(20px);
+        & .meta__term {
+
+        }
+
+        & .meta__content {
+            font-size: rem(28px);
+        }
+    }
 }

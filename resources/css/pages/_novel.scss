@@ -121,6 +121,10 @@
             }
 
             & .form__container:nth-child(2) {
+                min-width: 20%;
+            }
+
+            & .form__container:nth-child(3) {
                 width: 100%;
             }
         }

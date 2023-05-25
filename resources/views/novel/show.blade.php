@@ -8,14 +8,15 @@
                 <x-commons.tab link="#reviews" name="Reviews"/>
             </div>
 
-            {{--<section id="About" class="tab__content tab__content--active">
+            <section id="About" class="tab__content tab__content--active">
                 <x-novel.tab-about :synopsis="$book->synopsis" patreon__link="#" :books="$other_books"/>
             </section>
             <section id="Chapters" class="tab__content">
                 <x-novel.tab-chapters :chapters="$chapters"/>
-            </section>--}}
-            <section style="display: block;" id="Reviews" class="tab__content">
-                <x-novel.tab-reviews :reviews="$book_reviews"/>
+                {{--<livewire:chapter-index :chapters="$chapters"/>--}}
+            </section>
+            <section id="Reviews" class="tab__content">
+                <x-novel.tab-reviews :reviews="$book_reviews" :book="$book"/>
             </section>
         </div>
 

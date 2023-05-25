@@ -15,7 +15,7 @@ class Book extends Model
     use HasFactory, Markable;
 
     protected $guarded = [];
-    protected $with = ['user', 'genres', 'tags'];
+    //protected $with = ['genres', 'tags'];
     protected array $dates = ['published_at'];
 
     protected static $marks = [
@@ -56,4 +56,29 @@ class Book extends Model
     {
         return 'slug';
     }
+
+    /*public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search-term'] ?? false, fn($query, $search) => $query->where(fn($query)
+        => $query->where('title', 'like', '%' . $search . '%')
+            ->orWhere('body', 'like', '%' . $search . '%'))
+        //->orWhere('excerpt', 'like', '%' . $search . '%')
+        );
+
+        $query->when($filters['filter'] ?? false, fn($query, $category) => $query->whereHas('tags', fn($query) // posts whereHas (relation category)
+        => $query->where('slug', $category))
+        );
+    }
+
+    public function scopeFilter($query, string $filter)
+    {
+        if ($filter !== '') {
+            $course = Course::where('slug', $filter)->first();
+            $course_id = $course->id;
+        }
+
+        $query->when($filter ?? false, fn($query)
+        => $query->whereHas('courses', fn ($query)
+        => $query->where('course_teacher.course_id', $course_id)));
+    }*/
 }

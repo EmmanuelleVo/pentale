@@ -20,7 +20,6 @@ class UserFactory extends Factory
     {
         $username = fake()->userName();
         return [
-            'name' => fake()->name(),
             'username' => $username,
             'slug' => Str::slug($username),
             'email' => fake()->unique()->safeEmail(),

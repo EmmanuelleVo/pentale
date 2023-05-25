@@ -1,14 +1,14 @@
 export class Rating {
 
     constructor() {
-        const allStar = document.querySelectorAll('.rating .star')
-        const ratingValue = document.querySelector('.rating input')
+        const allStar = document.querySelectorAll('.rating .star') as any as Array<HTMLElement>
+        const ratingValue = document.querySelector('.rating input') as HTMLInputElement
 
 
         allStar.forEach((item, idx) => {
             item.addEventListener('click', function () {
                 let click = 0
-                ratingValue.value = idx + 1
+                ratingValue.value = String(idx + 1)
 
                 allStar.forEach(i => {
                     i.classList.replace('bxs-star', 'bx-star')

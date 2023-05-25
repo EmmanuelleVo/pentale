@@ -1,0 +1,34 @@
+.dashboard {
+    margin-left: rem(300px);
+
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: rem(30px);
+        margin-top: rem(80px);
+    }
+
+    & .card-list {
+        grid-template-columns: 1fr;
+        gap: rem(15px);
+    }
+
+    &__reviews-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: rem(15px);
+    }
+
+    &__card {
+        border: 1px solid $cGrey;
+        border-radius: 5px;
+        padding: rem(15px);
+        line-height: 1.4;
+        position: relative;
+
+        & .date {
+            margin-top: rem(8px);
+            display: block;
+        }
+    }
+}

@@ -53,4 +53,20 @@
             margin-bottom: 0;
         }
     }
+
+    &__content p {
+        display: flex;
+        justify-content: space-between;
+        gap: rem(10px);
+    }
+
+    &__paragraph {
+        &-btn {
+            cursor: pointer;
+        }
+
+        & .bx {
+            font-size: rem(24px);
+        }
+    }
 }

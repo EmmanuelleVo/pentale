@@ -94,5 +94,12 @@
         /*@include mq($until: laptop) {
             grid-template-columns: repeat(2, 1fr);
         }*/
+
+        &--small {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: rem(15px);
+
+        }
     }
 }

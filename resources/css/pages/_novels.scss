@@ -4,6 +4,12 @@
         border-radius: 5px;
         border: $cGrey 1px solid;
         margin-bottom: rem(50px);
+
+        & .title-container {
+            & .title {
+                margin-bottom: 0;
+            }
+        }
     }
 
     &__list {

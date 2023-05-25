@@ -1,0 +1,17 @@
+.accordion {
+    &__button {
+        margin-bottom: 0 !important;
+    }
+
+    &__container {
+        transition: height .3s ease;
+        overflow: hidden;
+        height: 0;
+    }
+
+    &__content {
+        & .novels__filter:first-child {
+            margin-top: rem(30px);
+        }
+    }
+}

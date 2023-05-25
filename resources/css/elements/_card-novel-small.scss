@@ -1,5 +1,29 @@
 .novel {
     &__item--small {
+        position: relative;
+        border: 1px solid $cGrey;
+        border-radius: 5px;
+        flex-direction: row;
+        align-items: center;
+        gap: rem(20px);
+        padding: rem(15px);
 
+        & .novel__item-figure {
+            width: rem(150px);
+        }
+
+        & .novel__item-content {
+
+        }
+
+        & .novel__info-stars {
+            & .stars {
+                font-size: rem(18px);
+            }
+
+            & span {
+                font-size: rem(18px);
+            }
+        }
     }
 }

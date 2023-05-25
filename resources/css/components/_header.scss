@@ -64,6 +64,20 @@
         & h2 {
             margin-top: rem(80px);
         }
+
+        &--dashboard {
+            margin-left: rem(300px);
+            padding-top: rem(30px);
+            padding-bottom: rem(30px);
+            background-color: $cWhite;
+
+            & .title {
+                text-transform: none;
+                font-size: rem(32px);
+                display: flex;
+                flex-direction: column;
+            }
+        }
     }
 
     &__content {

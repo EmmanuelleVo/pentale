@@ -34,6 +34,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onUpdate('cascade');
             $table->foreignId('book_id')->constrained()->onUpdate('cascade');
         });
+        Schema::table('comments', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('chapter_id')->constrained()->onUpdate('cascade');
+        });
         Schema::table('thread_category', function (Blueprint $table) {
             $table->foreignId('thread_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // ->onDelete('cascade') ?
             $table->foreignId('category_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
@@ -75,6 +79,10 @@ return new class extends Migration
         Schema::table('reviews', function (Blueprint $table) {
             $table->foreignId('user_id');
             $table->foreignId('book_id');
+        });
+        Schema::table('comments', function (Blueprint $table) {
+            $table->dropConstrainedForeignId('user_id');
+            $table->dropConstrainedForeignId('chapter_id');
         });
         Schema::table('thread_category', function (Blueprint $table) {
             $table->foreignId('thread_id'); // ->onDelete('cascade') ?

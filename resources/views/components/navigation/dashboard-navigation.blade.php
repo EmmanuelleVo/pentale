@@ -16,9 +16,9 @@
                 <div class="nav__links-container">
                     <div class="nav__links-wrapper">
                         <x-navigation.link name="Dashboard" link="/dashboard"/>
-                        <x-navigation.link name="My stories" link="/dashboard/stories"/>
-                        <x-navigation.link name="My notes" link="/dashboard/notes"/>
-                        <x-navigation.link name="Invitations" link="/dashboard/invitations"/>
+                        <x-navigation.link name="My stories" link="/dashboard/novels"/>
+                        <x-navigation.link name="Reviews" link="/dashboard/reviews"/>
+                        <x-navigation.link name="Comments" link="/dashboard/comments"/>
                         <x-navigation.link name="Settings" link="/dashboard/settings"/>
                         <x-navigation.link name="Logout" link="/dashboard/logout"/>
                     </div>

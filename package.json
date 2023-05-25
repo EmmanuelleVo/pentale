@@ -18,13 +18,13 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "hamburgers": "^1.2.1",
-        "lightgallery": "^2.7.1",
-        "sass-mq": "^6.0.0",
-        "swiper": "^9.1.1",
-        "tippy.js": "^6.3.7",
         "@meilisearch/instant-meilisearch": "^0.10.1",
         "algoliasearch": "^4.14.3",
-        "instantsearch.js": "^4.49.4"
+        "hamburgers": "^1.2.1",
+        "instantsearch.js": "^4.49.4",
+        "lightgallery": "^2.7.1",
+        "sass-mq": "^6.0.0",
+        "swiper": "^9.3.2",
+        "tippy.js": "^6.3.7"
     }
 }

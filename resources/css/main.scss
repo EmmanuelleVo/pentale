@@ -128,8 +128,11 @@ $mq-static-breakpoint: desktop;
 @import "elements/card-novel";
 @import "elements/card-novel-full";
 @import "elements/card-novel-small";
+@import "elements/card-story";
 @import "elements/toggle";
 @import "elements/input-number";
+@import "elements/accordion";
+@import "elements/slider";
 
 // COMPONENTS
 @import "components/titles";
@@ -154,6 +157,8 @@ $mq-static-breakpoint: desktop;
 @import "pages/novels";
 @import "pages/login";
 @import "pages/chapter";
+@import "pages/dashboard/dashboard";
+@import "pages/dashboard/novel";
 
 // UTILITIES
 @import "utils/generic.meyer";

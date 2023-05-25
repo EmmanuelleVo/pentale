@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Butschster\Head\Facades\Meta;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,19 @@ class AuthorDashboardController extends Controller
      */
     public function index()
     {
-        Meta::prependTitle('My dashboard');
+        Meta::prependTitle('Dashboard');
+        $user = auth()->user();
 
-        return view('dashboard.index');
+        $books = Book::query()->where('user_id', '=', $user->id)->paginate(2);
+        $all_books = Book::query()->where('user_id', '=', $user->id)->get();
+        $latestReviews = [];
+        foreach ($all_books as $all_book) {
+            $latestReviews = $all_book->reviews()->with('user')->get();
+        }
+
+        return view('dashboard.index',
+            compact('books', 'latestReviews')
+        );
     }
 
     /**

@@ -19,8 +19,18 @@ class Chapter extends Model
         return $this->save();
     }
 
+    public function latestChapters()
+    {
+        return $this->hasOne(Chapter::class)->latest()->limit(2);
+    }
+
     public function book(): BelongsTo
     {
         return $this->belongsTo(Book::class, 'book_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
 }

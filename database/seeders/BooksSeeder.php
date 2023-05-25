@@ -42,7 +42,8 @@ class BooksSeeder extends Seeder
             $randomNumber = rand(0,100);
             if($randomNumber > 90) {
                 Book::factory()->create([
-                    'status' => 'hiatus'
+                    'status' => 'hiatus',
+                    'language' => 'fr',
                 ]);
             } elseif ($randomNumber < 30) {
                 Book::factory()->create([

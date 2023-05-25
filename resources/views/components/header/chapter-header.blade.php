@@ -14,7 +14,7 @@
             </x-breadcrumbs.breadcrumb>
             <div class="chapter__actions-container chapter__actions-container--top">
                 <x-commons.button title="Bookmark the novel" link="#"><span class="u-visually-hidden">Bookmark</span><x-svg.bookmark/></x-commons.button>
-                <x-commons.button class="chapterOption" title="Display reader preferences" link="#">
+                <x-commons.button id="modalBtn" class="chapterOption" title="Display reader preferences" link="#">
                     <x-svg.settings/>
                     <span>Reader preferences</span>
                 </x-commons.button>

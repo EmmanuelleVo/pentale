@@ -18,9 +18,13 @@
                     <x-commons.button title="Go to next chapter" link="#">Next</x-commons.button>
                 </div>
             </section>
+
+            <section class="chapter__comments">
+
+            </section>
         </div>
 
-        <div class="modal">
+        <div id="modal" class="modal">
             <div class="modal__container">
                 <div class="modal__content">
                     <form action="#" class="form">

@@ -16,7 +16,6 @@ class UsersSeeder extends Seeder
     {
 
         User::factory()->create([
-            'name' => 'Emmanuelle Vo',
             'username' => 'emmanuelle-vo',
             'slug' => 'emmanuelle-vo',
             'email' => 'emmanuelle.vo@student.hepl.be',
