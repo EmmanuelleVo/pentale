@@ -12,6 +12,7 @@ import {Commons} from "./components/Commons";
 import {Chapter} from "./components/Chapter";
 import {Slider} from "./components/Slider.js";
 import {Star} from "./components/Star";
+import {ProgressBar} from "./components/ProgressBar";
 
 class Main {
 
@@ -28,6 +29,7 @@ class Main {
         const chapter = new Chapter()
         const swiper = new Slider()
         const star = new Star()
+        const progressBar = new ProgressBar()
     }
 
 }

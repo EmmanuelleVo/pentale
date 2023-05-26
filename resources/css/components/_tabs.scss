@@ -3,10 +3,22 @@
     gap: rem(50px);
     margin-bottom: rem(50px);
     margin-top: rem(50px);
+
+    @include mq($until: tablet) {
+        gap: rem(30px);
+    }
+
     &__link {
         font-weight: 700;
         font-size: rem(32px);
         opacity: .7;
+
+        @include mq($until: tablet) {
+            font-size: rem(24px);
+        }
+        @include mq($until: mobile) {
+            font-size: rem(20px);
+        }
 
         &--active {
             opacity: 1;

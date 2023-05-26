@@ -2,11 +2,21 @@
     display: flex;
     flex-direction: column;
     gap: rem(20px);
+    transition: box-shadow .3s ease;
+
+    &:hover {
+        box-shadow: 0 2px 18px 0 rgba(0, 18, 66, 0.2);
+        transition: box-shadow .3s ease;
+    }
 
     &-figure {
         position: relative;
+        min-width: rem(150px);
+        width: rem(150px);
+        min-height: 180px;
         & img {
             border-radius: 5px;
+            height: 180px;
         }
     }
 
@@ -22,4 +32,52 @@
         }
     }
 
+}
+
+
+.novel__about-item .novel__item {
+    align-items: center;
+    position: relative;
+
+    &:hover {
+        box-shadow: none;
+
+        & .title {
+            color: $cBlue;
+            transition: color .3s ease;
+        }
+
+    }
+
+    & .title {
+        transition: color .3s ease;
+        text-align: center;
+    }
+
+    & .u-absolute {
+        z-index: 2;
+    }
+
+    @include mq($until: mobile) {
+        gap: rem(20px);
+    }
+
+    & .novel__item-figure {
+
+        & img {
+            height: rem(180px);
+        }
+    }
+
+    & .novel__info-stars {
+        justify-content: center;
+
+        & .star, & .book__average {
+            font-size: rem(20px);
+
+            @include mq($until: mobile) {
+                font-size: rem(18px);
+            }
+        }
+    }
 }

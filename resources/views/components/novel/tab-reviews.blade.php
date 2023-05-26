@@ -9,7 +9,7 @@
         </p>--}}
         <form class="novel__reviews-form form">
             @csrf
-            <div class="form__container">
+            <div class="form__container form__container-rating">
                 <div class="form__field rating">
                     <label for="writing_quality" class="form__label">Writing quality</label>
                     <input type="hidden" id="writing_quality" name="writing_quality" class="form__input">

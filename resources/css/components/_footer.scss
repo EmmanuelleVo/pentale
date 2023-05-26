@@ -2,23 +2,49 @@
     padding: rem(30px) 0;
     border-top: $cGrey 1px solid;
     margin-top: rem(80px);
+
+    &--dashboard {
+        margin-left: rem(300px);
+    }
+
+
     &__wrapper {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: rem(30px);
+
+        @include mq($until: laptop) {
+            flex-direction: column;
+        }
     }
 
     &__copyright {
-
+        @include mq($until: laptop) {
+            order: 1;
+        }
     }
 
     &__nav {
         display: flex;
         gap: rem(20px);
+
+        @include mq($until: tablet) {
+            flex-direction: column;
+        }
         &__link-container {
             & .nav__link {
                 padding: 0;
+
+                @include mq($until: laptop) {
+                    color: $cBlack;
+                    font-size: rem(16px);
+                }
             }
+        }
+
+        & .nav__link__textWrapper {
+            justify-content: center;
         }
     }
 }

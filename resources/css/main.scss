@@ -133,6 +133,7 @@ $mq-static-breakpoint: desktop;
 @import "elements/input-number";
 @import "elements/accordion";
 @import "elements/slider";
+@import "elements/progress-bar";
 
 // COMPONENTS
 @import "components/titles";
@@ -157,6 +158,7 @@ $mq-static-breakpoint: desktop;
 @import "pages/novels";
 @import "pages/login";
 @import "pages/chapter";
+@import "pages/library";
 @import "pages/dashboard/dashboard";
 @import "pages/dashboard/novel";
 

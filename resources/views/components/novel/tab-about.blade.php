@@ -25,13 +25,13 @@
                 @foreach($books[0] as $book)
                     <li class="novel__about-item swiper-slide">
                         <div class="novel__item">
+                            <a href="#" class="u-absolute" title="Learn more about {{ $book->title }}"></a>
                             <figure class="novel__item-figure">
-                                <a href="#" class="u-absolute" title="Learn more about {{ $book->title }}"></a>
                                 <img src="{{ $book->cover }}" alt="" class="novel__item-img">
                             </figure>
                             <div class="novel__item-content">
                                 <h3 class="title title--card" aria-level="3" role="heading">
-                                    {{ $book->title }}
+                                    {{ \Illuminate\Support\Str::limit($book->title, 25, $end='...') }}
                                 </h3>
                                 <div class="novel__info-stars starContainer">
                                     <div class="star__container">

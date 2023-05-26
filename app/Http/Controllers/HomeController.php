@@ -23,8 +23,6 @@ class HomeController extends Controller
             ->orderBy("chapters.published_at","desc")
             ->paginate(12);
 
-        dd($test);
-
         $latestReleases = Book::with(['chapters' => function ($query) {
             $query->whereDate('chapters.published_at', '<=', now())
                 ->orderBy('chapters.published_at', 'DESC')

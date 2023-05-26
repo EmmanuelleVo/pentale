@@ -1,0 +1,20 @@
+.progress {
+    //padding-top: rem(115px);
+    position: fixed;
+    top: 115px;
+    z-index: 1;
+    width: 100%;
+    background-color: #f1f1f1;
+
+    &-container {
+        height: rem(8px);
+        background-color: $cLightGrey;
+        width: 100%;
+    }
+
+    &-bar {
+        background-color: $cYellow;
+        height: rem(8px);
+        width: 0;
+    }
+}

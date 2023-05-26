@@ -37,7 +37,7 @@
         &--checkbox {
             text-align: center;
             border-radius: 5px;
-            border: $cGrey 1px solid;
+            border: darken($cLightGrey, 20%) 1px solid;
             padding: rem(10px) rem(15px);
             cursor: pointer;
             background-color: $cWhite;
@@ -67,7 +67,7 @@
     }
 
     &__input, &__textarea, &__select {
-        border: $cDarkBlue solid 1px;
+        border: darken($cLightGrey, 20%) solid 1px;
         padding: rem(10px) rem(20px);
         border-radius: 5px;
         font-size: rem(18px);

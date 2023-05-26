@@ -1,0 +1,49 @@
+.library {
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: rem(30px);
+
+        @include mq($until: laptop) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include mq($until: tablet) {
+            grid-template-columns: repeat(2, 1fr);
+            gap: rem(20px);
+        }
+
+        @include mq($until: mobile) {
+            grid-template-columns: 1fr;
+            gap: rem(15px);
+        }
+    }
+
+    & .novel__item {
+        border-radius: 5px;
+        border: $cGrey 1px solid;
+
+        &:hover {
+            box-shadow: none;
+        }
+
+        &-figure {
+            width: 100%;
+            min-width: unset;
+
+            & img {
+                border-radius: 0;
+            }
+        }
+
+        & .title {
+            text-align: center;
+        }
+
+        &-chapter {
+            text-align: center;
+            display: block;
+            margin-bottom: rem(10px);
+        }
+    }
+}

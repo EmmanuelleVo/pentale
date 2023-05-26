@@ -1,7 +1,12 @@
 .chapter {
     position: relative;
     &__body {
-        margin: rem(50px) 0;
+        margin: rem(50px) auto;
+        max-width: 40rem;
+    }
+
+    &__content {
+
     }
 
     &__note {

@@ -9,7 +9,6 @@
         <h3 class="title title--card" aria-level="3" role="heading">
             <a href="/novels/{{ $book->slug }}" title="Learn more about {{ $book->title }}">{{ $book->title }}</a>
         </h3>
-        @dd($book)
         @foreach($book->chapters()->paginate(2) as $chapter)
             <div class="novel__chapter">
                 <a href="/novels/{{ $book->slug }}/chapter-{{ $chapter->chapter_number }}" class="link" title="Read new chapter">

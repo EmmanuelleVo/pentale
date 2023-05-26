@@ -310,6 +310,42 @@ exports.PasswordVisibility = PasswordVisibility;
 
 /***/ }),
 
+/***/ "./resources/js/components/ProgressBar.ts":
+/*!************************************************!*\
+  !*** ./resources/js/components/ProgressBar.ts ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.ProgressBar = void 0;
+var ProgressBar = /** @class */function () {
+  function ProgressBar() {
+    var _this = this;
+    this.progressBar = document.querySelector('#myBar');
+    this.chapterBody = document.querySelector('.chapter__body');
+    this.header = document.querySelector('.header__container');
+    this.chapterNote = document.querySelector('.chapter__note');
+    if (this.progressBar) {
+      window.addEventListener('scroll', function (e) {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = _this.chapterBody.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = winScroll / height * 100;
+        console.log(winScroll); // 2400 px
+        _this.progressBar.style.width = scrolled + "%";
+      });
+    }
+  }
+  return ProgressBar;
+}();
+exports.ProgressBar = ProgressBar;
+
+/***/ }),
+
 /***/ "./resources/js/components/Rating.ts":
 /*!*******************************************!*\
   !*** ./resources/js/components/Rating.ts ***!
@@ -502,6 +538,7 @@ var Commons_1 = __webpack_require__(/*! ./components/Commons */ "./resources/js/
 var Chapter_1 = __webpack_require__(/*! ./components/Chapter */ "./resources/js/components/Chapter.ts");
 var Slider_js_1 = __webpack_require__(/*! ./components/Slider.js */ "./resources/js/components/Slider.js");
 var Star_1 = __webpack_require__(/*! ./components/Star */ "./resources/js/components/Star.ts");
+var ProgressBar_1 = __webpack_require__(/*! ./components/ProgressBar */ "./resources/js/components/ProgressBar.ts");
 var Main = /** @class */function () {
   function Main() {
     var commons = new Commons_1.Commons();
@@ -516,6 +553,7 @@ var Main = /** @class */function () {
     var chapter = new Chapter_1.Chapter();
     var swiper = new Slider_js_1.Slider();
     var star = new Star_1.Star();
+    var progressBar = new ProgressBar_1.ProgressBar();
   }
   return Main;
 }();
@@ -587,6 +625,7 @@ function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _ty
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+
 //import Swiper, { Navigation, Pagination } from 'swiper';
 
 var Slider = /*#__PURE__*/_createClass(function Slider() {
@@ -594,14 +633,29 @@ var Slider = /*#__PURE__*/_createClass(function Slider() {
   if (document.querySelector('.swiper')) {
     swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation, swiper__WEBPACK_IMPORTED_MODULE_0__.Autoplay]);
     this.swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper', {
-      slidesPerView: 4,
-      spaceBetween: 30,
+      slidesPerView: 2.2,
+      spaceBetween: 15,
       direction: 'horizontal',
       /*autoplay: {
           delay: 3000,
           disableOnInteraction: true,
       },*/
 
+      breakpoints: {
+        1024: {
+          slidesPerView: 4.2,
+          spaceBetween: 30
+        },
+        768: {
+          slidesPerView: 4.2,
+          spaceBetween: 20
+        },
+        480: {
+          //425
+          slidesPerView: 3.2,
+          spaceBetween: 20
+        }
+      },
       pagination: {
         el: '.swiper-pagination'
       },

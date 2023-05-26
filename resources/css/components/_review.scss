@@ -5,6 +5,13 @@
         justify-content: space-between;
         gap: rem(50px);
         margin: rem(100px) 0 rem(50px);
+
+        @include mq($until: mobile) {
+            flex-direction: column;
+            gap: 0;
+            align-items: flex-start;
+            margin: rem(50px) 0 rem(30px);
+        }
     }
 
     &__list {
@@ -27,9 +34,10 @@
     &__container {
         display: flex;
         flex-direction: column;
-        gap: rem(30px);
+        gap: rem(10px);
 
         &--header {
+            gap: rem(30px);
             @include mq($until: tablet) {
                 flex-direction: row;
                 align-items: center;

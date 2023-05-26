@@ -122,6 +122,16 @@ a {
     font-family: $global-font-stack !important;
     line-height: 1.6;
     font-size: rem(18px);
+    max-width: 40rem;
+
+    @include mq($until: mobile) {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    & p {
+        font-size: rem(16px);
+    }
 }
 
 .avatar {

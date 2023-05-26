@@ -3,6 +3,8 @@ $titleSizeTwo: 32px;
 $titleSizeThree: 28px;
 $titleSizeFour: 24px;
 $titleSizeFive: 20px;
+$titleSizeSix: 18px;
+$titleSizeSeven: 16px;
 
 .title {
     line-height: 1.3em;
@@ -66,6 +68,14 @@ $titleSizeFive: 20px;
     &--card {
         font-size: rem($titleSizeFive) !important;
         margin-bottom: rem(15px);
+
+        @include mq($until: tablet) {
+            font-size: rem($titleSizeSix) !important;
+        }
+
+        @include mq($until: mobile) {
+            font-size: rem($titleSizeSeven) !important;
+        }
     }
 
 

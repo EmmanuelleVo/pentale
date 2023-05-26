@@ -15,12 +15,36 @@
 
                 <div class="nav__links-container">
                     <div class="nav__links-wrapper">
-                        <x-navigation.link name="Dashboard" link="/dashboard"/>
-                        <x-navigation.link name="My stories" link="/dashboard/novels"/>
-                        <x-navigation.link name="Reviews" link="/dashboard/reviews"/>
-                        <x-navigation.link name="Comments" link="/dashboard/comments"/>
-                        <x-navigation.link name="Settings" link="/dashboard/settings"/>
-                        <x-navigation.link name="Logout" link="/dashboard/logout"/>
+                        <x-navigation.link name="Dashboard" link="/dashboard">
+                            <div class="svg">
+                                <x-svg.home/>
+                            </div>
+                        </x-navigation.link>
+                        <x-navigation.link name="My stories" link="/dashboard/novels">
+                            <div class="svg svg-small">
+                                <x-svg.chapter/>
+                            </div>
+                        </x-navigation.link>
+                        <x-navigation.link name="Reviews" link="/dashboard/reviews">
+                            <div class="svg">
+                                <x-svg.reply-2/>
+                            </div>
+                        </x-navigation.link>
+                        <x-navigation.link name="Comments" link="/dashboard/comments">
+                            <div class="svg">
+                                <x-svg.reply-1/>
+                            </div>
+                        </x-navigation.link>
+                        <x-navigation.link name="Profile" link="/profile/{{ auth()->user()->slug }}">
+                            <div class="svg">
+                                <x-svg.profile/>
+                            </div>
+                        </x-navigation.link>
+                        <x-navigation.link name="Logout" link="/dashboard/logout">
+                            <div class="svg">
+                                <x-svg.logout/>
+                            </div>
+                        </x-navigation.link>
                     </div>
                     <x-navigation.link name="Back to website" link="/"/>
                 </div>

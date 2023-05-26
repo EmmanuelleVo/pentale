@@ -256,9 +256,48 @@
             align-items: flex-start;
 
         }
+
         & .nav__link {
             padding: rem(15px);
             color: $cLightGrey;
+            font-weight: 500;
+            transition: color .3s ease;
+
+            @include mq($from: tablet) {
+                &:hover {
+                    color: darken($cLightGrey, 20%);
+                    transition: color .3s ease;
+
+                    & svg path {
+                        fill: darken($cLightGrey, 20%);
+                        transition: fill .3s ease;
+                    }
+                }
+            }
+
+            & .nav__link__textWrapper {
+                gap: rem(30px);
+            }
+
+            & .svg {
+                width: rem(20px);
+
+                &-small svg {
+                    width: 80% !important;
+                }
+
+                & svg {
+                    margin-right: rem(10px);
+                    margin-left: 0;
+                    width: 100%;
+                    height: 100%;
+
+                    & path {
+                        fill: $cLightGrey;
+                        transition: fill .3s ease;
+                    }
+                }
+            }
         }
     }
 }
@@ -343,6 +382,12 @@
 
         & .top__nav-logo {
             margin-left: rem(15px);
+
+            & svg {
+                & path, & circle, & text {
+                    fill: $cLightGrey;
+                }
+            }
         }
     }
 }

@@ -36,7 +36,6 @@ class Reactions extends Component
                 $this->likesCount--;
                 $this->review->likes--;
                 $this->review->save();
-                //dd($this->review->likes);
 
             } else {
                 $this->hasLiked = true;

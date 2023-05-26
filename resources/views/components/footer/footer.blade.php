@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer {{ request()->is('dashboard/*') || request()->is('dashboard') ? 'footer--dashboard' : '' }}">
     <div class="footer__wrapper o-wrapper">
         <span class="footer__copyright">© 2023 - All Right Reserved.</span>
         <div class="footer__nav">

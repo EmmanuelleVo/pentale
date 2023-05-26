@@ -1,0 +1,1 @@
+<svg viewBox="0 0 27 27" xmlns="http://www.w3.org/2000/svg" width="27" height="27"><path data-name="Icon ionic-md-person" d="M13.5 13.5a6.75 6.75 0 1 0-6.75-6.75 6.77 6.77 0 0 0 6.75 6.75Zm0 3.375c-4.472 0-13.5 2.278-13.5 6.75V27h27v-3.375c0-4.472-9.028-6.75-13.5-6.75Z"/></svg>

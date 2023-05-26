@@ -5,15 +5,32 @@
         @include mq($until: tablet) {
             margin-top: 0;
         }
+
+        & .novel__item {
+            &:hover {
+                box-shadow: none;
+            }
+
+            &-figure {
+                width: auto;
+                min-height: auto;
+                min-width: auto;
+                & img {
+                    height: auto;
+                }
+            }
+        }
     }
 
     &__container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: rem(30px);
+
+        @include mq($until: laptop) {
+            grid-template-columns: 1fr;
+            gap: rem(80px);
+        }
     }
 }
 
-body {
-
-}

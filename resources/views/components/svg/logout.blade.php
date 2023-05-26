@@ -1,0 +1,1 @@
+<svg viewBox="0 0 20 17.5" xmlns="http://www.w3.org/2000/svg" width="20" height="17.5"><path data-name="Icon open-account-logout" d="M7.5 0v2.5h10V15h-10v2.5H20V0ZM5 5 0 8.75l5 3.75V10h10V7.5H5Z" fill="#fff"/></svg>

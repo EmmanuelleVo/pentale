@@ -14,6 +14,10 @@ class Chapter extends Model
     protected $with = ['book'];
     protected array $dates = ['published_at', 'updated_at'];
 
+    protected $dispatchesEvents = [
+        'retrieved' => LogUserReading::class,
+    ];
+
     public function incrementViewsCount() {
         $this->views++;
         return $this->save();
@@ -32,5 +36,14 @@ class Chapter extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
+
+}
+
+class LogUserReading
+{
+    public function handle(Chapter $chapter)
+    {
+        ReadingLog::create(auth()->user(), $chapter->id, $chapter->book->id);
     }
 }
