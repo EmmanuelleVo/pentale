@@ -63,9 +63,10 @@
     }
 
     & .novel__item-figure {
-
+        width: 100%;
         & img {
-            height: rem(180px);
+            height: rem(280px);
+            width: 100%;
         }
     }
 

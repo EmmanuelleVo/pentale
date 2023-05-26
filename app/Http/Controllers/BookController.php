@@ -99,14 +99,6 @@ class BookController extends Controller
         $book__averages = [];
         foreach ($book->reviews()->groupBy('id')->get() as $review) {
             $book__averages[] = $review->overall;
-            $likes_count = Like::count($review);
-            if ($user = auth()->user()) {
-                if (Like::has($review, $user)) { // user a déjà liké
-                    Like::remove($review, $user);
-                } else {
-                    Like::add($review, $user);
-                }
-            }
         }
         $book__average = round((array_sum($book__averages)) / $book_reviews_count, 2);
 
@@ -129,7 +121,6 @@ class BookController extends Controller
                 'chapters',
                 'book_reviews',
                 'book__average',
-                'likes_count',
             )
         );
     }

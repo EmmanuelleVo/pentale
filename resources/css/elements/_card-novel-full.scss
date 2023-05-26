@@ -13,7 +13,7 @@
             transition: box-shadow .3s ease;
         }
 
-        .novel__item-container--right {
+        & .novel__item-container--right {
             padding: rem(20px) rem(20px) rem(20px) 0;
         }
 
@@ -37,10 +37,13 @@
         & .novel__item {
             &-figure {
                 height: 100%;
+                width: auto;
+                min-height: auto;
             }
 
             &-img {
                 border-radius: 0;
+                height: 100%;
             }
 
             &-genres {

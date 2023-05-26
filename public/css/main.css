@@ -1272,8 +1272,12 @@ p {
     gap: 1.25rem;
   }
 }
+.novel__about-item .novel__item .novel__item-figure {
+  width: 100%;
+}
 .novel__about-item .novel__item .novel__item-figure img {
-  height: 11.25rem;
+  height: 17.5rem;
+  width: 100%;
 }
 .novel__about-item .novel__item .novel__info-stars {
   justify-content: center;
@@ -1317,9 +1321,12 @@ p {
 }
 .novel__item--full .novel__item-figure {
   height: 100%;
+  width: auto;
+  min-height: auto;
 }
 .novel__item--full .novel__item-img {
   border-radius: 0;
+  height: 100%;
 }
 .novel__item--full .novel__item-genres {
   margin-top: 0.9375rem;

@@ -13,7 +13,7 @@
                 <x-commons.meta-image name="Rating" attribute="{{ $rating }}">
                     <x-svg.star/>
                 </x-commons.meta-image>
-                <x-commons.meta-image name="Total views" attribute="{{ $views }} views">
+                <x-commons.meta-image name="Total views" attribute="{!! \App\Helpers\Helper::convert($views) !!} views">
                     <x-svg.view/>
                 </x-commons.meta-image>
 
