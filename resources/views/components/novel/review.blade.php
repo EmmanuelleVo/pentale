@@ -15,7 +15,8 @@
 
     <div class="review__container">
         <div class="review__header">
-            <a href="/profile/{{ $review->user->slug }}" title="View profile" class="title title--small">{{ $review->user->username }}</a>
+            <a href="/profile/{{ $review->user->slug }}" title="View profile"
+               class="title title--small">{{ $review->user->username }}</a>
             <time class="review__date"
                   datetime="{{ $review->published_at }}">{{ \Carbon\Carbon::parse($review->created_at)->diffForHumans() }}</time>
         </div>
@@ -23,13 +24,8 @@
             {!! $review->body !!}
         </div>
         <div class="review__actions">
-                @livewire('reactions', [$review])
-            {{--<div class="review__likes">
-                <x-commons.button-img link="#" title="Dislike the review">
-                    <x-svg.dislike/>
-                    <span>{{ $review->dislikes }}</span>
-                </x-commons.button-img>
-            </div>--}}
+            {{--@livewire('reactions', [$review])--}}
+            <livewire:reactions :review="$review" :key="'reactions' . $review->id . time()" />
             <div class="reviews__report">
                 <x-commons.button-img link="#" title="Report the review">
                     <x-svg.report/>

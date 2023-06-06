@@ -4,12 +4,13 @@
  *  @param {DOMobject} element to create a quantity wrapper around
  */
 export default class QuantityInput {
-    constructor(self, decreaseText, increaseText) {
+    constructor(self, decreaseText, increaseText, value = null, label = null) {
         // Create input
         this.input = document.createElement('input');
-        this.input.value = 1;
+        this.input.value = value;
         this.input.type = 'number';
         this.input.name = 'quantity';
+        this.input.label = label;
         this.input.pattern = '[0-9]+';
 
         // Get text for buttons
@@ -56,5 +57,17 @@ export default class QuantityInput {
 
         // Output number
         this.input.value = quantity;
+
+        if (this.input.label === 'fontSize') {
+            document.querySelectorAll('.chapter .wysiwyg').forEach(div => {
+                div.style.fontSize = this.input.value.toString() + 'px !important'
+            })
+        }
+
+        if (this.input.label === 'lineHeight') {
+            document.querySelectorAll('.chapter .wysiwyg').forEach(div => {
+                div.style.lineHeight = this.input.value.toString() + 'px !important'
+            })
+        }
     }
 }

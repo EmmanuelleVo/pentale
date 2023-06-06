@@ -1,5 +1,5 @@
 <x-layout>
-    <x-header.dashboard-header title="My stories - Pentale"/>
+    <x-header.dashboard-header title="My stories - Pentale" page_title="My stories"/>
     <main id="main" class="dashboard">
         <div class="o-wrapper">
             <div class="dashboard__stories">

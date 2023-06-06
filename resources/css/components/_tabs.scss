@@ -20,13 +20,13 @@
             font-size: rem(20px);
         }
 
-        &--active {
+        &.true {
             opacity: 1;
         }
     }
 
     &__content {
-        display: none;
+        //display: none;
 
         &--active {
             display: block;

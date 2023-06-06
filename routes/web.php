@@ -12,6 +12,7 @@ use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PrivacyPolicyController;
 use App\Http\Controllers\RegisterSessionController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TermsAndConditionsController;
 use App\Http\Controllers\UserController;
@@ -43,7 +44,7 @@ Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::get('/novels', [BookController::class, 'index'])->name('novel.index');
 Route::get('/novels/{book:slug}', [BookController::class, 'show'])->name('novels.show');
 // Novels dashboard
-Route::get('/dashboard', [AuthorDashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [AuthorDashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard/novels', [BookController::class, 'indexDashboard'])->name('dashboard.novels');
 Route::get('/dashboard/novels/create', [BookController::class, 'create'])->name('book.create');
 Route::get('/dashboard/novels/{book:slug}', [BookController::class, 'showDashboard'])->name('dashboard.novels.book:slug');
@@ -51,6 +52,9 @@ Route::post('/dashboard/novels/store', [BookController::class, 'store']);
 Route::get('/dashboard/novels/{book:slug}/edit', [BookController::class, 'edit'])->name('book.edit');
 Route::patch('/dashboard/novels/{book:slug}/update', [BookController::class, 'update']);
 Route::post('/dashboard/novels/{book:slug}/destroy', [BookController::class, 'destroy']);
+
+//-- REVIEWS --//
+Route::post('/novels/{book:slug}/review/store', [ReviewController::class, 'store']);
 
 //-- CHAPTERS --//
 Route::get('/novels/{book:slug}/chapter-{chapter:chapter_number}', [ChapterController::class, 'show'])->name('chapter.show');
@@ -60,14 +64,23 @@ Route::get('/dashboard/novels/{book:slug}/chapter-{chapter:chapter_number}/edit'
 Route::patch('/dashboard/novels/{book:slug}/chapter-{chapter:chapter_number}/update', [ChapterController::class, 'update']);
 Route::post('/dashboard/novels/{book:slug}/chapter-{chapter:chapter_number}/destroy', [ChapterController::class, 'destroy']);
 
+// DASHBOARD
+Route::get('/dashboard/reviews', [AuthorDashboardController::class, 'indexReviews'])->middleware(['auth', 'verified'])->name('dashboard.reviews');
+Route::get('/dashboard/comments', [AuthorDashboardController::class, 'indexComments'])->middleware(['auth', 'verified'])->name('dashboard.comments');
+
 
 //-- FORUM --//
 
 
 //-- USER PROFILE --//
-Route::get('/profile/{user:slug}', [UserController::class, 'show'])->name('profile.user:slug');
-Route::get('/profile/{user:slug}/edit', [UserController::class, 'edit'])->name('profile.user:slug.edit');
-Route::patch('/profile/{user:slug}/update', [UserController::class, 'update'])->name('profile.user:slug.update');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile/{user:slug}', [UserController::class, 'show'])->name('profile.user:slug');
+    Route::get('/profile/{user:slug}/edit', [UserController::class, 'edit'])->name('profile.user:slug.edit');
+    Route::patch('/profile/{user:slug}/update', [UserController::class, 'update'])->name('profile.user:slug.update');
+    Route::delete('/profile', [UserController::class, 'destroy'])->name('profile.destroy');
+    //Dashboard
+    Route::get('/dashboard/profile/{user:slug}/edit', [UserController::class, 'editDashboard'])->name('profile.edit.dashboard');
+});
 
 
 //-- NOTIFICATIONS --//
@@ -88,16 +101,6 @@ Route::get('/terms-and-conditions', TermsAndConditionsController::class)->name('
 Route::get('/accessibility', AccessibilityController::class)->name('accessibility');
 
 
-//-- CONNECTION --//
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->middleware('guest')->name('login');
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware('guest');
-Route::get('/register', [RegisterSessionController::class, 'create'])->middleware('guest')->name('login');
-Route::post('/register', [RegisterSessionController::class, 'store'])->middleware('guest')->name('register');
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth');
-// Password forgotten and reset
-Route::get('/login/forgotten-password', [PasswordController::class, 'createForgottenPassword'])->middleware('guest')->name('forgotten-password');
-Route::post('/login/forgotten-password', [PasswordController::class, 'storeForgottenPassword'])->middleware('guest');
-Route::get('/reset-password/{token}', [PasswordController::class, 'createResetPassword'])->middleware('guest')->name('password.reset');
-Route::post('/reset-password', [PasswordController::class, 'storeResetPassword'])->middleware('guest');
 
-//-- AUTHOR DASHBOARD --//
+//-- CONNECTION --//
+require __DIR__.'/auth.php';

@@ -21,6 +21,23 @@
         }
     }
 
+    &--about {
+        background-color: $cWhite !important;
+
+        & .header__content:first-of-type {
+            margin-top: 0 !important;
+        }
+
+        & .header__wrapper {
+            padding-bottom: rem(30px);
+        }
+
+        & .header__figure {
+            position: relative !important;
+            width: 100% !important;
+        }
+    }
+
     &--page {
     }
 
@@ -53,6 +70,10 @@
 
         & .header__container {
             bottom: rem(30px);
+
+            & h2 {
+                margin-top: rem(20px);
+            }
         }
 
     }

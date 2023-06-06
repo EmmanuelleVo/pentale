@@ -1,5 +1,5 @@
 <x-layout>
-    <x-header.dashboard-header title="{{ $page_title }} - Pentale"/>
+    <x-header.dashboard-header title="{{ $page_title }} - Pentale" :page_title="$book->title" :book="$book"/>
     <main id="main" class="dashboard">
         <div class="o-wrapper">
             <div class="novel__info">
@@ -10,17 +10,55 @@
                     <div class="story__item-content">
                         <div class="title-container">
                             <h3 class="title title--card" aria-level="3" role="heading">{{ $book->title }}</h3>
-                            <div class="dropdown">
-                                <a href="#" class="dropdown__btn">...</a>
-                                <div class="dropdown__container">
-                                    <a href="/dashboard/novels/{{ $book->slug }}/edit" class="dropdown__link nav__sublink">
+                            <div class="dropdown"
+                                 x-data="{
+                                        open: false,
+                                        toggle() {
+                                            if (this.open) {
+                                                return this.close()
+                                            }
+
+                                            this.$refs.button.focus()
+
+                                            this.open = true
+                                        },
+                                        close(focusAfter) {
+                                            if (! this.open) return
+
+                                            this.open = false
+
+                                            focusAfter && focusAfter.focus()
+                                        }
+                                    }"
+                                 x-on:keydown.escape.prevent.stop="close($refs.button)"
+                                 x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+                                 x-id="['dropdown-button']">
+                                <button
+                                    x-ref="button"
+                                    x-on:click="toggle()"
+                                    :aria-expanded="open"
+                                    :aria-controls="$id('dropdown-button')"
+                                    type="button"
+                                    class="dropdown__btn">...
+                                </button>
+                                <div class="dropdown__container"
+                                     x-ref="panel"
+                                     x-show="open"
+                                     x-transition.origin.top.left
+                                     x-on:click.outside="close($refs.button)"
+                                     :id="$id('dropdown-button')"
+                                     style="display: none;"
+                                >
+                                    <a href="/dashboard/novels/{{ $book->slug }}/edit"
+                                       class="dropdown__link nav__sublink">
                                         <span class="nav__sublink__label">Edit</span>
                                     </a>
-                                    <form action="/dashboard/novels/{{ $book->slug }}/destroy" method="post" class="form">
+                                    <form action="/dashboard/novels/{{ $book->slug }}/destroy" method="post"
+                                          class="form">
                                         @csrf
-                                        <button class="nav__sublink">
+                                        <a href="#" class="nav__sublink">
                                             <span class="nav__sublink__label">Delete</span>
-                                        </button>
+                                        </a>
                                     </form>
                                 </div>
                             </div>
@@ -35,20 +73,35 @@
                     </div>
                 </div>
             </div>
-            <div class="novel__container">
+            <div class="novel__container" x-data="{ tab: window.location.hash ? window.location.hash : '#about' }">
                 <div class="tab">
-                    <x-commons.tab class="tab__link--active" link="#about" name="About"/>
+                    {{--<x-commons.tab class="tab__link--active" link="#about" name="About"/>
                     <x-commons.tab link="#chapters" name="Chapters"/>
-                    <x-commons.tab link="#details" name="Details"/>
+                    <x-commons.tab link="#details" name="Details"/>--}}
+                    <a id="tabLink" href="#about"
+                       @click="tab='#about'"
+                       :class="{[tab==='#about']: 'tab__link--active'}"
+                       class="tab__link"> About
+                    </a>
+                    <a id="tabLink" href="#chapters"
+                       @click="tab='#chapters'"
+                       :class="{[tab==='#chapters']: 'tab__link--active'}"
+                       class="tab__link"> Chapters
+                    </a>
+                    <a id="tabLink" href="#details"
+                       @click="tab='#details'"
+                       :class="{[tab==='#details']: 'tab__link--active'}"
+                       class="tab__link"> Details
+                    </a>
                 </div>
 
-                <section id="About" class="tab__content tab__content--active">
+                <section x-show="tab === '#about'" x-cloak id="About" class="tab__content tab__content--active">
                     <x-dashboard.tab-about :book="$book" :genres="$genres" :tags="$tags"/>
                 </section>
-                <section id="Chapters" class="tab__content">
-                    <x-dashboard.tab-chapters :chapters="$chapters"/>
+                <section x-show="tab === '#chapters'" x-cloak id="Chapters" class="tab__content">
+                    <livewire:dashboard.chapter-index :book="$book"/>
                 </section>
-                <section id="Details" class="tab__content">
+                <section x-show="tab === '#details'" x-cloak id="Details" class="tab__content">
                     <x-dashboard.tab-details :book="$book" :characters="$characters"/>
                 </section>
             </div>

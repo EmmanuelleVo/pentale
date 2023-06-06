@@ -1,5 +1,4 @@
 <x-layout>
-
     <x-header.page-header title="List of all novels - Pentale"/>
     <main id="main" class="novels">
         <div class="o-wrapper">
@@ -57,7 +56,7 @@
 
             <div class="novels__list">
                 @foreach($books as $book)
-                    <x-cards.novel-full :book="$book" :views="$views" :rating="$rating"/>
+                    <x-cards.novel-full :book="$book"/>
                 @endforeach
             </div>
 

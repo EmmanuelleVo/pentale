@@ -15,7 +15,7 @@ export class ProgressBar {
                 let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
                 let height = this.chapterBody.scrollHeight - document.documentElement.clientHeight;
                 let scrolled = (winScroll / height) * 100;
-                console.log(winScroll) // 2400 px
+                //console.log(winScroll) // 2400 px
                 this.progressBar.style.width = scrolled + "%";
             })
         }

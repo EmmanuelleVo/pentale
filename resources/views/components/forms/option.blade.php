@@ -2,6 +2,7 @@
 
 <option value="{{ $value }}"
         {{ request()->input('filter') == $value ? 'selected' : '' }}
-        class="form__option">
+            {{ $attributes->merge(['class' => 'form__option']) }}
+        >
     {{ $name }}
 </option>

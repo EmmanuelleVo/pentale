@@ -8,7 +8,8 @@ export class NumberInput {
             if (quantities instanceof Node) quantities = [quantities];
             if (quantities instanceof NodeList) quantities = [].slice.call(quantities);
             if (quantities instanceof Array) {
-                quantities.forEach(div => (div.quantity = new QuantityInput(div, 'Down', 'Up')));
+                quantities.forEach(div => (
+                    div.quantity = new QuantityInput(div, 'Down', 'Up', div.dataset.number, div.dataset.label)));
             }
         }
     }

@@ -13,9 +13,11 @@
         <div class="header__container">
             <x-titles.section-title :title="$book->title"/>
             <x-breadcrumbs.breadcrumb>
-                <x-breadcrumbs.breadcrumb-link :title="\Illuminate\Support\Str::limit($book->title, 40, $end='...')" link="/novels/{{ $book->slug }}" index="2"/>
+                <x-breadcrumbs.breadcrumb-link title="novels" link="/novels" index="2"/>
                 <x-breadcrumbs.breadcrumb-separator/>
-                <x-breadcrumbs.breadcrumb-link :title="'Chapter ' . $chapter->chapter_number . ' : ' . \Illuminate\Support\Str::limit($chapter->title, 30, $end='...')" link="/novels/{{ $book->slug }}/chapter-{{ $chapter->chapter_number }}" index="3"/>
+                <x-breadcrumbs.breadcrumb-link :title="\Illuminate\Support\Str::limit($book->title, 40, $end='...')" link="/novels/{{ $book->slug }}" index="3"/>
+                <x-breadcrumbs.breadcrumb-separator/>
+                <x-breadcrumbs.breadcrumb-link :title="'Chapter ' . $chapter->chapter_number . ' : ' . \Illuminate\Support\Str::limit($chapter->title, 30, $end='...')" link="/novels/{{ $book->slug }}/chapter-{{ $chapter->chapter_number }}" index="4"/>
             </x-breadcrumbs.breadcrumb>
             <div class="chapter__actions-container chapter__actions-container--top">
                 <x-commons.button title="Bookmark the novel" link="#"><span class="u-visually-hidden">Bookmark</span><x-svg.bookmark/></x-commons.button>
@@ -29,8 +31,11 @@
                 <form action="" class="chapter__form form">
                     @csrf
                     <x-forms.select name="chapter" label_name="Choose chapter">
-                        @foreach($chapters as $chapter)
-                            <x-forms.option name="Chapter {{$chapter->chapter_number}} : {{$chapter->title}}" :value="$chapter->chapter_number"/>
+                        @foreach($chapters as $chapterItem)
+                            <x-forms.option name="Chapter {{$chapterItem->chapter_number}} : {{$chapterItem->title}}"
+                                            :value="$chapterItem->chapter_number"
+                                {{--{{ $chapter->chapter_number === $chapterItem->chapter_number ? 'selected' : '' }}--}}
+                            />
                         @endforeach
                     </x-forms.select>
                     <x-forms.button value="Go to chapter"/>

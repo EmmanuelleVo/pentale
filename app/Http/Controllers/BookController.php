@@ -32,32 +32,15 @@ class BookController extends Controller
             $query->with(['reviews', 'city']);
         }])->get();*/
 
-        foreach ($books as $book) {
-            $book_averages = [];
-            $views = [];
-            $book_reviews_count = count($book->reviews()->get());
-            $chapters = $book->chapters()->get();
-            foreach ($chapters as $chapter) {
-                $views[] = $chapter->views;
-            }
-            $reviews = $book->reviews()->groupBy('id')->get();
-            foreach ($reviews as $review) {
-                $book_averages[] = $review->overall;
-            }
-        }
-
         /*$test = $book->join('chapters', 'chapters.book_id', '=', 'books.id')
             ->groupBy('books.id')
             ->get(['books.id', 'books.title', DB::raw('count(chapters.id) as chapters')]);*/
 
 
-        $views = array_sum($views);
-        $rating = round((array_sum($book_averages)) / $book_reviews_count, 2);
-        //dd($book_averages);
 
 
         return view('novel.index',
-            compact('books', 'genres', 'status', 'views', 'rating')
+            compact('books', 'genres', 'status')
         );
     }
 
@@ -93,15 +76,17 @@ class BookController extends Controller
         $book_genres = $book->genres()->orderBy('name')->get();
         $book_tags = $book->tags()->orderBy('name')->get();
         $chapters = $book->chapters()->orderBy('chapter_number')->paginate(20);
+        //$chapters = $book->chapters()->orderBy('chapter_number')->get();
         $book_reviews = $book->reviews()->groupBy('id')->paginate(10);
 
         $book_reviews_count = count($book->reviews()->get());
-        $book__averages = [];
+        /*$book_averages = [];
         foreach ($book->reviews()->groupBy('id')->get() as $review) {
-            $book__averages[] = $review->overall;
-        }
-        $book__average = round((array_sum($book__averages)) / $book_reviews_count, 2);
-
+            $book_averages[] = $review->overall;
+        }*/
+        //$book_average = round((array_sum($book_averages)) / $book_reviews_count, 2);
+        $view_count = Chapter::where('book_id', '=', $book->id)->sum('views');
+        $book_average = round(Review::where('book_id', '=', $book->id)->avg('overall'), 2);
         $other_books = [];
         foreach ($book_genres as $book_genre) {
             $other_books[] = Book::query()
@@ -120,7 +105,8 @@ class BookController extends Controller
                 'other_books',
                 'chapters',
                 'book_reviews',
-                'book__average',
+                'book_average',
+                'view_count',
             )
         );
     }
@@ -131,8 +117,10 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         Meta::prependTitle('Dashboard');
+        $genres = Genre::get();
+        $tags = Tag::get();
 
-        return view('dashboard.index', compact('book'));
+        return view('dashboard.novel.edit', compact('book', 'genres', 'tags'));
     }
 
     /**

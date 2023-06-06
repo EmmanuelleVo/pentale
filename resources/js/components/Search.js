@@ -1,35 +1,32 @@
-/*
 import {instantMeiliSearch, InstantMeiliSearchInstance} from '@meilisearch/instant-meilisearch'
 import instantsearch from 'instantsearch.js';
-import { searchBox, hits } from 'instantsearch.js/es/widgets';
-
-
+import {searchBox, hits} from 'instantsearch.js/es/widgets';
 
 export class Search {
-    private searchGroup: HTMLFormElement;
+    /*private searchGroup: HTMLFormElement;
     private search: any;
-    private options: InstantMeiliSearchOptions;
+    private options: InstantMeiliSearchOptions;*/
 
     constructor() {
-        this.searchGroup = document.querySelector('.search-group')
+        this.searchGroup = document.querySelector('.searchContainer')
         //this.searchGroup.querySelector('[type="submit"]').remove()
-        this.searchGroup.querySelector('form').remove()
+        this.searchGroup.querySelector('.form__search').remove()
 
         this.searchGroup.insertAdjacentHTML('beforeend', `
             <div>
-                <div id="searchbox" class="border border-dark-blue outline outline-2 outline-dark-blue/50 hover:outline-dark-blue rounded-md p-2"></div>
-                <div id="hits" class=""></div>
+                <div id="searchbox" class="searchbox"></div>
+                <div id="hits" class="hits"></div>
             </div>
         `)
 
 
         this.search = instantsearch({
-            indexName: "projects",
+            indexName: "posts_index",
             searchClient: instantMeiliSearch(
                 "http://127.0.0.1:7700/",
                 '',
                 {
-                    paginationTotalHits: 10,
+                    paginationTotalHits: 15,
                     placeholderSearch: false,
                 }
             )
@@ -49,11 +46,18 @@ export class Search {
                          }
                     ) {
                         return html`
-                            <div>
+
                                 <div class="hit-name hover:bg-light-blue">
-                                    <a href="/fr/projects/${hit.slug}">
-                                        ${components.Highlight({hit, attribute: 'title'})}
-                                    </a>
+                                    <a href="/novels/${hit.slug}" class="u-absolute"></a>
+                                    <figure>
+                                        <img src="${hit.cover}" alt="Cover of ${hit.title}">
+                                    </figure>
+                                    <div>
+                                        <span>${hit.user.username}</span>
+                                        <span class="hit-link">
+                                            ${components.Highlight({hit, attribute: 'title'})}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>`
                     },
@@ -69,4 +73,3 @@ export class Search {
 
 
 }
-*/

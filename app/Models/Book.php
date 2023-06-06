@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 use Maize\Markable\Markable;
 use Maize\Markable\Models\Bookmark;
 
 class Book extends Model
 {
-    use HasFactory, Markable;
+    use HasFactory, Markable, Searchable;
 
     protected $guarded = [];
     //protected $with = ['genres', 'tags'];
@@ -55,6 +56,21 @@ class Book extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function searchableAs(): string
+    {
+        return 'posts_index';
+    }
+
+    public function toSearchableArray()
+    {
+        //$array = $this->toArray();
+
+        return [
+            'title' => $this->title,
+
+        ];
     }
 
     /*public function scopeFilter($query, array $filters)

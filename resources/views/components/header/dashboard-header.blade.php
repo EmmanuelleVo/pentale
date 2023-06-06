@@ -1,18 +1,49 @@
-@props(['title', 'button_name' => 'Create new story', 'button_link' => '/dashboard/novels/create', 'page_title' => ''])
+@props(['title', 'button_name' => 'Create new story',
+'button_link' => '/dashboard/novels/create',
+'page_title' => '',
+'book' => ''
+])
 
-<header class="header {{ route('dashboard') ? 'header--home' : 'header--dashboard' }}">
+@php
+    $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
+@endphp
+
+<header class="header header--dashboard">
     <h1 aria-level="1" role="heading" class="u-visually-hidden">{{ $title ?? 'Dashboard - Pentale' }}</h1>
     <x-navigation.dashboard-navigation/>
 
     <div class="header__container--dashboard">
         <div class="d-wrapper title-container">
-            @if(route('dashboard'))
-                <h2 aria-level="2" role="heading" class="title title--big">Welcome back to your <span class="colored">Dashboard</span></h2>
+            <h2 aria-level="2" role="heading" class="title title--big">
+                {{ $page_title }}
+            </h2>
+            @if($currentRoute === 'dashboard.novels.book:slug')
+                <x-commons.button title="{{ __('Create new chapter') }}"
+                                  link="/dashboard/novels/{{ $book->slug }}/create">{{ __('Create new chapter') }}</x-commons.button>
             @else
-                <x-titles.section-title :title="$page_title"/>
+                <x-commons.button :title="$button_name" :link="$button_link">{{ $button_name }}</x-commons.button>
             @endif
-            <x-commons.button :title="$button_name" :link="$button_link">{{ $button_name }}</x-commons.button>
-
+        </div>
+        <div class="d-wrapper">
+            <x-breadcrumbs.breadcrumb>
+                <x-breadcrumbs.breadcrumb-link title="Dashboard" link="/dashboard" index="2"/>
+                {{--@dd(\Illuminate\Support\Facades\Route::currentRouteName())--}}
+                @if($currentRoute === 'dashboard.novels')
+                    <x-breadcrumbs.breadcrumb-separator/>
+                    <x-breadcrumbs.breadcrumb-link title="My novels" link="/dashboard/novels" index="3"/>
+                @elseif($currentRoute === 'dashboard.novels.book:slug')
+                    <x-breadcrumbs.breadcrumb-separator/>
+                    <x-breadcrumbs.breadcrumb-link title="My novels" link="/dashboard/novels" index="3"/>
+                    <x-breadcrumbs.breadcrumb-separator/>
+                    <x-breadcrumbs.breadcrumb-link :title="\Illuminate\Support\Str::limit($book->title, 40, $end='...')"
+                                                   link="/dashboard/novels/{{ $book->slug }}" index="4"/>
+                @elseif($currentRoute === 'book.create')
+                    <x-breadcrumbs.breadcrumb-separator/>
+                    <x-breadcrumbs.breadcrumb-link title="My novels" link="/dashboard/novels" index="3"/>
+                    <x-breadcrumbs.breadcrumb-separator/>
+                    <x-breadcrumbs.breadcrumb-link title="Create new story" link="/dashboard/novels/create" index="4"/>
+                @endif
+            </x-breadcrumbs.breadcrumb>
         </div>
     </div>
 

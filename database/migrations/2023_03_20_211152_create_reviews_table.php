@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('story_development');
             $table->integer('characters');
             $table->integer('overall');
-            $table->integer('likes');
-            $table->integer('dislikes');
+            $table->integer('likes')->default(0);
+            $table->integer('dislikes')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

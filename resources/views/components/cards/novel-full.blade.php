@@ -1,4 +1,4 @@
-@props(['book', 'views', 'rating'])
+@props(['book'])
 
 <div class="novel__item novel__item--full">
     <div class="novel__item-container--left">
@@ -10,10 +10,10 @@
         <div class="novel__item-content">
             <x-titles.card-title :title="$book->title" />
             <dl class="novel__item-container--meta meta__container">
-                <x-commons.meta-image name="Rating" attribute="{{ $rating }}">
+                <x-commons.meta-image name="Rating" attribute="{{ round($book->reviews()->avg('overall'), 2) }}">
                     <x-svg.star/>
                 </x-commons.meta-image>
-                <x-commons.meta-image name="Total views" attribute="{!! \App\Helpers\Helper::convert($views) !!} views">
+                <x-commons.meta-image name="Total views" attribute="{{ \App\Helpers\Helper::convert($book->chapters()->sum('views')) }} views">
                     <x-svg.view/>
                 </x-commons.meta-image>
 

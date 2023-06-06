@@ -32,7 +32,6 @@ export class Tabs {
                             content.classList.remove("tab__content--active");
                         });
                         const element = document.getElementById(id);
-                        console.log(element)
                         element.classList.add("tab__content--active");
                     }
 

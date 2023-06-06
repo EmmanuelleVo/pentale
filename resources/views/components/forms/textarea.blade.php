@@ -1,4 +1,4 @@
-@props(['name', 'label_name', 'placeholder'])
+@props(['name', 'label_name', 'placeholder', 'value' => ''])
 
 <x-forms.field>
     <x-forms.label name="{{ $name }}" label_name="{{ $label_name }}" />
@@ -6,6 +6,6 @@
               name="{{ $name }}"
               id="{{ $name }}"
               placeholder="{{ $placeholder }}"
-              rows="10" cols="30">{{old($name)}}</textarea>
+              rows="10" cols="30">{{ $value != '' ? $value : old($name) }}</textarea>
     <x-forms.error :name="$name"/>
 </x-forms.field>

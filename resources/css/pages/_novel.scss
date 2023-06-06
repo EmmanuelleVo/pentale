@@ -113,6 +113,9 @@
     }
 
     &__reviews {
+        max-width: rem(960px);
+        margin: 0 auto;
+
         &-container {
             border-radius: 5px;
             border: 1px solid $cGrey;
@@ -148,6 +151,38 @@
                     }
                     @include mq($until: 530px) {
                         grid-template-columns: 1fr;
+                    }
+
+                    & .star__container {
+                        & input[type="radio"] {
+                            display: none;
+                        }
+
+                        & svg {
+                            display: block;
+                            width: rem(24px);
+                            height: rem(24px);
+                            cursor: pointer;
+                            transition: transform .2s ease;
+
+                            &:hover {
+                                transform: scale(1.1);
+                                transition: transform .2s ease;
+                            }
+
+                            &--active {
+                                opacity: 0;
+                                animation: animate .5s calc(var(--i) * .1s) ease-in-out forwards;
+                            }
+
+                            &.blue {
+                                color: $cBlue;
+                            }
+
+                            &.grey {
+                                color: $cLightGrey;
+                            }
+                        }
                     }
                 }
             }

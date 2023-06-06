@@ -11,7 +11,7 @@ class ReviewRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class ReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'body' => 'required|min:10',
+            'writing_quality' => 'required|min:1|max:5',
+            'story_development' => 'required|min:1|max:5',
+            'characters' => 'required|min:1|max:5',
+            'overall' => 'required|min:1|max:5',
         ];
     }
 }

@@ -1,0 +1,90 @@
+.searchContainer {
+    & .form__search {
+
+    }
+
+    & .searchbox {
+        padding: 0.5rem;
+        border-radius: 0.375rem;
+        border-width: 1px;
+        position: relative;
+    }
+
+    & .hits {
+        position: absolute;
+        background-color: $cWhite;
+        border-radius: 5px;
+        box-shadow: 0 2px 18px 0 rgba(0, 18, 66, 0.1), 0 2px 18px 0 rgba(0, 18, 66, 0.1);
+
+        & .ais-Hits-item {
+            transition: background-color .3s ease;
+
+            &:hover {
+                background-color: $cLightGrey;
+                transition: background-color .3s ease;
+            }
+        }
+
+        & .ais-Hits-list {
+            overflow: scroll;
+            max-height: rem(350px);
+        }
+
+        & .hit-name {
+            position: relative;
+            display: flex;
+            gap: rem(10px);
+            padding: rem(10px);
+        }
+
+        & figure {
+            display: flex;
+            gap: rem(10px);
+        }
+
+        & img {
+            width: rem(60px);
+            height: rem(80px);
+        }
+
+        & .hit-link {
+            display: block;
+            padding: rem(10px) rem(5px);
+
+        }
+    }
+
+    & .ais-SearchBox-form {
+        position: relative;
+        display: flex;
+        gap: rem(15px);
+
+        & button[type="submit"], & button[type="reset"] {
+            display: none;
+        }
+
+        & input {
+            border: darken($cLightGrey, 20%) solid 1px;
+            padding: rem(10px) rem(20px);
+            border-radius: 5px;
+            font-size: rem(18px);
+            line-height: 1.5;
+
+            &:focus, &:focus-visible {
+                outline: $cBlue 1px solid;
+            }
+
+            //padding: rem(10px) rem(40px);
+
+            @include mq($until: laptop) {
+                border: none;
+                color: $cWhite;
+                background-color: lighten($cBlue, 15%);
+                &::placeholder {
+                    color: $cWhite;
+                }
+            }
+        }
+    }
+}
+

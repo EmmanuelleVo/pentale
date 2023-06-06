@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Chapter;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -27,9 +28,11 @@ class BookFactory extends Factory
             'slug' => Str::slug($title),
             'synopsis' => '<p>' . implode('</p><p>', fake()->paragraphs(7)) . '</p>',
             'language' => 'en',
-            'cover' => fake()->imageUrl(300, 300, true),
+            'cover' => fake()->imageUrl(300, 300),
             'status' => 'ongoing',
             'patreon' => fake()->url(),
+            //'views' => 0,
+            //'rating' => 0,
             'published_at' => $created_at->addDays(rand(0, 1) * rand(2, 20)),
             'created_at' => $created_at,
             'updated_at' => rand(0, 10) ? $created_at : $created_at->addWeeks(rand(2, 8)),

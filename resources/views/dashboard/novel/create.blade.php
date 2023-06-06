@@ -1,15 +1,11 @@
 <x-layout>
-    <x-header.dashboard-header title="Create a new story - Pentale"/>
+    <x-header.dashboard-header title="Create a new story - Pentale" page_title="Create new story"/>
     <main id="main" class="dashboard">
         <div class="o-wrapper">
             <form action="/dashboard/novels/store" method="post" enctype="multipart/form-data" class="form novel__form">
                 @csrf
-                <div class="form__container">
-                    <x-forms.input type="file" label_name="Cover" name="cover"/>
-                    <figure>
-                        <img id="imgCover" src="#" />
-                    </figure>
-                </div>
+                <livewire:file-input />
+
                 <div class="form__container">
                     <x-forms.input label_name="Novel title" name="title"/>
                     <x-forms.textarea label_name="Synopsis" name="synopsis" placeholder="Write your synopsis"/>

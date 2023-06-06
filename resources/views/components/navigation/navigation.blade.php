@@ -25,15 +25,16 @@
                     @auth()
                         <x-navigation.link name="My library" link="/library"/>
                     @endauth
-
-                    <x-forms.nav-search />
+                    <div class="searchContainer">
+                        <x-forms.nav-search />
+                    </div>
 
                     @guest()
                         <x-navigation.link name="Login" link="/login"/>
                     @endguest
                     @auth()
                         <x-navigation.sub-navigation name="{{ auth()->user()->username }}">
-                            <x-navigation.sublink name="My profile" link="/profile"/>
+                            <x-navigation.sublink name="My profile" link="/profile/{{ auth()->user()->slug }}"/>
                             <x-navigation.sublink name="Notifications" link="/notifications"/>
                             <form action="/logout" method="post" class="form">
                                 @csrf

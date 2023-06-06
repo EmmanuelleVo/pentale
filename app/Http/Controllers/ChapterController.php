@@ -8,6 +8,7 @@ use App\Models\Chapter;
 use Butschster\Head\Facades\Meta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Str;
 
 class ChapterController extends Controller
 {
@@ -26,10 +27,11 @@ class ChapterController extends Controller
     {
         $page_title = $book->title;
         Meta::prependTitle($book->title);
+        $lastChapter = $book->chapters()->orderByRaw('CONVERT(chapter_number, SIGNED) desc')->firstOrFail();
 
 
 
-        return view('chapter.create', compact('book', 'page_title'));
+        return view('chapter.create', compact('book', 'page_title', 'lastChapter'));
     }
 
     /**
@@ -38,9 +40,16 @@ class ChapterController extends Controller
     public function store(Book $book, ChapterRequest $request)
     {
         $validated = $request->validated();
-
         if ($validated) {
-
+            $chapter = Chapter::create([
+                'title' => $validated['title'],
+                'slug' => Str::slug($validated['title']),
+                'body' => $validated['body'],
+                'author_note' => $validated['note'],
+                'chapter_number' => $validated['chapter_number'],
+                'book_id' => $book->id,
+                'published_at' => now(),
+            ]);
 
             return redirect('/dashboard/novels/' . $book->slug . '#chapters')->with('success', 'Chapter published');
         }
@@ -77,24 +86,44 @@ class ChapterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Book $book, Chapter $chapter)
     {
-        //
+        $page_title = $chapter->title;
+        Meta::prependTitle($chapter->title);
+
+        return view('chapter.edit', compact('book', 'page_title'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Book $book, ChapterRequest $request)
     {
-        //
+        $validated = $request->validated();
+        if ($validated) {
+            $chapter = Chapter::update([
+                'title' => $validated['title'],
+                'slug' => Str::slug($validated['title']),
+                'body' => $validated['body'],
+                'author_note' => $validated['note'],
+                'chapter_number' => $validated['chapter_number'],
+                'book_id' => $book->id,
+                'published_at' => now(),
+            ]);
+
+            return redirect('/dashboard/novels/' . $book->slug . '#chapters')->with('success', 'Chapter updated');
+        }
+
+        return back()->withInput();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Book $book, Chapter $chapter)
     {
-        //
+        $chapter->delete();
+
+        return redirect('/dashboard/novels/' . $book->slug . '#chapters')->with('success', 'Chapter deleted');
     }
 }

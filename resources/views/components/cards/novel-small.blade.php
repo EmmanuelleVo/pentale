@@ -14,7 +14,7 @@
                 <i class='bx bx-star star' style="--i: 4;"></i>
                 <i class='bx bx-star star' style="--i: 5;"></i>
             </div>
-            <span class="book__average">4.91</span>
+            <span class="book__average">{{ \App\Helpers\Helper::convert($book->reviews()->avg('overall')) }}</span>
         </div>
         <h3 class="title title--card" aria-level="3" role="heading">{{ $book->title }}</h3>
         <div class="novel__item-genres genres">

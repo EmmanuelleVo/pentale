@@ -7,7 +7,7 @@
                     <x-titles.section-title title="Register"/>
                     <p class="login__header-content">Not a member yet?</p>
                 </div>
-                <form action="/register" method="post" class="form">
+                <form action="{{ route('register') }}" method="post" class="form">
                     @csrf
                     <x-forms.input name="username" label_name="Username" place_holder="username123"/>
                     <x-forms.input name="email" label_name="Email" place_holder="test@test.com" type="email"/>
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="login__option">
-                    <span>Already have an account? <a href="{{ route('login') }}" title="Sign in">Sign in</a></span>
+                    <span>Already have an account? <a href="{{ route('login') }}" title="Sign in">Log in</a></span>
                 </div>
             </div>
         </div>

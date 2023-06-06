@@ -23,6 +23,8 @@ class HomeController extends Controller
             ->orderBy("chapters.published_at","desc")
             ->paginate(12);
 
+
+
         $latestReleases = Book::with(['chapters' => function ($query) {
             $query->whereDate('chapters.published_at', '<=', now())
                 ->orderBy('chapters.published_at', 'DESC')
@@ -32,9 +34,15 @@ class HomeController extends Controller
             ->join("chapters", function($join){
                 $join->on("chapters.book_id", "=", "books.id");
             })
+            ->select('books.title as book_title', 'chapters.title as chapter_title', 'books.slug as book_slug', 'chapters.slug as chapter_slug', 'books.*', 'chapters.*')
             ->where("chapters.published_at", "<=", now())
             ->orderBy('chapters.published_at', 'DESC')
             ->paginate(12);
+        /*$latestReleases = Chapter::with('book')
+            ->whereDate('published_at', '<=', now())
+            ->orderBy('published_at', 'DESC')
+            ->latest('published_at')->paginate(4);*/
+
         $popularBooks = Book::with('genres')->paginate(10);
         $latestBooks = Book::with('genres')->paginate(10);
 

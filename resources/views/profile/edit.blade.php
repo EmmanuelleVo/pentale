@@ -1,32 +1,29 @@
-<x-layout>
-    <x-header.profile-header :user="$user" title="Profile - Pentale"/>
-    <main id="main" class="profile">
-        <div class="o-wrapper">
-            <form action="/profile/{{ $user->slug }}/update" class="form profile__form" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="form__container">
-                    <x-forms.input type="file" label_name="Avatar" name="avatar"/>
-                </div>
-                <div class="form__container">
-                    <x-forms.input label_name="Username" name="username"/>
-                    <x-forms.input type="email" label_name="Email" name="email"/>
-                    <x-forms.input type="password" label_name="Reset password" name="password"/>
-                    <x-forms.input type="password" label_name="Confirm new password" name="password_confirmation"/>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Profile') }}
+        </h2>
+    </x-slot>
 
-                    <x-forms.button value="Save changes"/>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    @include('profile.partials.update-profile-information-form')
                 </div>
-            </form>
+            </div>
+
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    @include('profile.partials.update-password-form')
+                </div>
+            </div>
+
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    @include('profile.partials.delete-user-form')
+                </div>
+            </div>
         </div>
-    </main>
-    <x-footer.footer/>
-</x-layout>
-
-
-
-
-
-
-
-
-
-
+    </div>
+</x-app-layout>

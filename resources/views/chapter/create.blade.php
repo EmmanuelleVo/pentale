@@ -1,12 +1,14 @@
 <x-layout>
-    <x-header.dashboard-header title="{{ $book->title }} - Pentale" :page_title="$book->title"/>
+    <x-header.dashboard-novel-header title="{{ $book->title }} - Pentale" :page_title="$book->title" :book="$book"/>
     <main id="main" class="chapter dashboard dashboard--chapter">
         <div class="d-wrapper">
             <form action="/dashboard/novels/{{ $book->slug }}/store" class="form" method="post">
                 @csrf
-                <x-forms.input label_name="Chapter title" name="title" place_holder="Chapter 1 : New chapter title"/>
+                @method('PATCH')
+                <input type="hidden" name="chapter_number" value="{{ $lastChapter->chapter_number + 1 }}">
+                <x-forms.input label_name="Chapter title" name="title" place_holder="Chapter {{ $lastChapter->chapter_number + 1 }} : New chapter title"/>
                 <x-forms.textarea label_name="Chapter content" name="body" placeholder=""/>
-                <x-forms.textarea label_name="Author’s note" name="note" placeholder="Add author's note at the end of the chapter"/>
+                <x-forms.textarea label_name="Author’s note (optional)" name="note" placeholder="Add author's note at the end of the chapter"/>
                 <div class="form__actions">
                     <x-forms.button value="Save"/>
                     <x-forms.button value="Publish"/>

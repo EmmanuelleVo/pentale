@@ -35,7 +35,7 @@ $line-height: 1.4 !default
 $margin: 0.7em !default
 
 // Typography
-$family-wysiwyg: "Poppins", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important
+$family-wysiwyg: "Merriweather", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important
 $family-code: "Inconsolata", "Consolas", "Monaco", monospace !default
 
 $weight-strong: 700 !default
@@ -89,7 +89,7 @@ $visited-links: false !default
     @if $show-underline
       border-bottom: 1px solid
     @else
-      &::before 
+      &::before
         content: ""
         position: absolute
         bottom: 0px
@@ -103,8 +103,8 @@ $visited-links: false !default
         @include mq($until: laptop)
           content: none
 
-      &:hover 
-        &::before 
+      &:hover
+        &::before
           transform-origin: bottom left
           transform: scaleX(1)
 

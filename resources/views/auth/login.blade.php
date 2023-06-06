@@ -3,16 +3,27 @@
     <main id="main" class="login">
         <div class="login__container">
             <div class="o-wrapper">
+                <!-- Session Status -->
+                <x-auth-session-status class="mb-4" :status="session('status')" />
+
                 <div class="login__header">
                     <x-titles.section-title title="Login"/>
                     <p class="login__header-content">Welcome back !</p>
                 </div>
-                <form action="/login" method="post" class="form">
+                <form action="{{ route('login') }}" method="post" class="form">
                     @csrf
                     <x-forms.input name="email" label_name="Email" place_holder="test@test.com" type="email"/>
-                    <x-forms.input name="password" label_name="Password" place_holder="" type="password"/>
-                    <span class="form__text"><a href="{{ route('forgotten-password') }}">Forgot your password?</a></span>
-                    <x-forms.button value="Sign in"/>
+                    <x-forms.input autocomplete="current-password" name="password" label_name="Password" place_holder="" type="password"/>
+                    <!-- Remember Me -->
+                    {{--<div class="block mt-4">
+                        <label for="remember_me" class="inline-flex items-center">
+                            <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
+                            <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+                        </label>
+                    </div>--}}
+
+                    <span class="form__text"><a href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a></span>
+                    <x-forms.button value="{{ __('Log in') }}"/>
                 </form>
 
                 <div class="login__google">

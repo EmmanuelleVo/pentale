@@ -23,7 +23,9 @@ class ChapterRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'body' => 'required',
+            'body' => 'required|min:255',
+            'note' => '',
+            'chapter_number' => '',
 
         ];
     }

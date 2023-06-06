@@ -2,18 +2,20 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Livewire\Traits\WithSorting;
 use App\Models\Book;
-use App\Models\Review;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class ReviewSort extends Component
 {
     use WithPagination;
+    use WithSorting;
 
     public Book $book;
     public $sortField;
     public $sortOrder;
+    public $pageName = 'reviewsPage';
 
     public function mount(Book $book) {
         $this->book = $book;
@@ -25,7 +27,6 @@ class ReviewSort extends Component
     public function sortBy($sortField, $sortOrder) {
         $this->sortField = $sortField;
         $this->sortOrder = $sortOrder;
-
     }
 
 
@@ -38,8 +39,13 @@ class ReviewSort extends Component
                 'reviews' => $this->book->reviews()
                     ->orderBy($this->sortField, $this->sortOrder)
                     ->groupBy('id')
-                    ->paginate(10),
+                    ->paginate(3, ['*'], 'reviewsPage')
             ]
         );
     }
+
+    /*public function paginationView()
+    {
+        return 'custom-pagination-links-view';
+    }*/
 }
