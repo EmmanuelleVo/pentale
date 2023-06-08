@@ -65,7 +65,7 @@ class ChapterController extends Controller
         $page_title = $chapter->title;
         Meta::prependTitle($chapter->title);
         $chapters = $book->chapters()->orderBy('chapter_number')->get();
-        $fonts = ['Times New Roman', 'Roboto', 'Inter', 'Lato'];
+        $fonts = ['Merriweather', 'Times New Roman', 'Inter', 'Lato'];
 
         $session_key_view = 'view-' . $chapter->id;
         //session()->forget($session_key_view);
@@ -73,6 +73,8 @@ class ChapterController extends Controller
             $chapter->incrementViewsCount();
             session()->put([$session_key_view => $chapter->id]);
         }
+
+
 
         return view('chapter.show', compact(
             'book',

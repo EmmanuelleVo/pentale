@@ -19,32 +19,7 @@
                 <x-breadcrumbs.breadcrumb-separator/>
                 <x-breadcrumbs.breadcrumb-link :title="'Chapter ' . $chapter->chapter_number . ' : ' . \Illuminate\Support\Str::limit($chapter->title, 30, $end='...')" link="/novels/{{ $book->slug }}/chapter-{{ $chapter->chapter_number }}" index="4"/>
             </x-breadcrumbs.breadcrumb>
-            <div class="chapter__actions-container chapter__actions-container--top">
-                <x-commons.button title="Bookmark the novel" link="#"><span class="u-visually-hidden">Bookmark</span><x-svg.bookmark/></x-commons.button>
-                <x-commons.button id="modalBtn" class="chapterOption" title="Display reader preferences" link="#">
-                    <x-svg.settings/>
-                    <span>Reader preferences</span>
-                </x-commons.button>
-            </div>
 
-            <div class="chapter__actions">
-                <form action="" class="chapter__form form">
-                    @csrf
-                    <x-forms.select name="chapter" label_name="Choose chapter">
-                        @foreach($chapters as $chapterItem)
-                            <x-forms.option name="Chapter {{$chapterItem->chapter_number}} : {{$chapterItem->title}}"
-                                            :value="$chapterItem->chapter_number"
-                                {{--{{ $chapter->chapter_number === $chapterItem->chapter_number ? 'selected' : '' }}--}}
-                            />
-                        @endforeach
-                    </x-forms.select>
-                    <x-forms.button value="Go to chapter"/>
-                </form>
-                <div class="chapter__actions-container">
-                    <x-commons.button class="c-btn--secondary" title="Go to previous chapter" link="#">Previous</x-commons.button>
-                    <x-commons.button title="Go to next chapter" link="#">Next</x-commons.button>
-                </div>
-            </div>
         </div>
     </div>
 </header>

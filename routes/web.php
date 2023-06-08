@@ -67,7 +67,7 @@ Route::post('/dashboard/novels/{book:slug}/chapter-{chapter:chapter_number}/dest
 // DASHBOARD
 Route::get('/dashboard/reviews', [AuthorDashboardController::class, 'indexReviews'])->middleware(['auth', 'verified'])->name('dashboard.reviews');
 Route::get('/dashboard/comments', [AuthorDashboardController::class, 'indexComments'])->middleware(['auth', 'verified'])->name('dashboard.comments');
-
+Route::get('/dashboard/profile/{user:slug}/edit', [UserController::class, 'editDashboard'])->name('dashboard.profile.user:slug.edit');
 
 //-- FORUM --//
 

@@ -10,14 +10,6 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -49,6 +41,14 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(User $user)
+    {
+        $page_title = 'Profile of' . $user->username;
+        Meta::prependTitle('Profile of' . $user->username);
+
+        return view('profile.edit', compact('page_title', 'user'));
+    }
+
+    public function editDashboard(User $user)
     {
         $page_title = 'Profile of' . $user->username;
         Meta::prependTitle('Profile of' . $user->username);
@@ -101,8 +101,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect(route('home'));
     }
 }

@@ -34,7 +34,7 @@
         font-weight: 700;
         font-size: rem(18px);
 
-        &--checkbox {
+        &--checkbox, &--radio {
             text-align: center;
             border-radius: 5px;
             border: darken($cLightGrey, 20%) 1px solid;
@@ -62,6 +62,11 @@
     }
 
     &__input--checkbox:checked + label {
+        color: $cBlue;
+        border-color: $cBlue;
+    }
+
+    &__input--radio:checked+label {
         color: $cBlue;
         border-color: $cBlue;
     }

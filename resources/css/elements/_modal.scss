@@ -1,5 +1,10 @@
 .modal {
-    display: none;
+    //display: none;
+
+    .modal.modal--active {
+        //display: block;
+    }
+
     &__btn {
         cursor: pointer;
     }

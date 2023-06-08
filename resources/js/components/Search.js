@@ -53,7 +53,6 @@ export class Search {
                                         <img src="${hit.cover}" alt="Cover of ${hit.title}">
                                     </figure>
                                     <div>
-                                        <span>${hit.user.username}</span>
                                         <span class="hit-link">
                                             ${components.Highlight({hit, attribute: 'title'})}
                                         </span>
