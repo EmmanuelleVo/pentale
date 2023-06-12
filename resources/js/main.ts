@@ -14,6 +14,7 @@ import {Slider} from "./components/Slider.js";
 import {Star} from "./components/Star";
 import {Search} from "./components/Search.js";
 import {ProgressBar} from "./components/ProgressBar";
+import {TinymceEditor} from "./components/TinymceEditor";
 
 class Main {
 
@@ -32,7 +33,9 @@ class Main {
         const swiper = new Slider()
         const star = new Star()
         const progressBar = new ProgressBar()
+        const tinymce = new TinymceEditor()
         //const search = new Search()
+
     }
 
 }

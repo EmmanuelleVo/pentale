@@ -3497,6 +3497,38 @@ exports.Star = Star;
 
 /***/ }),
 
+/***/ "./resources/js/components/TinymceEditor.ts":
+/*!**************************************************!*\
+  !*** ./resources/js/components/TinymceEditor.ts ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.TinymceEditor = void 0;
+var TinymceEditor = /** @class */function () {
+  function TinymceEditor() {
+    this.textareas = document.querySelectorAll('textarea');
+    this.chapterBody = document.querySelector('textarea[id="note"]');
+    /*if (this.chapterBody) {
+        tinymce.init({
+            selector: '#note',
+            width: 900,
+            height: 300,
+        });
+    }*/
+  }
+
+  return TinymceEditor;
+}();
+exports.TinymceEditor = TinymceEditor;
+
+/***/ }),
+
 /***/ "./resources/js/main.ts":
 /*!******************************!*\
   !*** ./resources/js/main.ts ***!
@@ -3520,6 +3552,7 @@ var Commons_1 = __webpack_require__(/*! ./components/Commons */ "./resources/js/
 var Slider_js_1 = __webpack_require__(/*! ./components/Slider.js */ "./resources/js/components/Slider.js");
 var Star_1 = __webpack_require__(/*! ./components/Star */ "./resources/js/components/Star.ts");
 var ProgressBar_1 = __webpack_require__(/*! ./components/ProgressBar */ "./resources/js/components/ProgressBar.ts");
+var TinymceEditor_1 = __webpack_require__(/*! ./components/TinymceEditor */ "./resources/js/components/TinymceEditor.ts");
 var Main = /** @class */function () {
   function Main() {
     //window.Alpine = Alpine
@@ -3536,6 +3569,7 @@ var Main = /** @class */function () {
     var swiper = new Slider_js_1.Slider();
     var star = new Star_1.Star();
     var progressBar = new ProgressBar_1.ProgressBar();
+    var tinymce = new TinymceEditor_1.TinymceEditor();
     //const search = new Search()
   }
 

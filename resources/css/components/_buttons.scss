@@ -91,6 +91,11 @@
         }
     }
 
+    &--active {
+        background-color: $cBlue !important;
+        color: $cWhite !important;
+    }
+
     &--danger {
         background-color: $cRed;
         color: $cWhite !important;

@@ -4,17 +4,22 @@
                 class="title title--small">{{ $book->reviews()->count() }} {{ $book->reviews()->count() > 1 ? 'reviews' : 'review' }}
             </span>
         <div class="reviews__actions tags">
-            <div class="tags__list" x-data="{ activeButton: ''}">
-                {{--<x-commons.filter-tag class="tags__link--filter--active" name="Popular" link="#"/>--}}
+            <div class="tags__list" x-data="{ activeButton: 'likes'}">
                 <button wire:click="sortBy('likes', 'DESC')"
+                        x-on:click="activeButton = 'likes'"
+                        :class="{ 'c-btn--active': activeButton === 'likes', '': activeButton !== 'likes' }"
                         class="tags__link tags__link--filter"
-                        {{--:class="{'tags__link--filter--active' : $classActive === true}"--}}>
                     Popular
                 </button>
-                <button wire:click="sortBy('created_at', 'DESC')" class="tags__link tags__link--filter">
+                <button wire:click="sortBy('created_at', 'DESC')"
+                        x-on:click="activeButton = 'desc'"
+                        :class="{ 'c-btn--active': activeButton === 'desc', '': activeButton !== 'desc' }"
+                        class="tags__link tags__link--filter">
                     Newest
                 </button>
                 <button wire:click="sortBy('created_at', 'ASC')"
+                        x-on:click="activeButton = 'asc'"
+                        :class="{ 'c-btn--active': activeButton === 'asc', '': activeButton !== 'asc' }"
                         class="tags__link tags__link--filter">
                     Oldest
                 </button>

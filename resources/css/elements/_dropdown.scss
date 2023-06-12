@@ -1,21 +1,32 @@
 .dropdown {
+    display: flex;
+    justify-content: center;
     position: relative;
 
-    &__btn {
+    &__container {
+        position: relative;
+    }
 
+    &__btn {
+        display: flex;
+        align-items: center;
+        gap: rem(8px);
+        background-color: $cWhite;
+        padding: rem(3px) rem(5px);
+        border-radius: 5px;
     }
 
     &__container {
         position: absolute;
         left: 0;
-        margin-top: rem(8px);
+        margin-top: rem(30px);
         width: rem(100px);
         border-radius: 5px;
         background-color: $cWhite;
         box-shadow: 0 2px 18px 0 rgba(0, 18, 66, 0.1), 0 2px 18px 0 rgba(0, 18, 66, 0.1);
     }
 
-    &__link {
-
+    & .nav__sublink {
+        text-align: left;
     }
 }

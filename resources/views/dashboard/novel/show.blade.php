@@ -10,45 +10,10 @@
                     <div class="story__item-content">
                         <div class="title-container">
                             <h3 class="title title--card" aria-level="3" role="heading">{{ $book->title }}</h3>
-                            <div class="dropdown"
-                                 x-data="{
-                                        open: false,
-                                        toggle() {
-                                            if (this.open) {
-                                                return this.close()
-                                            }
+                            <div class="dropdown" x-data="{dropdownMenu: false}">
+                                <button @click="dropdownMenu = ! dropdownMenu" class="dropdown__btn">...</button>
 
-                                            this.$refs.button.focus()
-
-                                            this.open = true
-                                        },
-                                        close(focusAfter) {
-                                            if (! this.open) return
-
-                                            this.open = false
-
-                                            focusAfter && focusAfter.focus()
-                                        }
-                                    }"
-                                 x-on:keydown.escape.prevent.stop="close($refs.button)"
-                                 x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
-                                 x-id="['dropdown-button']">
-                                <button
-                                    x-ref="button"
-                                    x-on:click="toggle()"
-                                    :aria-expanded="open"
-                                    :aria-controls="$id('dropdown-button')"
-                                    type="button"
-                                    class="dropdown__btn">...
-                                </button>
-                                <div class="dropdown__container"
-                                     x-ref="panel"
-                                     x-show="open"
-                                     x-transition.origin.top.left
-                                     x-on:click.outside="close($refs.button)"
-                                     :id="$id('dropdown-button')"
-                                     style="display: none;"
-                                >
+                                <div x-show="dropdownMenu" class="dropdown__container">
                                     <a href="/dashboard/novels/{{ $book->slug }}/edit"
                                        class="dropdown__link nav__sublink">
                                         <span class="nav__sublink__label">Edit</span>
@@ -56,18 +21,22 @@
                                     <form action="/dashboard/novels/{{ $book->slug }}/destroy" method="post"
                                           class="form">
                                         @csrf
-                                        <a href="#" class="nav__sublink">
+                                        @method('DELETE')
+                                        <button class="nav__sublink">
                                             <span class="nav__sublink__label">Delete</span>
-                                        </a>
+                                        </button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <div class="story__item-meta meta">
-                            <x-commons.meta-text-dashboard number="10" term="Chapters"/>
-                            <x-commons.meta-text-dashboard number="4.6" term="Rating"/>
-                            <x-commons.meta-text-dashboard number="208.5K" term="Views"/>
-                            <x-commons.meta-text-dashboard number="23" term="Reviews"/>
+                            <x-commons.meta-text-dashboard number="{{ $book->chapters()->count() }}" term="Chapters"/>
+                            <x-commons.meta-text-dashboard number="{{ round($book->reviews()->avg('overall'), 2) }}"
+                                                           term="Rating"/>
+                            <x-commons.meta-text-dashboard
+                                number="{{ \App\Helpers\Helper::convert($book->chapters()->sum('views')) }}"
+                                term="Views"/>
+                            <x-commons.meta-text-dashboard number="{{ $book->reviews()->count() }}" term="Reviews"/>
                             <x-commons.meta-text-dashboard number="194K" term="Words"/>
                         </div>
                     </div>

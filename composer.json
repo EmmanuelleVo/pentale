@@ -22,7 +22,7 @@
         "meilisearch/meilisearch-php": "^1.2",
         "nesbot/carbon": "^2.66",
         "predis/predis": "^2.1",
-        "tinymce/tinymce": "^6.3"
+        "tinymce/tinymce": "^6.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

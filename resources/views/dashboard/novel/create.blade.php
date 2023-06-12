@@ -19,6 +19,7 @@
                             <x-forms.option :name="$tag->name" :value="$tag->slug"/>
                         @endforeach
                     </x-forms.search-select>--}}
+
                     <x-forms.select name="language" label_name="Language">
                         @foreach($languages as $key => $value)
                             <x-forms.option :name="$value" :value="$key"/>

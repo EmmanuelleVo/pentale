@@ -26,22 +26,32 @@
         </div>
         <div class="d-wrapper">
             <x-breadcrumbs.breadcrumb>
-                <x-breadcrumbs.breadcrumb-link title="Dashboard" link="/dashboard" index="2"/>
+                <x-breadcrumbs.breadcrumb-link title="Dashboard" link="/dashboard" index="1"/>
                 {{--@dd(\Illuminate\Support\Facades\Route::currentRouteName())--}}
                 @if($currentRoute === 'dashboard.novels')
                     <x-breadcrumbs.breadcrumb-separator/>
-                    <x-breadcrumbs.breadcrumb-link title="My novels" link="/dashboard/novels" index="3"/>
+                    <x-breadcrumbs.breadcrumb-link title="My novels" link="/dashboard/novels" index="2"/>
                 @elseif($currentRoute === 'dashboard.novels.book:slug')
                     <x-breadcrumbs.breadcrumb-separator/>
-                    <x-breadcrumbs.breadcrumb-link title="My novels" link="/dashboard/novels" index="3"/>
+                    <x-breadcrumbs.breadcrumb-link title="My novels" link="/dashboard/novels" index="2"/>
                     <x-breadcrumbs.breadcrumb-separator/>
                     <x-breadcrumbs.breadcrumb-link :title="\Illuminate\Support\Str::limit($book->title, 40, $end='...')"
-                                                   link="/dashboard/novels/{{ $book->slug }}" index="4"/>
+                                                   link="/dashboard/novels/{{ $book->slug }}" index="3"/>
                 @elseif($currentRoute === 'book.create')
                     <x-breadcrumbs.breadcrumb-separator/>
-                    <x-breadcrumbs.breadcrumb-link title="My novels" link="/dashboard/novels" index="3"/>
+                    <x-breadcrumbs.breadcrumb-link title="My novels" link="/dashboard/novels" index="2"/>
                     <x-breadcrumbs.breadcrumb-separator/>
-                    <x-breadcrumbs.breadcrumb-link title="Create new story" link="/dashboard/novels/create" index="4"/>
+                    <x-breadcrumbs.breadcrumb-link title="Create new story" link="/dashboard/novels/create" index="3"/>
+                @elseif($currentRoute === 'book.edit')
+                    <x-breadcrumbs.breadcrumb-separator/>
+                    <x-breadcrumbs.breadcrumb-link title="My novels" link="/dashboard/novels" index="2"/>
+                    <x-breadcrumbs.breadcrumb-separator/>
+                    <x-breadcrumbs.breadcrumb-link title="{{ $book->title }}" link="/dashboard/novels/{{ $book->slug }}" index="3"/>
+                    <x-breadcrumbs.breadcrumb-separator/>
+                    <x-breadcrumbs.breadcrumb-link title="Edit story" link="/dashboard/novels/{{ $book->slug }}/edit" index="4"/>
+                @elseif($currentRoute === 'profile.edit.dashboard')
+                    <x-breadcrumbs.breadcrumb-separator/>
+                    <x-breadcrumbs.breadcrumb-link title="My profile" link="/dashboard/profile/{{ auth()->user()->slug }}" index="2"/>
                 @endif
             </x-breadcrumbs.breadcrumb>
         </div>

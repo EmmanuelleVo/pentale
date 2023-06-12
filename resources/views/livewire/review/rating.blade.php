@@ -172,7 +172,6 @@
 
 
             <div class="form__container">
-                {{--<x-forms.input name="chapter" placeholder="1" label_name="What chapter are you currently on?"/>--}}
                 <x-forms.textarea name="body"
                                   wire:model.lazy="body"
                                   placeholder="Provide your opinion of the story and the justification of the rating you gave."

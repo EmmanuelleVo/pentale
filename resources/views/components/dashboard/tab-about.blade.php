@@ -6,7 +6,7 @@
         <ul class="genres__list">
             @foreach($genres as $genre)
                 <li class="genres__item">
-                    <div class="genres__link genres__link--filter">
+                    <div class="genres__link">
                         <x-commons.tag name="{{ $genre->name }}"/>
                     </div>
                 </li>
@@ -19,7 +19,7 @@
         <ul class="genres__list">
             @foreach($tags as $tag)
                 <li class="genres__item">
-                    <div class="genres__link genres__link--filter">
+                    <div class="genres__link">
                         <x-commons.tag name="{{ $tag->name }}"/>
                     </div>
                 </li>

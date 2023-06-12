@@ -4,9 +4,14 @@
             {{ __('Delete Account') }}
         </h2>
 
-        <p class="profile__text">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
-        </p>
+        <div class="profile__text">
+            <p>
+                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted.') }}
+            </p>
+            <p>
+                {{ __('Before deleting your account, please download any data or information that you wish to retain.') }}
+            </p>
+        </div>
     </header>
 
     <x-danger-button
@@ -15,7 +20,7 @@
     >{{ __('Delete Account') }}</x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+        <form method="post" action="{{ route('profile.destroy') }}" class="form">
             @csrf
             @method('delete')
 
@@ -23,11 +28,16 @@
                 {{ __('Are you sure you want to delete your account?') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
-            </p>
+            <div class="profile__text">
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    {{ __('Once your account is deleted, all of its resources and data will be permanently deleted.') }}
+                </p>
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    {{ __('Please enter your password to confirm you would like to permanently delete your account.') }}
+                </p>
+            </div>
 
-            <div class="mt-6">
+            <div class="form__field">
                 <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
 
                 <x-text-input

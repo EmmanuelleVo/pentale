@@ -1,13 +1,16 @@
 <div class="novel__chapters">
     <div class="novel__chapters-actions">
         <div class="novel__chapters-actions tags">
-            <div class="tags__list">
-                {{--<x-commons.filter-tag class="tags__link--filter--active" name="Newest" link="#"/>
-                <x-commons.filter-tag name="Oldest" link="#"/>--}}
-                <button wire:click="sortBy('published_at', 'DESC')" class="tags__link tags__link--filter">
+            <div class="tags__list" x-data="{ activeButton: 'desc'}">
+                <button wire:click="sortBy('published_at', 'DESC')"
+                        x-on:click="activeButton = 'desc'"
+                        :class="{ 'c-btn--active': activeButton === 'desc', '': activeButton !== 'desc' }"
+                        class="tags__link tags__link--filter">
                     Newest
                 </button>
                 <button wire:click="sortBy('published_at', 'ASC')"
+                        x-on:click="activeButton = 'asc'"
+                        :class="{ 'c-btn--active': activeButton === 'asc', '': activeButton !== 'asc' }"
                         class="tags__link tags__link--filter">
                     Oldest
                 </button>

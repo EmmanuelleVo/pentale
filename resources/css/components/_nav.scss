@@ -416,6 +416,7 @@
 
         & .top__nav-logo {
             margin-left: rem(15px);
+            margin-bottom: rem(30px);
 
             @include mq($until: laptop) {
                 display: none;

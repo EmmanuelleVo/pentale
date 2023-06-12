@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1facd0e81bc2ca7440c707f44cccf180",
+    "content-hash": "df1b6cf0245e6579ca23862b063c2ce1",
     "packages": [
         {
             "name": "brick/math",
@@ -6570,16 +6570,16 @@
         },
         {
             "name": "tinymce/tinymce",
-            "version": "6.4.0",
+            "version": "6.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tinymce/tinymce-dist.git",
-                "reference": "488a05ddf56e844e593a3fb7da68aa5fb41f01ac"
+                "reference": "6a37da4822eebcd2706793454b07bd891c5277a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/488a05ddf56e844e593a3fb7da68aa5fb41f01ac",
-                "reference": "488a05ddf56e844e593a3fb7da68aa5fb41f01ac",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/6a37da4822eebcd2706793454b07bd891c5277a8",
+                "reference": "6a37da4822eebcd2706793454b07bd891c5277a8",
                 "shasum": ""
             },
             "type": "component",
@@ -6623,9 +6623,9 @@
                 "wysiwyg"
             ],
             "support": {
-                "source": "https://github.com/tinymce/tinymce-dist/tree/6.4.0"
+                "source": "https://github.com/tinymce/tinymce-dist/tree/6.4.2"
             },
-            "time": "2023-03-16T00:43:05+00:00"
+            "time": "2023-04-26T10:48:15+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

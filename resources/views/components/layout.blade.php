@@ -13,7 +13,7 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     @livewireStyles
-    {{--<x-head.tinymce-config/>--}}
+    <x-head.tinymce-config/>
 </head>
 <body itemscope itemtype="https://schema.org/Organization" class="sans text-lg bg-white overflow-x-hidden leading-9">
 <a href="#main" title="Aller au contenu principal" class="sr-only"></a>

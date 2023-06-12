@@ -147,8 +147,10 @@ class BookController extends Controller
         Meta::prependTitle('Dashboard');
         $genres = Genre::get();
         $tags = Tag::get();
+        $languages = ['en' => 'English', 'fr' => 'Français'];
+        $book_genres = $book->genres()->select('slug')->get()->toArray();
 
-        return view('dashboard.novel.edit', compact('book', 'genres', 'tags'));
+        return view('dashboard.novel.edit', compact('book', 'genres', 'tags', 'languages'));
     }
 
     /**

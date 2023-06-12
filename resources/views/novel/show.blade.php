@@ -92,12 +92,6 @@
                    :class="{[tab==='#reviews']: 'tab__link--active'}"
                    class="tab__link"> Reviews
                 </a>
-                {{--<x-commons.tab @click="tab='#about'"
-                               --}}{{--class="tab__link--active"--}}{{--
-                               --}}{{--:class="tab === '#about' ? 'tab__link--active' : ''"--}}{{--
-                               link="#about" name="About"/>
-                <x-commons.tab @click="tab='#chapters'" link="#chapters" name="Chapters"/>
-                <x-commons.tab @click="tab='#reviews'" link="#reviews" name="Reviews"/>--}}
             </div>
 
             <section x-show="tab === '#about'" x-cloak id="About" class="tab__content tab__content--active">

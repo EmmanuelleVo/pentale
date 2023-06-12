@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Review;
 use Butschster\Head\Facades\Meta;
 use Illuminate\Http\Request;
 
@@ -19,60 +20,35 @@ class AuthorDashboardController extends Controller
         $books = Book::query()->where('user_id', '=', $user->id)->paginate(2);
         $all_books = Book::query()->where('user_id', '=', $user->id)->get();
         $latestReviews = [];
+        $latestComments = [];
         foreach ($all_books as $all_book) {
-            $latestReviews = $all_book->reviews()->with('user')->get();
+            $latestReviews = $all_book->reviews()->with('user')->latest('reviews.created_at')->paginate(10);
         }
+        /*foreach ($all_books as $all_book) {
+            $latestComments = $all_book->chapters()->comments()->with('user')->latest('comments.created_at')->paginate(10);
+        }*/
 
         return view('dashboard.index',
             compact('books', 'latestReviews')
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function indexReviews()
     {
-        //
-    }
+        Meta::prependTitle('Dashboard reviews');
+        $user = auth()->user();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        // Latest reviews from author's books
+        $reviews = Review::query()
+            ->select('books.*', 'reviews.*')
+            ->join('books', 'books.id', '=', 'book_id')
+            ->where('books.user_id', '=', auth()->user()->id)
+            ->orderBy('reviews.created_at', 'DESC')
+            ->paginate(10);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('dashboard.reviews.index',
+            compact('reviews')
+        );
     }
 }

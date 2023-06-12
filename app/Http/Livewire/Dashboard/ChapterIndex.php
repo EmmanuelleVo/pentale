@@ -14,6 +14,7 @@ class ChapterIndex extends Component
     public $pageName = 'chaptersPage';
     public Book $book;
 
+
     public function mount(Book $book)
     {
         $this->book = $book;

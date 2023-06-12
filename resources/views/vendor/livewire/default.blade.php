@@ -30,7 +30,7 @@
                     @if (is_array($element))
                         @foreach ($element as $page => $url)
                             @if ($page == $paginator->currentPage())
-                                <li class="page-item active d-none d-md-block" aria-current="page"><span class="page-link">{{ $page }}</span></li>
+                                <li class="page-item active d-none d-md-block" aria-current="page"><span class="page-link active">{{ $page }}</span></li>
                             @else
                                 <li class="page-item d-none d-md-block"><button type="button" class="page-link" wire:click="gotoPage({{ $page }}, ('{{ $paginator->getPageName() }}'))">{{ $page }}</button></li>
                             @endif
