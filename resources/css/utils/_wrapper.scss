@@ -35,3 +35,18 @@
         content: none !important;
     }
 }
+
+.dn-wrapper {
+    @include clearfix;
+    @include mq($from: laptop) {
+        padding-right: rem($wrapper-padding-right);
+        padding-left:  rem($wrapper-padding-left);
+        margin-right: auto;
+        margin-left:  auto;
+        max-width: rem($wrapper-width);
+        box-sizing: content-box;
+        &::after{
+            content: none !important;
+        }
+    }
+}

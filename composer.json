@@ -13,7 +13,7 @@
         "intervention/image": "^2.7",
         "itsgoingd/clockwork": "^5.1",
         "laravel/framework": "^10.0",
-        "laravel/horizon": "^5.15",
+        "laravel/horizon": "^5.16",
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.2",
         "laravel/tinker": "^2.8",
@@ -21,6 +21,7 @@
         "maize-tech/laravel-markable": "^2.0",
         "meilisearch/meilisearch-php": "^1.2",
         "nesbot/carbon": "^2.66",
+        "predis/predis": "^2.1",
         "tinymce/tinymce": "^6.3"
     },
     "require-dev": {

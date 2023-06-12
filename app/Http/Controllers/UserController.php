@@ -62,6 +62,7 @@ class UserController extends Controller
     public function update(User $user, ProfileRequest $request)
     {
         $validated = $request->validated();
+        dd($validated);
 
         if ($validated) {
 

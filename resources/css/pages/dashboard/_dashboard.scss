@@ -1,11 +1,19 @@
 .dashboard {
     margin-left: rem(300px);
 
+    @include mq($until: laptop) {
+        margin-left: rem(70px);
+    }
+
     &__container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: rem(30px);
         margin-top: rem(80px);
+
+        @include mq($until: tablet) {
+            grid-template-columns: 1fr;
+        }
     }
 
     & .card-list {

@@ -2,56 +2,108 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Livewire\Traits\WithSorting;
+use App\Models\Genre;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Book extends Component
 {
-    use WithPagination;
+    use WithPagination, WithSorting;
 
-    public $searchTerm;
-    public $perPage;
-    public $sortField;
-    public $sortOrder;
+    public $filters = [
+        'genres' => [],
+    ];
+    public $genreFilters = [];
+
+    protected $queryString = [
+        //'filters' => ['except' => '', 'as' => 'filters'],
+        'filters' => ['except' => [
+            'genres' => '',
+        ]],
+        //'filters.genres' => ['except' => '', 'compact' => ','],
+        'sortField' => ['except' => 1, 'as' => 'sort'],
+    ];
 
 
     public function mount()
     {
-        $this->searchTerm = '';
-        $this->perPage = 10;
         $this->sortOrder = 'ASC';
-        $this->sortField = 'published_at';
+        $this->sortField = request()->query('sort');
+
+        $this->emit('urlChange', '/latest-releases?test');
+
+
     }
 
-    public function sortBy($sortfield)
+    public function updating($name, $value)
     {
-        $this->sortField = $sortfield;
-        //$this->sortOrder = $this->sortOrder === 'ASC' ? 'DESC' : 'ASC';
+        $this->emit('urlChanged', http_build_query([$name => $value]));
     }
+
+    public function getResultsProperty()
+    {
+        // this is where we remove the categories with a false value
+        $this->filters['genres'] = array_filter($this->filters['genres']);
+
+        if (empty($this->filters['genres'])) {
+            if ($this->sortField === 'popular') { // $book->chapters()->sum('views')
+                $books = $this->sortNovelsByPopularity($this->filters['genres']);
+            } elseif ($this->sortField === 'latest-releases') {
+                $books = $this->sortNovelsByLatestReleases($this->filters['genres']);
+            } elseif ($this->sortField === 'newest-novels') {
+                $books = $this->sortNovelsByNewestNovels();
+            } elseif ($this->sortField === 'rating') {
+                $books = $this->sortNovelsByRating();
+            }
+
+            return $books;
+        }
+
+        if ($this->sortField === 'popular') { // $book->chapters()->sum('views')
+            $books = $this->sortNovelsByPopularity($this->filters['genres']);
+            /*$books = \App\Models\Book::query()
+                ->select('books.title', 'chapters.views')
+                ->join('chapters', "books.id", "=", "chapters.book_id")
+                //->groupBy("books.id")
+                ->orderByRaw('SUM(chapters.views) DESC')
+                ->paginate(20);*/
+            /* $books = \App\Models\Book::query() //::filter($filters)
+             ->join("chapters", function ($join) {
+                 $join->on("chapters.book_id", "=", "books.id");
+             })
+             ->orderBy('chapters.views', 'DESC')
+             ->paginate(20);*/
+        } elseif ($this->sortField === 'latest-releases') {
+            $books = $this->sortNovelsByLatestReleases($this->filters['genres']);
+        } elseif ($this->sortField === 'newest-novels') {
+            $books = $this->sortNovelsByNewestNovels();
+        } elseif ($this->sortField === 'rating') {
+            $books = $this->sortNovelsByRating();
+        }
+
+        return $books;
+    }
+
 
     public function render()
     {
-        $books = \App\Models\Book::query()
-        ->groupBy('id')
-        ->orderBy($this->sortField)
-        ->paginate(20);
+        //dd($this->sortField, $this->sortOrder);
+        /*
+         Course::when(count(array_filter($this->courseLevels)), function ($query) {
+            return $query->whereIn('level', $this->courseLevels);
+        })
+        ->paginate(10)
+         */
 
-       /* foreach ($books as $book) {
-            $book_averages = [];
-            $views = [];
-            $book_reviews_count = count($book->reviews()->get());
-            $chapters = $book->chapters()->get();
-            foreach ($chapters as $chapter) {
-                $views[] = $chapter->views;
-            }
-            foreach ($book->reviews()->get() as $review) {
-                $book_averages[] = $review->overall;
-            }
-        }
-        $views = array_sum($views);
-        $rating = round((array_sum($book_averages)) / $book_reviews_count, 2);*/
+        $books = $this->getResultsProperty();
 
 
-        return view('livewire.book', compact('books'));
+        $genres = Genre::all();
+        $status = ['all', 'ongoing', 'completed', 'hiatus'];
+
+
+        return view('livewire.book', compact('books', 'genres', 'status'));
     }
 }

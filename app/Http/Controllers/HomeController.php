@@ -38,10 +38,13 @@ class HomeController extends Controller
             ->where("chapters.published_at", "<=", now())
             ->orderBy('chapters.published_at', 'DESC')
             ->paginate(12);
+
+
+
         /*$latestReleases = Chapter::with('book')
             ->whereDate('published_at', '<=', now())
             ->orderBy('published_at', 'DESC')
-            ->latest('published_at')->paginate(4);*/
+            ->latest('published_at')->paginate(12);*/
 
         $popularBooks = Book::with('genres')->paginate(10);
         $latestBooks = Book::with('genres')->paginate(10);

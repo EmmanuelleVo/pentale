@@ -90,4 +90,17 @@
 
         }
     }
+
+    &--danger {
+        background-color: $cRed;
+        color: $cWhite !important;
+        transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: darken($cRed, 10%);
+            transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+        }
+    }
 }

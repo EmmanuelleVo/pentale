@@ -5,6 +5,9 @@
 
     &--dashboard {
         margin-left: rem(300px);
+        @include mq($until: laptop) {
+            margin-left: rem(70px);
+        }
     }
 
 

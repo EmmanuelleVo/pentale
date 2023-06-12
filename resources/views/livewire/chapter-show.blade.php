@@ -1,10 +1,11 @@
 <div class="o-wrapper" x-data="{ 'showModal': false }" @keydown.escape="showModal = false" x-cloak>
     <div class="header">
         <div class="chapter__actions-container chapter__actions-container--top">
-            <x-commons.button title="Bookmark the novel" link="#"><span class="u-visually-hidden">Bookmark</span>
+            {{--<x-commons.button title="Bookmark the novel" link="#"><span class="u-visually-hidden">Bookmark</span>
                 <x-svg.bookmark/>
-            </x-commons.button>
-            <x-commons.button @click="showModal = ! showModal" {{--id="modalBtn"--}} class="chapterOption"
+            </x-commons.button>--}}
+            @livewire('bookmark', [$book])
+            <x-commons.button @click.prevent="showModal = ! showModal" {{--id="modalBtn"--}} class="chapterOption"
                               title="Display reader preferences" link="#">
                 <x-svg.settings/>
                 <span>Reader preferences</span>
@@ -12,14 +13,17 @@
         </div>
 
         <div class="chapter__actions">
-            <form action="" class="chapter__form form">
+            <form class="chapter__form form" wire:submit.prevent>
                 @csrf
                 <span wire:model="chapterNumber">{{ $chapterNumber }}</span>
-                <x-forms.select wire:model="chapterNumber" name="chapter" label_name="Choose chapter">
+                <x-forms.select wire:model="chapterNumber" name="chapterNumber"
+                                {{--wire:change="$emit('changeChapter('497')')"--}}
+                                wire:submit="submit"
+                                label_name="Choose chapter">
                     @foreach($chapters as $chapterItem)
                         <option {{--wire:click="changeChapter('{{$chapterItem->chapter_number}}')"--}}
                                 {{--wire:key="{{ $chapterNumber }} "--}}
-                                {{--{{ $chapter->chapter_number === $chapterItem->chapter_number ? 'selected' : '' }}--}}
+                                {{ $chapter->chapter_number === $chapterItem->chapter_number ? 'selected' : '' }}
                                 value="{{ $chapterItem->chapter_number }}">
                             Chapter {{$chapterItem->chapter_number}} : {{$chapterItem->title}}
                         </option>
@@ -28,9 +32,21 @@
                 <x-forms.button value="Go to chapter"/>
             </form>
             <div class="chapter__actions-container">
-                <x-commons.button class="c-btn--secondary" title="Go to previous chapter" link="#">Previous
-                </x-commons.button>
-                <x-commons.button title="Go to next chapter" link="#">Next</x-commons.button>
+                @if($previousChapter)
+                    <x-commons.button class="c-btn--secondary" title="Go to previous chapter"
+                                      link="/novels/{{ $book->slug }}/chapter-{{ $chapterNumber-1 }}">Previous
+                    </x-commons.button>
+                @endif
+                @if($nextChapter)
+                    <x-commons.button title="Go to next chapter"
+                                      link="/novels/{{ $book->slug }}/chapter-{{ $chapterNumber+1 }}">Next
+                    </x-commons.button>
+                @endif
+                @if(!$previousChapter && !$nextChapter)
+                    <x-commons.button class="c-btn--secondary" title="Go novel page" link="/novels/{{ $book->slug }}">
+                        Novel details
+                    </x-commons.button>
+                @endif
             </div>
         </div>
     </div>
@@ -48,9 +64,21 @@
             </div>
         @endif
         <div class="chapter__actions-container chapter__actions-container--bottom">
-            <x-commons.button class="c-btn--secondary" title="Go to previous chapter" link="#">Previous
-            </x-commons.button>
-            <x-commons.button title="Go to next chapter" link="#">Next</x-commons.button>
+            @if($previousChapter)
+                <x-commons.button class="c-btn--secondary" title="Go to previous chapter"
+                                  link="/novels/{{ $book->slug }}/chapter-{{ $chapterNumber-1 }}">Previous
+                </x-commons.button>
+            @endif
+            @if($nextChapter)
+                <x-commons.button title="Go to next chapter"
+                                  link="/novels/{{ $book->slug }}/chapter-{{ $chapterNumber+1 }}">Next
+                </x-commons.button>
+            @endif
+            @if(!$previousChapter && !$nextChapter)
+                <x-commons.button class="c-btn--secondary" title="Go novel page" link="/novels/{{ $book->slug }}">
+                    Novel details
+                </x-commons.button>
+            @endif
         </div>
     </section>
 

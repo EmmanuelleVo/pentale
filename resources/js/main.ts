@@ -28,11 +28,11 @@ class Main {
         const modal = new Modal()
         //const fileInput = new FileInput()
         const accordion = new Accordion()
-        const chapter = new Chapter()
+        //const chapter = new Chapter()
         const swiper = new Slider()
         const star = new Star()
         const progressBar = new ProgressBar()
-        const search = new Search()
+        //const search = new Search()
     }
 
 }
@@ -41,6 +41,8 @@ class Main {
 window.addEventListener('load', () => {
     new Main()
     Alpine.start()
+
+    //window.createPopper = createPopper;
 })
 
 

@@ -12,6 +12,7 @@ use Butschster\Head\Facades\Meta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Maize\Markable\Models\Like;
 
 class BookController extends Controller
@@ -36,9 +37,6 @@ class BookController extends Controller
             ->groupBy('books.id')
             ->get(['books.id', 'books.title', DB::raw('count(chapters.id) as chapters')]);*/
 
-
-
-
         return view('novel.index',
             compact('books', 'genres', 'status')
         );
@@ -52,8 +50,9 @@ class BookController extends Controller
         Meta::prependTitle('Create a new novel');
         $genres = Genre::all();
         $tags = Tag::all();
+        $languages = ['en' => 'English', 'fr' => 'Français'];
 
-        return view('dashboard.novel.create', compact('genres', 'tags'));
+        return view('dashboard.novel.create', compact('genres', 'tags', 'languages'));
     }
 
     /**
@@ -61,7 +60,36 @@ class BookController extends Controller
      */
     public function store(BookRequest $request)
     {
-        //
+        dd($request->validated());
+        $validated = $request->validated();
+        if ($validated) {
+            $book = Book::create([
+                'title' => $validated['title'],
+                'slug' => Str::slug($validated['title']),
+                'synopsis' => $validated['synopsis'],
+                'language' => $validated['language'],
+                'cover' => $validated['cover'],
+                'published_at' => now(),
+                'status' => 'ongoing',
+                'user_id' => auth()->user(),
+                'patreon' => '',
+            ]);
+
+            $book_id = $book->id;
+
+            foreach ($validated['genres'] as $genre_id) {
+                dd($genre_id);
+                DB::table('book_genre')->insert(compact('genre_id', 'book_id'));
+            }
+            foreach ($validated['tags'] as $tag_id) {
+                dd($tag_id);
+                DB::table('book_genre')->insert(compact('tag_id', 'book_id'));
+            }
+
+            return redirect('/dashboard/novels/' . $book->slug . '#chapters')->with('success', 'Chapter published');
+        }
+
+        return back()->withInput();
     }
 
     /**

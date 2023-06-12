@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('patreon')->nullable();
             $table->string('language')->default('en');
             $table->string('cover')->nullable();
+            $table->boolean('mature')->default(false);
             $table->timestamp('published_at')->useCurrent();
             $table->timestamps();
             $table->softDeletes();

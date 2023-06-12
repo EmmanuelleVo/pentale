@@ -16,9 +16,9 @@
 
                 <div class="nav__links-container">
                     <x-navigation.sub-navigation name="Read">
-                        <x-navigation.sublink name="Most popular novels" link="/novels"/>
-                        <x-navigation.sublink name="Latest Releases" link="/novels"/>
-                        <x-navigation.sublink name="Newest novels" link="/novels"/>
+                        <x-navigation.sublink name="Most popular novels" link="/novels?sort=popular"/>
+                        <x-navigation.sublink name="Latest Releases" link="/novels?sort=latest-releases"/>
+                        <x-navigation.sublink name="Newest novels" link="/novels?sort=newest-novels"/>
                     </x-navigation.sub-navigation>
                     <x-navigation.link name="Write" link="{{ route('dashboard') }}"/>
                     <x-navigation.link name="Forum" link="/forum"/>

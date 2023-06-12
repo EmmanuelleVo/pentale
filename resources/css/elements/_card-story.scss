@@ -6,19 +6,45 @@
         padding: rem(20px);
         gap: rem(30px);
 
+        @include mq($until: tablet) {
+            flex-direction: column;
+            align-items: center;
+        }
+
         &-meta.meta {
-            gap: rem(40px);
+            gap: rem(30px);
+            flex-wrap: wrap;
+            @include mq($until: laptop) {
+                gap: rem(20px);
+            }
+            @include mq($until: mobile) {
+                gap: rem(10px);
+            }
         }
 
         &-content {
             display: flex;
             flex-direction: column;
             gap: rem(30px);
+            @include mq($until: laptop) {
+                gap: rem(20px);
+            }
+            @include mq($until: tablet) {
+                align-items: center;
+            }
+
+            & .title {
+                margin-bottom: 0;
+            }
         }
     }
 
     & img {
         border-radius: 5px;
         width: 200px;
+    }
+
+    & figure {
+        min-width: 200px;
     }
 }

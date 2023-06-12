@@ -8,17 +8,27 @@
     </div>
     <div class="novel__item-container--right">
         <div class="novel__item-content">
-            <x-titles.card-title :title="$book->title" />
+            <x-titles.card-title :title="$book->title"/>
+            <span class="novel__author">{{ $book->user->username }}</span>
             <dl class="novel__item-container--meta meta__container">
                 <x-commons.meta-image name="Rating" attribute="{{ round($book->reviews()->avg('overall'), 2) }}">
                     <x-svg.star/>
                 </x-commons.meta-image>
-                <x-commons.meta-image name="Total views" attribute="{{ \App\Helpers\Helper::convert($book->chapters()->sum('views')) }} views">
+                <x-commons.meta-image name="Total views"
+                                      attribute="{{ \App\Helpers\Helper::convert($book->chapters()->sum('views')) }} views">
                     <x-svg.view/>
                 </x-commons.meta-image>
 
                 <x-commons.meta-image name="Total chapters" attribute="{{ $book->chapters()->count() }} chapters">
                     <x-svg.chapter/>
+                </x-commons.meta-image>
+                <x-commons.meta-image name="Status" attribute="{{ $book->status }}">
+                    <x-svg.chapter/>
+                </x-commons.meta-image>
+                {{--<time class="review__date" datetime="{{ $review->published_at }}">{{ \Carbon\Carbon::parse($review->created_at)->diffForHumans() }}</time>--}}
+                <x-commons.meta-image name="Last update"
+                                      attribute="{{ \Carbon\Carbon::parse($book->chapters()->latest('chapters.published_at')->first()->published_at)->diffForHumans() }}">
+                    <x-svg.time/>
                 </x-commons.meta-image>
             </dl>
             <div class="novel__item-genres genres">

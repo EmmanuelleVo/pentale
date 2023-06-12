@@ -92,6 +92,10 @@
             padding-bottom: rem(30px);
             background-color: $cWhite;
 
+            @include mq($until: laptop) {
+                margin-left: rem(70px);
+            }
+
             & .title {
                 text-transform: none;
                 font-size: rem(32px);

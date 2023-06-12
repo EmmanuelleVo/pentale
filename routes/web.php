@@ -38,6 +38,7 @@ Route::get('/about', AboutController::class)->name('about');
 
 //-- CONTACT SUPPORT --//
 Route::get('/contact', [ContactController::class, 'create'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 
 //-- NOVELS --//
@@ -80,6 +81,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [UserController::class, 'destroy'])->name('profile.destroy');
     //Dashboard
     Route::get('/dashboard/profile/{user:slug}/edit', [UserController::class, 'editDashboard'])->name('profile.edit.dashboard');
+    Route::patch('/dashboard/profile/{user:slug}/update', [UserController::class, 'update'])->name('profile.update');
 });
 
 

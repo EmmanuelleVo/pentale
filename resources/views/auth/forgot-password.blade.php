@@ -1,25 +1,33 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
+<x-layout>
+    <x-header.page-header title="Password Forgotten - Pentale"/>
+    <main id="main" class="login">
+        <div class="login__container">
+            <div class="o-wrapper">
+                <!-- Session Status -->
+                <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+                <div class="login__header">
+                    <x-titles.section-title title="Password Forgotten"/>
+                    <p class="login__header-content">{{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}</p>
+                </div>
+                <form action="{{ route('password.email') }}" method="post" class="form">
+                    @csrf
+                    <x-forms.input name="email" label_name="Email" place_holder="test@test.com" type="email" required autofocus/>
 
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
+                    <x-forms.button value="{{ __('Email Password Reset Link') }}"/>
+                </form>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                <div class="login__option">
+                    <span><a href="{{ route('login') }}" title="Back to login">Back to login</a></span>
+                </div>
+            </div>
+            {{--<figure class="login__figure">
+                <img src="" alt="" class="login__img">
+            </figure>--}}
         </div>
+    </main>
+    <x-footer.footer/>
+</x-layout>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+
+

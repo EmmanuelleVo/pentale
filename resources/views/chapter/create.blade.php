@@ -5,8 +5,8 @@
             <form action="/dashboard/novels/{{ $book->slug }}/store" class="form" method="post">
                 @csrf
                 @method('PATCH')
-                <input type="hidden" name="chapter_number" value="{{ $lastChapter->chapter_number + 1 }}">
-                <x-forms.input label_name="Chapter title" name="title" place_holder="Chapter {{ $lastChapter->chapter_number + 1 }} : New chapter title"/>
+                <x-forms.input label_name="Chapter number" name="chapter_number" value="{{ $lastChapter->chapter_number + 1 }}" disabled/>
+                <x-forms.input label_name="Chapter title" name="title" place_holder="New chapter title"/>
                 <x-forms.textarea label_name="Chapter content" name="body" placeholder=""/>
                 <x-forms.textarea label_name="Author’s note (optional)" name="note" placeholder="Add author's note at the end of the chapter"/>
                 <div class="form__actions">

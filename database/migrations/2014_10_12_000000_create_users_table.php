@@ -24,10 +24,6 @@ return new class extends Migration
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
             $table->tinyText('biography')->nullable();
-            $table->integer('font_size')->default(18);
-            $table->string('font_family')->default('Helvetica');
-            $table->integer('line_height')->default('1');
-            $table->boolean('day')->default(true);
             $table->json('preferences');
             $table->rememberToken();
             $table->timestamps();

@@ -28,7 +28,6 @@ class ProfileRequest extends FormRequest
             'discord' => 'nullable',
             'twitter' => 'nullable',
             'username' => 'required',
-            'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $this->user()->id,
             'password' => 'nullable|min:8|max:64|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'nullable|min:8|max:64'

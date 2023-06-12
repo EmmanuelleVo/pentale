@@ -73,20 +73,21 @@ class Book extends Model
         ];
     }
 
-    /*public function scopeFilter($query, array $filters)
+    public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search-term'] ?? false, fn($query, $search) => $query->where(fn($query)
+        //dd($filters);
+        /*$query->when($filters['search-term'] ?? false, fn($query, $search) => $query->where(fn($query)
         => $query->where('title', 'like', '%' . $search . '%')
             ->orWhere('body', 'like', '%' . $search . '%'))
         //->orWhere('excerpt', 'like', '%' . $search . '%')
-        );
-
-        $query->when($filters['filter'] ?? false, fn($query, $category) => $query->whereHas('tags', fn($query) // posts whereHas (relation category)
+        );*/
+        //dd($filters);
+        $query->when($filters['genres'] ?? false, fn($query, $category) => $query->whereHas('genres', fn($query) // posts whereHas (relation category)
         => $query->where('slug', $category))
         );
     }
 
-    public function scopeFilter($query, string $filter)
+    /* public function scopeFilter($query, string $filter)
     {
         if ($filter !== '') {
             $course = Course::where('slug', $filter)->first();

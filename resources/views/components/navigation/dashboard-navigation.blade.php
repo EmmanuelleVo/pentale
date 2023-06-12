@@ -1,6 +1,6 @@
 <div class="top top--dashboard">
-    <div class="o-wrapper">
-        <div class="top__nav-logo">
+    <div class="dn-wrapper">
+        <div class="top__nav-logo top__nav-logo-dashboard">
             <a href="/" class="u-absolute"></a>
             <x-svg.site-logo/>
         </div>
@@ -35,7 +35,7 @@
                                 <x-svg.reply-1/>
                             </div>
                         </x-navigation.link>
-                        <x-navigation.link name="Profile" link="/profile/{{ auth()->user()->slug }}">
+                        <x-navigation.link name="Profile" link="/dashboard/profile/{{ auth()->user()->slug }}/edit">
                             <div class="svg">
                                 <x-svg.profile/>
                             </div>

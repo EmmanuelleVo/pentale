@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('body');
             $table->text('author_note')->nullable();
             $table->bigInteger('views')->unsigned()->default(0)->index();
+            $table->timestamp('saved_at')->useCurrent();
             $table->timestamp('published_at')->useCurrent();
             $table->timestamps();
             $table->softDeletes();

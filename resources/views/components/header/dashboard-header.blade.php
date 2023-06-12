@@ -13,7 +13,7 @@
     <x-navigation.dashboard-navigation/>
 
     <div class="header__container--dashboard">
-        <div class="d-wrapper title-container">
+        <div class="d-wrapper title-container title-container--mobile">
             <h2 aria-level="2" role="heading" class="title title--big">
                 {{ $page_title }}
             </h2>

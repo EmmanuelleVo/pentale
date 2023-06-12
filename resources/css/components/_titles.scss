@@ -16,11 +16,14 @@ $titleSizeSeven: 16px;
     &--big {
         text-transform: uppercase;
         font-size: rem($titleSizeOne) !important;
-        @include mq($until: tablet) {
-            font-size: rem($titleSizeTwo) !important;
+        @include mq($until: laptop) {
+            font-size: rem($titleSizeThree) !important;
+        }
+        @include mq($until: laptop) {
+            font-size: rem($titleSizeFour) !important;
         }
         @include mq($until: mobile) {
-            font-size: rem($titleSizeThree) !important;
+            font-size: rem($titleSizeFive) !important;
         }
     }
 
@@ -56,12 +59,12 @@ $titleSizeSeven: 16px;
 
     &--section {
         text-transform: uppercase;
-        font-size: rem($titleSizeThree) !important;
+        font-size: rem($titleSizeFour) !important;
         @include mq($until: tablet) {
-            font-size: rem($titleSizeFour) !important;
+            font-size: rem($titleSizeFive) !important;
         }
         @include mq($until: mobile) {
-            font-size: rem($titleSizeFive) !important;
+            font-size: rem($titleSizeSix) !important;
         }
     }
 

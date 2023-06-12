@@ -74,6 +74,9 @@ class ChapterController extends Controller
             session()->put([$session_key_view => $chapter->id]);
         }
 
+        $nextChapter = $book->chapters()->where('chapters.chapter_number', '=', $chapter->chapter_number+1 )->exists();
+        $previousChapter = $book->chapters()->where('chapters.chapter_number', '=', $chapter->chapter_number-1 )->exists();
+
 
 
         return view('chapter.show', compact(
@@ -81,7 +84,9 @@ class ChapterController extends Controller
             'chapter',
             'page_title',
             'chapters',
-            'fonts'
+            'fonts',
+            'nextChapter',
+            'previousChapter',
         ));
     }
 

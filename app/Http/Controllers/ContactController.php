@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
+use App\Mail\SendMessageWithContactForm;
 use Butschster\Head\Facades\Meta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -24,10 +26,11 @@ class ContactController extends Controller
      */
     public function store(ContactRequest $request)
     {
-        $validated = $request->validated();
+        $info = $request->validated();
 
-        if ($validated) {
-            // TODO: send mail
+        if ($info) {
+            Mail::to('info@pentale.com')
+                ->queue(new SendMessageWithContactForm($info));
             return redirect('/contact')->with('form-success', 'Your message has been sent. We\'ll get back to you within 24 hours');
         }
 

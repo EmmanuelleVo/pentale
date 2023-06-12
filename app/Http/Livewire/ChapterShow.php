@@ -17,6 +17,8 @@ class ChapterShow extends Component
     public bool $nightMode;
     public $chapterNumber;
 
+    //protected $listeners = ['changeChapter'];
+
     public function mount(Book $book, Chapter $chapter, $fonts) {
         $this->book = $book;
         $this->chapter = $chapter;
@@ -101,8 +103,12 @@ class ChapterShow extends Component
         }
     }
 
-    public function changeChapter($chapterNumber) {
-        dd($chapterNumber);
+    public function updatedChapterNumber() {
+        dd('ok');
+
+        $this->dispatchBrowserEvent('refresh-page');
+
+        return redirect()->to('/novels/' . $this->book->slug .'/chapter-' . $chapterNumber);
     }
 
 
@@ -112,9 +118,15 @@ class ChapterShow extends Component
         $fontFamily = session()->get('user_preferences.fontFamily');
         $lineHeight = session()->get('user_preferences.lineHeight');
         $nightMode = session()->get('user_preferences.night');
+
         $book = $this->book;
         $chapter = $this->chapter;
         $chapters = $book->chapters()->orderByRaw('CONVERT(chapter_number, SIGNED) desc')->get();
-        return view('livewire.chapter-show', compact('book', 'chapter', 'chapters', 'fontSize', 'fontFamily', 'nightMode', 'lineHeight'));
+        $nextChapter = $book->chapters()->where('chapters.chapter_number', '=', $chapter->chapter_number+1 )->exists();
+        $previousChapter = $book->chapters()->where('chapters.chapter_number', '=', $chapter->chapter_number-1 )->exists();
+
+        return view('livewire.chapter-show',
+            compact('book', 'chapter', 'chapters', 'fontSize', 'fontFamily', 'nightMode', 'lineHeight', 'nextChapter', 'previousChapter'
+            ));
     }
 }
