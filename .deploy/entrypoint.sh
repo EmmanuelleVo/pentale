@@ -13,6 +13,7 @@ php artisan migrate --no-interaction --force
 php artisan cache:clear
 php artisan config:clear
 php artisan config:cache
+php artisan db:seed
 # php artisan queue:work
 
 echo "🎬 start supervisord"
