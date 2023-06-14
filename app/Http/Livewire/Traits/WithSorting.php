@@ -23,6 +23,7 @@ trait WithSorting
 
         $books = Book::query()
             ->select('books.*', DB::raw('count(chapters.book_id)'), DB::raw('sum(chapters.views)'))
+            ->has('chapters')
             ->join('chapters', 'books.id', '=', 'chapters.book_id')
             ->groupBy('books.id')
             ->orderByRaw("sum(chapters.views) DESC")
@@ -46,6 +47,7 @@ trait WithSorting
     public function sortNovelsByRating() {
         $books = \App\Models\Book::query()
             ->select('books.*', DB::raw('avg(reviews.overall)'))
+            ->has('chapters')
             ->join('reviews', 'books.id', '=', 'reviews.book_id')
             ->groupBy('books.id')
             ->orderByRaw("avg(reviews.overall) DESC")
@@ -58,6 +60,7 @@ trait WithSorting
     public function sortNovelsByLatestReleases($genres) {
         $books = \App\Models\Book::query() //::filter($filters)
         ->select('books.*')
+            ->has('chapters')
             ->join('chapters', 'books.id', '=', 'chapters.book_id')
             ->join('book_genre', 'book_genre.book_id', '=', 'books.id')
             ->join('genres', 'genres.id', '=', 'book_genre.genre_id')
@@ -71,6 +74,7 @@ trait WithSorting
 
     public function sortNovelsByNewestNovels() {
         $books = \App\Models\Book::query()
+            ->has('chapters')
             ->select('books.*')
             //->join('chapters', 'books.id', '=', 'chapters.book_id')
             ->latest('books.published_at')

@@ -13,10 +13,10 @@
         position: relative;
         min-width: rem(150px);
         width: rem(150px);
-        min-height: 180px;
+        //min-height: 180px;
         & img {
             border-radius: 5px;
-            height: 180px;
+            height: rem(200px);
         }
     }
 

@@ -16,7 +16,13 @@
                 min-height: auto;
                 min-width: auto;
                 & img {
-                    height: auto;
+                    height: rem(300px);
+                    @include mq($until: laptop) {
+                        height: rem(250px);
+                    }
+                    @include mq($until: tablet) {
+                        height: rem(200px);
+                    }
                 }
             }
         }

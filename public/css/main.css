@@ -1254,11 +1254,10 @@ p {
   position: relative;
   min-width: 9.375rem;
   width: 9.375rem;
-  min-height: 180px;
 }
 .novel__item-figure img {
   border-radius: 5px;
-  height: 180px;
+  height: 12.5rem;
 }
 .novel__item .novel__chapter {
   display: flex;
@@ -3164,7 +3163,17 @@ a {
   min-width: auto;
 }
 .home__updates .novel__item-figure img {
-  height: auto;
+  height: 18.75rem;
+}
+@media (max-width: 63.99em) {
+  .home__updates .novel__item-figure img {
+    height: 15.625rem;
+  }
+}
+@media (max-width: 47.99em) {
+  .home__updates .novel__item-figure img {
+    height: 12.5rem;
+  }
 }
 .home__container {
   display: grid;
