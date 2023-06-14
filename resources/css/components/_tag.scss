@@ -11,6 +11,10 @@
         display: block;
         border-radius: 5px;
 
+        @include mq($until: mobile) {
+            font-size: rem(15px);
+        }
+
 
         &--filter:not(&--filter--active) {
             background-color: $cLightGrey;

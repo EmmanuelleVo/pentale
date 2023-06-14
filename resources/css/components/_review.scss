@@ -8,7 +8,7 @@
 
         @include mq($until: mobile) {
             flex-direction: column;
-            gap: 0;
+            gap: rem(20px);
             align-items: flex-start;
             margin: rem(50px) 0 rem(30px);
         }

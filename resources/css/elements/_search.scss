@@ -1,7 +1,8 @@
 .searchContainer {
-    & .form__search {
-
+    @include mq($until: laptop) {
+        order: -1;
     }
+
 
     & .searchbox {
         padding: 0.5rem;
@@ -79,7 +80,7 @@
             @include mq($until: laptop) {
                 border: none;
                 color: $cWhite;
-                background-color: lighten($cBlue, 15%);
+                background-color: $cLightGrey;
                 &::placeholder {
                     color: $cWhite;
                 }

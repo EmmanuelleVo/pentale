@@ -12,10 +12,42 @@
         }
     }
 
+    &__filters {
+        & .form__checkbox-container {
+            @include mq($until: laptop) {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            @include mq($until: tablet) {
+                grid-template-columns: repeat(3, 1fr);
+                gap: rem(20px);
+            }
+            @include mq($until: 600px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            @include mq($until: mobile) {
+                gap: rem(10px);
+            }
+        }
+    }
+
+    &__sort-container {
+        & .tags__list {
+
+        }
+    }
+
     &__list {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: rem(30px);
+
+        @include mq($until: laptop) {
+            gap: rem(20px);
+        }
+        @include mq($until: tablet) {
+            gap: rem(15px);
+            grid-template-columns: 1fr;
+        }
 
 
 

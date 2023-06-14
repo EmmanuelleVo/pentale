@@ -33,6 +33,12 @@
             width: 250px;
             transform: translateX(250px);
         }
+
+        & a:hover {
+            @include mq($until: laptop) {
+                color : $cWhite;
+            }
+        }
     }
 
     &__link {
@@ -443,7 +449,11 @@
         font-size: inherit;
     }
 
-    form .nav__sublink {
-        text-align: left;
+    form {
+        width: 100%;
+
+        & .nav__sublink {
+            text-align: left;
+        }
     }
 }

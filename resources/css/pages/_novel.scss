@@ -33,9 +33,6 @@
         &-actions {
             display: flex;
             gap: rem(20px);
-            @include mq($until: mobile) {
-                justify-content: space-between;
-            }
         }
     }
 
@@ -107,7 +104,10 @@
             }
 
             &__date {
-                color: $cDarkGrey;
+                color: $cGrey;
+                @include mq($until: mobile) {
+                    font-size: rem(14px);
+                }
             }
         }
     }

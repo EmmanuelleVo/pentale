@@ -23,11 +23,16 @@
             flex-direction: column;
         }
 
+        & .form__select {
+            max-width: 480px;
+            width: 100%;
+        }
+
         &-container {
             display: flex;
             gap: rem(20px);
             @include mq($until: tablet) {
-                justify-content: flex-end;
+                //justify-content: center;
             }
 
             &--bottom {

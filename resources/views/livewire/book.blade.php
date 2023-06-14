@@ -42,7 +42,7 @@
 
     <div class="novels__sort novels__actions">
         <span class="title title--small">Sort by</span>
-        <div class="novels__sort--container tags">
+        <div class="novels__sort-container tags">
             <div class="tags__list">
                 <x-commons.filter-tag wire:click="sortBy('views')" class="tags__link--filter--active" name="Popular" link="#popular"/>
                 <x-commons.filter-tag wire:click="sortBy('views')" name="Rating" link="#rating"/>

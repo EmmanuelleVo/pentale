@@ -43,22 +43,26 @@
 
     &--novel {
         background-color: $cLightGrey;
-        top: rem(50px);
-        margin-bottom: rem(100px);
+
+        & .breadcrumb {
+            margin-top: rem(50px);
+        }
 
         & .header__wrapper {
             grid-template-columns: 4fr 6fr;
             @include mq($until: tablet) {
                 grid-template-columns: 1fr;
+                padding-top: rem(80px);
+                gap: rem(20px);
             }
         }
 
         & .header__figure {
             width: 38%;
-            top: rem(200px);
+            //top: rem(200px);
             @include mq($until: tablet) {
                 width: 50%;
-                top: rem(50px);
+                //top: rem(50px);
                 left: 50%;
                 transform: translateX(-50%);
             }
@@ -74,7 +78,8 @@
             bottom: rem(30px);
 
             & h2 {
-                margin-top: rem(20px);
+                margin-top: 0;
+                margin-bottom: rem(20px);
             }
         }
 

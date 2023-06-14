@@ -20,4 +20,4 @@ mix.ts('resources/js/main.ts', 'public/js')
         proxy: 'http://pentale.test',
         notify: false
     });
-mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
+//mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');

@@ -1,12 +1,19 @@
 .novel {
     &__item--full {
         position: relative;
-        display: grid;
-        grid-template-columns: 2fr 4fr;
-        gap: rem(30px);
+        display: flex;
+        flex-direction: row;
+        gap: rem(20px);
         border-radius: 5px;
         border: $cGrey 1px solid;
         transition: box-shadow .3s ease;
+
+        @include mq($until: laptop, $from: tablet) {
+            flex-direction: column;
+        }
+        @include mq($until: 550px) {
+            flex-direction: column;
+        }
 
         &:hover {
             box-shadow: 0 2px 18px 0 rgba(0, 18, 66, 0.2);
@@ -15,15 +22,31 @@
 
         & .novel__item-container--right {
             padding: rem(20px) rem(20px) rem(20px) 0;
+            @include mq($until: laptop, $from: tablet) {
+                padding: 0 rem(20px) rem(20px);
+                text-align: center;
+            }
+            @include mq($until: 550px) {
+                padding: 0 rem(20px) rem(20px);
+                text-align: center;
+            }
         }
 
         & .novel__author {
             margin-bottom: rem(10px);
             display: block;
+            color: $cGrey;
         }
 
         & .meta__container {
             gap: rem(5px) rem(20px);
+            @include mq($until: laptop, $from: tablet) {
+                justify-content: center;
+            }
+
+            @include mq($until: 550px) {
+                justify-content: center;
+            }
         }
 
         & .meta__content {
@@ -42,8 +65,21 @@
         & .novel__item {
             &-figure {
                 height: 100%;
-                width: auto;
-                min-height: auto;
+                width: rem(220px);
+
+                @include mq($until: laptop, $from: tablet) {
+                    margin: rem(20px) auto 0;
+                    height: rem(300px);
+                    border-radius: 5px;
+                    overflow: hidden;
+                }
+
+                @include mq($until: 550px) {
+                    margin: rem(20px) auto 0;
+                    height: rem(300px);
+                    border-radius: 5px;
+                    overflow: hidden;
+                }
             }
 
             &-img {
@@ -53,10 +89,27 @@
 
             &-genres {
                 margin-top: rem(15px);
+
+                & .genres__list {
+                    @include mq($until: laptop, $from: tablet) {
+                        justify-content: center;
+                    }
+                    @include mq($until: 550px) {
+                        justify-content: center;
+                    }
+                }
             }
 
             &-description {
                 margin-top: rem(10px);
+                font-size: rem(16px);
+
+                @include mq($until: tablet) {
+                    font-size: rem(14px);
+                }
+                @include mq($until: mobile) {
+                    font-size: rem(13px);
+                }
             }
         }
     }
