@@ -62,7 +62,6 @@ class UserController extends Controller
     public function update(User $user, ProfileRequest $request)
     {
         $validated = $request->validated();
-        dd($validated);
 
         if ($validated) {
 
@@ -78,14 +77,10 @@ class UserController extends Controller
 
             $user->update([
                 'username' => $validated['username'],
-                'name' => $validated['name'],
                 'email' => $validated['email'],
-                'discord' => $validated['discord'],
-                'twitter' => $validated['twitter'],
-                'instagram' => $validated['instagram'],
                 'avatar' => $path,
-                'biography' => $validated['bio'],
             ]);
+
             if ($validated['password']) {
                 $user->update([
                     'password' => bcrypt($validated['password'])

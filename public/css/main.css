@@ -1,4 +1,3 @@
-.tippy-box[data-animation=fade][data-state=hidden]{opacity:0}[data-tippy-root]{max-width:calc(100vw - 10px)}.tippy-box{position:relative;background-color:#333;color:#fff;border-radius:4px;font-size:14px;line-height:1.4;white-space:normal;outline:0;transition-property:transform,visibility,opacity}.tippy-box[data-placement^=top]>.tippy-arrow{bottom:0}.tippy-box[data-placement^=top]>.tippy-arrow:before{bottom:-7px;left:0;border-width:8px 8px 0;border-top-color:initial;transform-origin:center top}.tippy-box[data-placement^=bottom]>.tippy-arrow{top:0}.tippy-box[data-placement^=bottom]>.tippy-arrow:before{top:-7px;left:0;border-width:0 8px 8px;border-bottom-color:initial;transform-origin:center bottom}.tippy-box[data-placement^=left]>.tippy-arrow{right:0}.tippy-box[data-placement^=left]>.tippy-arrow:before{border-width:8px 0 8px 8px;border-left-color:initial;right:-7px;transform-origin:center left}.tippy-box[data-placement^=right]>.tippy-arrow{left:0}.tippy-box[data-placement^=right]>.tippy-arrow:before{left:-7px;border-width:8px 8px 8px 0;border-right-color:initial;transform-origin:center right}.tippy-box[data-inertia][data-state=visible]{transition-timing-function:cubic-bezier(.54,1.5,.38,1.11)}.tippy-arrow{width:16px;height:16px;color:#333}.tippy-arrow:before{content:"";position:absolute;border-color:transparent;border-style:solid}.tippy-content{position:relative;padding:5px 9px;z-index:1}
 /**
  * Swiper 9.3.2
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -104,60 +103,58 @@
  * Social colors
  */
 /* stylelint-disable */
-@font-face {
-  font-family: "Gotham";
-  src: url("/fonts/gotham/Gotham-Book.otf");
-  /*src: url('../fonts/Gotham-Book.woff') format('woff'),
-       url('../fonts/Gotham-Book.woff2') format('woff2'),
-       url('../fonts/Gotham-Book.ttf') format('truetype');*/
-  font-weight: 400;
-  font-style: normal;
+/*@font-face {
+    font-family: "Merriweather";
+    src: url("/assets/fonts/Merriweather/Merriweather-Regular.ttf");
+    !*src: url('../fonts/Gotham-Book.woff') format('woff'),
+         url('../fonts/Gotham-Book.woff2') format('woff2'),
+         url('../fonts/Gotham-Book.ttf') format('truetype');*!
+    font-weight: 400;
+    font-style: normal;
 }
 @font-face {
-  font-family: "Gotham";
-  src: url("/fonts/gotham/Gotham-Bold.otf");
-  /*src: url('../fonts/Gotham-Book.woff') format('woff'),
-       url('../fonts/Gotham-Book.woff2') format('woff2'),
-       url('../fonts/Gotham-Book.ttf') format('truetype');*/
-  font-weight: 700;
-  font-style: normal;
+    font-family: "Merriweather";
+    src: url("/assets/fonts/Merriweather/Merriweather-Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
 }
 @font-face {
-  font-family: "Gotham";
-  src: url("/fonts/gotham/Gotham-Medium.otf");
-  /*src: url('../fonts/Gotham-Book.woff') format('woff'),
-       url('../fonts/Gotham-Book.woff2') format('woff2'),
-       url('../fonts/Gotham-Book.ttf') format('truetype');*/
-  font-weight: 500;
-  font-style: normal;
+    font-family: "Merriweather";
+    src: url("/assets/fonts/Merriweather/Merriweather-Italic.ttf");
+    font-weight: 400;
+    font-style: italic;
 }
 @font-face {
-  font-family: "Gotham";
-  src: url("/fonts/gotham/Gotham-BookItalic.otf");
-  /*src: url('../fonts/Gotham-Book.woff') format('woff'),
-       url('../fonts/Gotham-Book.woff2') format('woff2'),
-       url('../fonts/Gotham-Book.ttf') format('truetype');*/
-  font-weight: 400;
-  font-style: italic;
+    font-family: "Merriweather";
+    src: url("/assets/fonts/Merriweather/Merriweather-BoldItalic.ttf");
+    font-weight: 700;
+    font-style: italic;
+}*/
+/*
+@font-face {
+    font-family: "Lato";
+    src: url("/assets/fonts/Lato/Lato-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
 }
 @font-face {
-  font-family: "Gotham";
-  src: url("/fonts/gotham/Gotham-MediumItalic.otf");
-  /*src: url('../fonts/Gotham-Book.woff') format('woff'),
-       url('../fonts/Gotham-Book.woff2') format('woff2'),
-       url('../fonts/Gotham-Book.ttf') format('truetype');*/
-  font-weight: 500;
-  font-style: italic;
+    font-family: "Lato";
+    src: url("/assets/fonts/Lato/Lato-Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
 }
 @font-face {
-  font-family: "Gotham";
-  src: url("/fonts/gotham/Gotham-BoldItalic.otf");
-  /*src: url('../fonts/Gotham-Book.woff') format('woff'),
-       url('../fonts/Gotham-Book.woff2') format('woff2'),
-       url('../fonts/Gotham-Book.ttf') format('truetype');*/
-  font-weight: 700;
-  font-style: italic;
+    font-family: "Lato";
+    src: url("/assets/fonts/Lato/Lato-Italic.ttf");
+    font-weight: 400;
+    font-style: italic;
 }
+@font-face {
+    font-family: "Lato";
+    src: url("/assets/fonts/Lato/Lato-BoldItalic.ttf");
+    font-weight: 700;
+    font-style: italic;
+}*/
 /**
 * Sass CSS triangle mixin, create any kind of triangles with ease
 
@@ -296,6 +293,10 @@ table {
 
 .search {
   display: inherit;
+}
+.search__result {
+  font-size: 1.375rem;
+  margin-bottom: 1.875rem;
 }
 
 #search-box {
@@ -554,7 +555,7 @@ table {
 }
 .form__actions-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 1.25rem;
 }
 .form__checkbox-container {
@@ -2502,7 +2503,7 @@ p {
 .c-btn--primary::before {
   content: none !important;
 }
-.c-btn--primary:hover, .c-btn--primary:active, .c-btn--primary:focus {
+.c-btn--primary:hover {
   background-color: #002ea8;
   color: #FFF !important;
   transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
@@ -2523,12 +2524,12 @@ p {
   fill: #5158BB;
   transition: fill 300ms ease-in-out;
 }
-.c-btn--secondary:hover, .c-btn--secondary:active, .c-btn--secondary:focus {
+.c-btn--secondary:hover {
   background-color: #5158BB;
   color: #FFF !important;
   transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 }
-.c-btn--secondary:hover svg path, .c-btn--secondary:active svg path, .c-btn--secondary:focus svg path {
+.c-btn--secondary:hover svg path {
   fill: #FFF;
   transition: fill 300ms ease-in-out;
 }
@@ -2541,7 +2542,7 @@ p {
   color: #FFF !important;
   transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 }
-.c-btn--danger:hover, .c-btn--danger:active, .c-btn--danger:focus {
+.c-btn--danger:hover {
   background-color: #ab0000;
   transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 }
@@ -3365,11 +3366,6 @@ a {
 }
 .chapter__form .form__field {
   margin-bottom: 0;
-}
-.chapter__content p {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.625rem;
 }
 .chapter__paragraph-btn {
   cursor: pointer;

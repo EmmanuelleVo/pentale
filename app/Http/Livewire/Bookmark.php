@@ -10,7 +10,7 @@ class Bookmark extends Component
 {
     public Book $book;
     public User $user;
-    public bool $hasBookmarked = true;
+    public bool $hasBookmarked = false;
 
     public function mount(Book $book)
     {
@@ -27,6 +27,8 @@ class Bookmark extends Component
             \Maize\Markable\Models\Bookmark::toggle($this->book, $this->user);
             //$this->emit('updateBookmarkCount');
             $this->hasBookmarked = !$this->hasBookmarked;
+        } else {
+            return redirect()->route('login');
         }
     }
 

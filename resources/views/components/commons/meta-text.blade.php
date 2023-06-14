@@ -4,7 +4,7 @@
     <dt class="meta__term">
         <span class="">{{ $name }}</span>
     </dt>
-    <dd class="meta__content">
+    <dd {{ $attributes->merge(['class' => 'meta__content']) }}>
         {{ $attribute }}
     </dd>
 </div>

@@ -30,12 +30,12 @@ class UserFactory extends Factory
             'instagram' => fake()->url,
             'twitter' => fake()->url,
             'biography' => fake()->sentence(10),
-            'preferences' => json_encode([
+            'preferences' => [
                 'fontFamily' => 'Merriweather',
-                'fontSize' => '18',
-                'lineHeight' => '32',
-                'night' => 'false',
-                ]),
+                'fontSize' => 18,
+                'lineHeight' => 32,
+                'night' => false,
+                ],
             'remember_token' => Str::random(10),
             'role_id' => random_int(2, Role::max('id')),
         ];

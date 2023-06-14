@@ -3,7 +3,7 @@
 <li class="reviews__item review">
     <div class="review__container review__container--header">
         <figure class="review__figure avatar">
-            <img src="{{ $review->user->avatar }}" alt="'s avatar" class="review__img">
+            <img src="{{ $review->user->avatar }}" alt="{{ $review->user->username }}'s avatar" class="review__img">
         </figure>
         <div class="review__stars form">
             <x-commons.stars title="Writing quality" :number="$review->writing_quality"/>
@@ -24,14 +24,13 @@
             {!! $review->body !!}
         </div>
         <div class="review__actions">
-            {{--@livewire('reactions', [$review])--}}
             <livewire:reactions :review="$review" :key="'reactions' . $review->id . time()" />
-            <div class="reviews__report">
+            {{--<div class="reviews__report">
                 <x-commons.button-img link="#" title="Report the review">
                     <x-svg.report/>
                     <span>Report</span>
                 </x-commons.button-img>
-            </div>
+            </div>--}}
         </div>
     </div>
 </li>

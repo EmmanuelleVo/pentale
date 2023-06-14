@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Dislike;
 use App\Models\Review;
 use Livewire\Component;
 use Maize\Markable\Models\Like;
@@ -22,45 +23,50 @@ class Reactions extends Component
             $this->user = auth()->user();
             $this->hasLiked = Like::has($review, $this->user);
             $this->likesCount = $review->likes;
-            $this->hasDisliked = Like::has($review, $this->user);
+            $this->hasDisliked = Dislike::has($review, $this->user);
             $this->dislikesCount = $review->dislikes;
+
         }
     }
 
     public function toggleLike() {
         if (auth()->user()) {
-            Like::toggle($this->review, $this->user);
+            if (Dislike::has($this->review, $this->user) === false) {
+                Like::toggle($this->review, $this->user);
 
-            if ($this->hasLiked) {
-                $this->hasLiked = false;
-                $this->likesCount--;
-                $this->review->likes--;
-                $this->review->save();
+                if ($this->hasLiked) {
+                    $this->hasLiked = false;
+                    $this->likesCount--;
+                    $this->review->likes--;
+                    $this->review->save();
 
-            } else {
-                $this->hasLiked = true;
-                $this->likesCount++;
-                $this->review->likes++;
-                $this->review->save();
+                } else {
+                    $this->hasLiked = true;
+                    $this->likesCount++;
+                    $this->review->likes++;
+                    $this->review->save();
+                }
             }
         }
     }
 
     public function toggleDislike() {
         if (auth()->user()) {
-            Like::toggle($this->review, $this->user);
+            if (Like::has($this->review, $this->user) === false) {
+                Dislike::toggle($this->review, $this->user);
 
-            if ($this->hasDisliked) {
-                $this->hasDisliked = false;
-                $this->dislikesCount--;
-                $this->review->dislikes--;
-                $this->review->save();
+                if ($this->hasDisliked) {
+                    $this->hasDisliked = false;
+                    $this->dislikesCount--;
+                    $this->review->dislikes--;
+                    $this->review->save();
 
-            } else {
-                $this->hasDisliked = true;
-                $this->dislikesCount++;
-                $this->review->dislikes++;
-                $this->review->save();
+                } else {
+                    $this->hasDisliked = true;
+                    $this->dislikesCount++;
+                    $this->review->dislikes++;
+                    $this->review->save();
+                }
             }
         }
     }

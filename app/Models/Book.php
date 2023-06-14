@@ -15,6 +15,10 @@ class Book extends Model
 {
     use HasFactory, Markable, Searchable;
 
+    /*use Searchable {
+        Searchable::search as parentSearch;
+    }*/
+
     protected $guarded = [];
     //protected $with = ['genres', 'tags'];
     protected array $dates = ['published_at'];
@@ -69,13 +73,26 @@ class Book extends Model
 
         return [
             'title' => $this->title,
-
+            //'users.username' => $this->user()->username,
         ];
     }
 
+    /**
+     * Perform a search against the model's indexed data.
+     *
+     * @param  string  $query
+     * @param  \Closure  $callback
+     * @return \Laravel\Scout\Builder
+     */
+    /*public static function search($query = '', $callback = null)
+    {
+        return static::parentSearch($query, $callback)->query(function ($builder) {
+            $builder->join('users', 'books.user_id', '=', 'users.id');
+        });
+    }*/
+
     public function scopeFilter($query, array $filters)
     {
-        //dd($filters);
         /*$query->when($filters['search-term'] ?? false, fn($query, $search) => $query->where(fn($query)
         => $query->where('title', 'like', '%' . $search . '%')
             ->orWhere('body', 'like', '%' . $search . '%'))

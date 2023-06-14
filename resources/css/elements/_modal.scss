@@ -63,6 +63,11 @@
 
 .search {
     display: inherit;
+
+    &__result {
+        font-size: rem(22px);
+        margin-bottom: rem(30px);
+    }
 }
 
 #search-box {

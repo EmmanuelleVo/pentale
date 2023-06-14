@@ -43,9 +43,7 @@
             content: none !important;
         }
 
-        &:hover,
-        &:active,
-        &:focus {
+        &:hover{
             background-color: lighten($cDarkBlue, 20%);
             color: $cWhite !important;
             transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
@@ -74,9 +72,7 @@
             }
         }
 
-        &:hover,
-        &:active,
-        &:focus {
+        &:hover {
             background-color: $cBlue;
             color: $cWhite !important;
             transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
@@ -101,9 +97,7 @@
         color: $cWhite !important;
         transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 
-        &:hover,
-        &:active,
-        &:focus {
+        &:hover {
             background-color: darken($cRed, 10%);
             transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
         }

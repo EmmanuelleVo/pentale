@@ -1,5 +1,5 @@
 @props(['title'])
 
-<h2 class="title title--page" aria-level="2" role="heading">
+<h1 {{ $attributes->merge(['class' => 'title title--page title--section']) }} aria-level="1" role="heading">
     {{ $title }}
-</h2>
+</h1>

@@ -7,10 +7,10 @@
     <div class="story__item-content">
         <h3 class="title title--card" aria-level="3" role="heading">{{ $book->title }}</h3>
         <div class="story__item-meta meta">
-            <x-commons.meta-text-dashboard number="10" term="Chapters"/>
-            <x-commons.meta-text-dashboard number="4.6" term="Rating"/>
-            <x-commons.meta-text-dashboard number="208.5K" term="Views"/>
-            <x-commons.meta-text-dashboard number="23" term="Reviews"/>
+            <x-commons.meta-text-dashboard number="{{ $book->chapters()->count() }}" term="Chapters"/>
+            <x-commons.meta-text-dashboard number="{{ round($book->reviews()->avg('overall'), 2) }}" term="Rating"/>
+            <x-commons.meta-text-dashboard number="{{ \App\Helpers\Helper::convert($book->chapters()->sum('views')) }}" term="Views"/>
+            <x-commons.meta-text-dashboard number="{{ $book->reviews()->count() }}" term="Reviews"/>
             <x-commons.meta-text-dashboard number="194K" term="Words"/>
         </div>
         <div class="actions">

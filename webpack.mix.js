@@ -12,6 +12,8 @@ const mix = require('laravel-mix');
 
 mix.ts('resources/js/main.ts', 'public/js')
     .sass('resources/css/main.scss', 'public/css')
+    .copyDirectory('resources/assets/img', 'public/assets/img')
+    .copyDirectory('resources/assets/fonts', 'public/assets/fonts')
     //.css('resources/css/app.css', 'public/css')
     //.copyDirectory('wp-content/themes/portfolio/resources/fonts', 'wp-content/themes/portfolio/public/fonts')
     .browserSync({
@@ -19,12 +21,3 @@ mix.ts('resources/js/main.ts', 'public/js')
         notify: false
     });
 mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
-
-/*mix.copyDirectory('node_modules/tinymce/icons', 'public/node_modules/tinymce/icons');
-mix.copyDirectory('node_modules/tinymce/models', 'public/node_modules/tinymce/models');
-mix.copyDirectory('node_modules/tinymce/plugins', 'public/node_modules/tinymce/plugins');
-mix.copyDirectory('node_modules/tinymce/skins', 'public/node_modules/tinymce/skins');
-mix.copyDirectory('node_modules/tinymce/themes', 'public/node_modules/tinymce/themes');
-mix.copy('node_modules/tinymce/tinymce.js', 'public/node_modules/tinymce/tinymce.js');
-mix.copy('node_modules/tinymce/tinymce.min.js', 'public/node_modules/tinymce/tinymce.min.js');*/
-

@@ -2,7 +2,7 @@
     <x-header.page-header title="My library - Pentale"/>
     <main id="main" class="library">
         <div class="o-wrapper">
-            <x-titles.section-title title="My library"/>
+            <x-titles.page-title title="My library"/>
             @livewire('library')
         </div>
     </main>

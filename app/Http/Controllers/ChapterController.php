@@ -27,8 +27,10 @@ class ChapterController extends Controller
     {
         $page_title = $book->title;
         Meta::prependTitle($book->title);
-        $lastChapter = $book->chapters()->orderByRaw('CONVERT(chapter_number, SIGNED) desc')->firstOrFail();
-
+        $lastChapter = $book->chapters()->orderByRaw('CONVERT(chapter_number, SIGNED) desc')->first();
+        if (is_null($lastChapter)) {
+            $lastChapter = 0;
+        }
 
 
         return view('chapter.create', compact('book', 'page_title', 'lastChapter'));
@@ -41,12 +43,17 @@ class ChapterController extends Controller
     {
         $validated = $request->validated();
         if ($validated) {
+            $lastChapter = $book->chapters()->orderByRaw('CONVERT(chapter_number, SIGNED) desc')->first();
+            if (is_null($lastChapter)) {
+                $lastChapter = 1;
+            }
+
             $chapter = Chapter::create([
                 'title' => $validated['title'],
                 'slug' => Str::slug($validated['title']),
                 'body' => $validated['body'],
                 'author_note' => $validated['note'],
-                'chapter_number' => $validated['chapter_number'],
+                'chapter_number' => $lastChapter,
                 'book_id' => $book->id,
                 'published_at' => now(),
             ]);

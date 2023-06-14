@@ -22,6 +22,19 @@
 {{--<x-commons.flash-message/>--}}
 @livewireScripts
 <script src="{{ asset('js/main.js') }}" defer></script>
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Website",
+      "name": "Pentale",
+      "author": {
+        "@type": "Organization",
+        "name": "Pentale",
+        "email": "info@pentale.com"
+      },
+      "description": "Pentale is a website where you can write books that can be read by others."
+    }
+</script>
 </body>
 
 </html>

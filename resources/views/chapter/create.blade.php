@@ -4,8 +4,7 @@
         <div class="d-wrapper">
             <form action="/dashboard/novels/{{ $book->slug }}/store" class="form" method="post">
                 @csrf
-                @method('PATCH')
-                <x-forms.input label_name="Chapter number" name="chapter_number" value="{{ $lastChapter->chapter_number + 1 }}" disabled/>
+                <x-forms.input label_name="Chapter number" name="chapter_number" value="{{ $lastChapter === 0 ? 1 : $lastChapter->chapter_number + 1 }}" disabled/>
                 <x-forms.input label_name="Chapter title" name="title" place_holder="New chapter title"/>
                 <x-forms.tinymce-editor name="body" label_name="Chapter content"/>
                 {{--<x-forms.textarea label_name="Chapter content" name="body" placeholder=""/>--}}

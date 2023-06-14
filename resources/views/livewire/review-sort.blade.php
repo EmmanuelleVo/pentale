@@ -1,6 +1,6 @@
-<div class="novel__reviews reviews">
+<div class="novel__reviews reviews" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
     <div class="reviews__header">
-            <span
+            <span itemprop="reviewCount"
                 class="title title--small">{{ $book->reviews()->count() }} {{ $book->reviews()->count() > 1 ? 'reviews' : 'review' }}
             </span>
         <div class="reviews__actions tags">
@@ -8,7 +8,7 @@
                 <button wire:click="sortBy('likes', 'DESC')"
                         x-on:click="activeButton = 'likes'"
                         :class="{ 'c-btn--active': activeButton === 'likes', '': activeButton !== 'likes' }"
-                        class="tags__link tags__link--filter"
+                        class="tags__link tags__link--filter">
                     Popular
                 </button>
                 <button wire:click="sortBy('created_at', 'DESC')"

@@ -11,7 +11,9 @@
 
     <div class="o-wrapper">
         <div class="header__container">
-            <x-titles.section-title :title="$book->title"/>
+            <h1 class="title title--section" aria-level="1" role="heading">
+                {{ $book->title }}
+            </h1>
             <x-breadcrumbs.breadcrumb>
                 <x-breadcrumbs.breadcrumb-link title="novels" link="/novels" index="2"/>
                 <x-breadcrumbs.breadcrumb-separator/>

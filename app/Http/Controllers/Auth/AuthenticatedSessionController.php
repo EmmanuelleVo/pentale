@@ -20,6 +20,8 @@ class AuthenticatedSessionController extends Controller
     {
         Meta::prependTitle('Login');
 
+        session(['link' => url()->previous()]);
+
         return view('auth.login');
     }
 
@@ -32,6 +34,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        return redirect(session('link'));
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

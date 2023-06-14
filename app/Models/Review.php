@@ -18,6 +18,7 @@ class Review extends Model
 
     protected static $marks = [
         Like::class,
+        Dislike::class,
     ];
 
     public function user(): BelongsTo

@@ -4,7 +4,7 @@
             <a href="/" class="u-absolute"></a>
             <x-svg.site-logo/>
         </div>
-        <nav class="nav nav--dashboard">
+        <nav class="nav nav--dashboard" role="navigation" aria-label="Main Navigation">
             <h2 role="heading" aria-level="2" class="u-visually-hidden">Main navigation</h2>
             <div class="nav__links">
                 <button class="hamburger" type="button">
@@ -40,11 +40,14 @@
                                 <x-svg.profile/>
                             </div>
                         </x-navigation.link>
-                        <x-navigation.link name="Logout" link="/dashboard/logout">
-                            <div class="svg">
-                                <x-svg.logout/>
-                            </div>
-                        </x-navigation.link>
+
+                        <form action="/logout" method="post" class="nav__link-container">
+                            @csrf
+                            <button class="nav__link" type="submit" title="Logout">
+                                <span class="nav__link__textWrapper navActive"><span class="svg"><x-svg.logout/></span>Logout</span>
+                            </button>
+                        </form>
+
                     </div>
                     <x-navigation.link name="Back to website" link="/"/>
                 </div>

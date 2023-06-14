@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Book;
+use App\Models\Chapter;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
 class BooksSeeder extends Seeder
@@ -38,8 +40,10 @@ class BooksSeeder extends Seeder
             'user_id' => '1',
         ]);
 
+        $chapters = random_int(1, 30);
         for ($i = 1; $i < 100; $i++) {
             $randomNumber = rand(0,100);
+
             if($randomNumber > 90) {
                 Book::factory()->create([
                     'status' => 'hiatus',
@@ -55,6 +59,28 @@ class BooksSeeder extends Seeder
                 ]);
             }
         }
+
+
+        Book::factory()->count(100)->create()->each(static function(Book $book) {
+            $chapterCount = random_int(1, 30);
+            for ($i = 1; $i <= $chapterCount; $i++) {
+                $book->chapters()->save(Chapter::factory()->make(['chapter_number' => $i]));
+            }
+        });
+
+
+
+
+
+        /*$chapters = random_int(1, 30);
+
+        for ($i = 1; $i <= $chapters; $i++) {
+            Chapter::factory()->create([
+                'chapter_number' => $i,
+            ]);
+
+            //$chapters->chapters()->save(factory(ChapterFactory::class)->make(['chapter_number' => $i]));
+        }*/
 
         //Book::factory()->count(100)->create();
     }

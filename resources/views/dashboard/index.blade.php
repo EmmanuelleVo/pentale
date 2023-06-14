@@ -47,10 +47,17 @@
                         <x-titles.section-title title="Latest comments"/>
                         @if(count($latestReviews) > 1)
                             <x-commons.arrow-link link="{{ route('dashboard.comments') }}" title="View all latest comments">See more</x-commons.arrow-link>
-                        @else
-                            <x-commons.no-collection>{{ __('There are no comment yet.') }}</x-commons.no-collection>
                         @endif
                     </div>
+                        <div class="dashboard__reviews-list">
+                            @if(count($latestReviews) > 1)
+                                @foreach($latestReviews as $latestReview)
+                                    <x-cards.dashboard.review-card :review="$latestReview"/>
+                                @endforeach
+                            @else
+                                <x-commons.no-collection>{{ __('There are no comment yet.') }}</x-commons.no-collection>
+                            @endif
+                        </div>
 
                 </section>
             </div>

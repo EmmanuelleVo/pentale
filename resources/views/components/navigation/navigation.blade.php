@@ -5,7 +5,7 @@
             {{--<img src="" alt="Logo Pentale">--}}
             <x-svg.site-logo/>
         </div>
-        <nav class="nav">
+        <nav class="nav" role="navigation" aria-label="Main Navigation">
             <h2 role="heading" aria-level="2" class="u-visually-hidden">Main navigation</h2>
             <div class="nav__links">
                 <button class="hamburger" type="button">

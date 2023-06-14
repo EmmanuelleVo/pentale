@@ -1,6 +1,6 @@
 <x-layout>
     <x-header.novel-header :book="$book" :book_genres="$book_genres" :book_tags="$book_tags" :book_average="$book_average" title="{{ $book->title }} - Pentale"/>
-    <main id="main" class="novel" lang="{{ $book->language }}">
+    <main id="main" class="novel" lang="{{ $book->language }}" itemscope="" itemtype="https://schema.org/Book">
         <div class="header header--novel">
             <div class="o-wrapper header__container">
                 <x-breadcrumbs.breadcrumb>
@@ -9,12 +9,13 @@
                     <x-breadcrumbs.breadcrumb-link :title="\Illuminate\Support\Str::limit($book->title, 40, $end='...')" link="/novels/{{ $book->slug }}" index="3"/>
                 </x-breadcrumbs.breadcrumb>
                 <div class="novel__info header__wrapper">
+                    <span itemprop="inLanguage" content="{{ $book->language }}" style="display: none">{{ $book->language }}</span>
                     <figure class="novel__info-figure header__figure">
                         <img src="{{ $book->cover }}" alt="Cover of {{ $book->title }}" class="novel__info-img header__img">
                     </figure>
                     <div class="novel__info-wrapper header__content">
                         <div class="novel__info-container">
-                            <h2 aria-level="2" role="heading" class="title title--section title--page">{{ $book->title }}</h2>
+                            <h2 aria-level="2" role="heading" class="title title--section title--page" itemprop="name">{{ $book->title }}</h2>
                             <dl class="novel__info-meta meta__container">
                                 <x-commons.meta-image name="Views count" attribute="{{ \App\Helpers\Helper::convert($view_count) }} views">
                                     <x-svg.star/>
@@ -37,7 +38,7 @@
                                 <span class="book__average">{{ $book_average }}</span>
                             </div>
                             <dl class="novel__info-meta tags__container">
-                                <x-commons.meta-text name="Author" attribute="{{ $book->user->username }}"/>
+                                <x-commons.meta-text itemprop="author" itemscope itemtype="https://schema.org/Person" name="Author" attribute="{{ $book->user->username }}"/>
                                 <x-commons.meta-text name="Editor" attribute="editor123"/>
                             </dl>
                             <div class="novel__info-genres genres">
@@ -46,7 +47,7 @@
                                     @foreach($book_genres as $book_genre)
                                         <li class="genres__item">
                                             <a href="#" class="genres__link">
-                                                <x-commons.tag name="{{ $book_genre->name }}"/>
+                                                <x-commons.tag itemprop="genre" name="{{ $book_genre->name }}"/>
                                             </a>
                                         </li>
                                     @endforeach
@@ -71,6 +72,13 @@
                             <x-commons.button link="/novels/{{ $book->slug }}/chapter-1" title="Read first chapter">Start reading</x-commons.button>
                             @livewire('bookmark', [$book])
                         </div>
+
+                        @if($book->mature)
+                            <span itemprop="isFamilyFriendly" content="true" class="u-visually-hidden">Yes</span>
+                            <span class="">This book may contain violence, ...</span>
+                        @else
+                            <span itemprop="isFamilyFriendly" content="true" class="u-visually-hidden">No</span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -95,12 +103,15 @@
             </div>
 
             <section x-show="tab === '#about'" x-cloak id="About" class="tab__content tab__content--active">
+                <x-titles.section-title class="u-visually-hidden" title="About"/>
                 <x-novel.tab-about :synopsis="$book->synopsis" patreon__link="#" :books="$other_books"/>
             </section>
             <section x-show="tab === '#chapters'" x-cloak id="Chapters" class="tab__content">
+                <x-titles.section-title class="u-visually-hidden" title="Chapters"/>
                 <livewire:chapter-index :book="$book"/>
             </section>
             <section x-show="tab === '#reviews'" x-cloak id="Reviews" class="tab__content">
+                <x-titles.section-title class="u-visually-hidden" title="Reviews"/>
                 <x-novel.tab-reviews :reviews="$book_reviews" :book="$book"/>
             </section>
         </div>

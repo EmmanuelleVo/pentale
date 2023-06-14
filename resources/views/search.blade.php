@@ -3,26 +3,24 @@
     <main id="main" class="search">
         <div class="o-wrapper">
             <x-titles.section-title title="Search"/>
-            <p>{{ count($books) + count($authors) }} results for : {{ $query }}</p>
+            <p class="search__result">{{ count($books) }} results for : <span class="bold">{{ $query }}</span></p>
 
             @if(count($books) > 0)
                 <div class="novels__list">
                     @foreach($books as $book)
-                        <x-cards.novel-full :book="$book" :views="$views" :rating="$rating"/>
+                        <x-cards.novel-full :book="$book"/>
                     @endforeach
                 </div>
+
+                {{ $books->links('pagination::default') }}
             @endif
-            @if(count($authors) > 0)
+            {{--@if(count($authors) > 0)
                 <div class="novels__list--author">
                     @foreach($authors as $author)
                         <span class="title">{{ $author->username }}</span>
                     @endforeach
                 </div>
-            @endif
-
-            @if(count($books) <= 0 && count($authors) <= 0)
-                <p>No search.</p>
-            @endif
+            @endif--}}
 
         </div>
     </main>

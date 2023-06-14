@@ -7,6 +7,7 @@ use App\Models\Genre;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
+use function PHPUnit\Framework\isEmpty;
 
 class Book extends Component
 {
@@ -32,7 +33,11 @@ class Book extends Component
         $this->sortOrder = 'ASC';
         $this->sortField = request()->query('sort');
 
-        $this->emit('urlChange', '/latest-releases?test');
+        if (empty(request()->query()) === true) {
+            return redirect()->to('/novels?sort=popular');
+        }
+
+        // $this->emit('urlChange', '/latest-releases?test');
 
 
     }
@@ -89,16 +94,7 @@ class Book extends Component
 
     public function render()
     {
-        //dd($this->sortField, $this->sortOrder);
-        /*
-         Course::when(count(array_filter($this->courseLevels)), function ($query) {
-            return $query->whereIn('level', $this->courseLevels);
-        })
-        ->paginate(10)
-         */
-
         $books = $this->getResultsProperty();
-
 
         $genres = Genre::all();
         $status = ['all', 'ongoing', 'completed', 'hiatus'];

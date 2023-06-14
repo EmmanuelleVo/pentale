@@ -104,15 +104,8 @@ class BookController extends Controller
         $book_genres = $book->genres()->orderBy('name')->get();
         $book_tags = $book->tags()->orderBy('name')->get();
         $chapters = $book->chapters()->orderBy('chapter_number')->paginate(20);
-        //$chapters = $book->chapters()->orderBy('chapter_number')->get();
         $book_reviews = $book->reviews()->groupBy('id')->paginate(10);
 
-        $book_reviews_count = count($book->reviews()->get());
-        /*$book_averages = [];
-        foreach ($book->reviews()->groupBy('id')->get() as $review) {
-            $book_averages[] = $review->overall;
-        }*/
-        //$book_average = round((array_sum($book_averages)) / $book_reviews_count, 2);
         $view_count = Chapter::where('book_id', '=', $book->id)->sum('views');
         $book_average = round(Review::where('book_id', '=', $book->id)->avg('overall'), 2);
         $other_books = [];

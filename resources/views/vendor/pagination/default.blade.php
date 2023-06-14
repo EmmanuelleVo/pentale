@@ -1,5 +1,6 @@
 @if ($paginator->hasPages())
     <nav role="navigation" aria-label="Pagination Navigation">
+        <x-titles.section-title class="u-visually-hidden" title="Pagination" />
         <div class="pagination">
             <ul class="pagination__container">
                 {{-- Previous Page Link --}}

@@ -32,7 +32,6 @@ class ReviewSort extends Component
 
     public function render()
     {
-        //dd($this->book->reviews()->orderBy($this->sortField)->paginate(10));
 
         return view('livewire.review-sort',
             [
@@ -43,9 +42,4 @@ class ReviewSort extends Component
             ]
         );
     }
-
-    /*public function paginationView()
-    {
-        return 'custom-pagination-links-view';
-    }*/
 }

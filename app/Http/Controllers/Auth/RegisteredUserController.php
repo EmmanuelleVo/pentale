@@ -42,19 +42,29 @@ class RegisteredUserController extends Controller
         ]);
 
         $default_role = Role::all()->where('name', '=', 'guest')->first();
+        $default_preferences = [
+            'fontFamily' => 'Merriweather',
+            'fontSize' => '18',
+            'lineHeight' => '32',
+            'night' => false,
+        ];
         $faker = \Faker\Factory::create();
         $user = User::create([
             'username' => $request->username,
             'slug' => Str::slug($request->username),
             'email' => $request->email,
             'role_id' => $default_role->id,
+            'is_admin' => 0,
             'password' => Hash::make($request->password),
             'avatar' => $faker->imageUrl(300, 300, true, 'people', $request->username),
+            'preferences' => $default_preferences,
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
+
+        return redirect(session('link'));
 
         return redirect(RouteServiceProvider::HOME);
     }

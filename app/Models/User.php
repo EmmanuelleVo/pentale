@@ -40,15 +40,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'preferences'=>'json',
+        'preferences' => 'array',
     ];
 
     public function storeUserPreferences($key, $value) {
         $preferences = $this->preferences;
         $preferences[$key] = $value;
-        //dd($preferences);
-        //$this->preferences[$key] = $value;
-        //data_set($this->preferences, $key, $value)
 
         return $this->update([
             'preferences' => $preferences
@@ -86,7 +83,6 @@ class User extends Authenticatable
     {
         return [
             'username' => $this->username,
-
         ];
     }
 }

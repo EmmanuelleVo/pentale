@@ -3,7 +3,7 @@
 <div class="novel__about">
     <div class="novel__about-container">
         <x-titles.small-title title="Synopsis"/>
-        <div class="wysiwyg novel__about-synopsis">
+        <div class="wysiwyg novel__about-synopsis" itemprop="description">
             {!! $synopsis !!}
         </div>
     </div>

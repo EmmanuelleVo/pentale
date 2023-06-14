@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Book;
 use App\Models\Chapter;
@@ -29,7 +30,7 @@ class ChapterShow extends Component
             'fontFamily' => 'Merriweather',
             'fontSize' => '18',
             'lineHeight' => '32',
-            'night' => 'false',
+            'night' => false,
         ];
 
         if (session()->missing('user_preferences')) {
@@ -40,11 +41,11 @@ class ChapterShow extends Component
             $user_preferences = $user->preferences;
             session()->put(['user_preferences' => $user_preferences]);
         }
-        $this->fontFamily = session()->get('user_preferences.fontfamily');
+
+        $this->fontfamily = session()->get('user_preferences.fontfamily');
         $this->fontSize = session()->get('user_preferences.fontSize');
         $this->lineHeight = session()->get('user_preferences.lineHeight');
         $this->nightMode = session()->get('user_preferences.night');
-        // dd(session()->get('user_preferences.night'));
     }
 
     public function changePreferences($key, $value) {
@@ -103,12 +104,13 @@ class ChapterShow extends Component
         }
     }
 
-    public function updatedChapterNumber() {
-        dd('ok');
+    public function updatedChapterNumber($number) {
+
+        $this->chapterNumber = $number;
 
         $this->dispatchBrowserEvent('refresh-page');
 
-        return redirect()->to('/novels/' . $this->book->slug .'/chapter-' . $chapterNumber);
+        return redirect()->to('/novels/' . $this->book->slug .'/chapter-' . $this->chapterNumber);
     }
 
 

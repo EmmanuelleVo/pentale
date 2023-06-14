@@ -5,5 +5,10 @@
         plugins: 'table lists',
         toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
         menubar: false,
+        setup: function (editor) {
+            editor.on('change', function () {
+                tinymce.triggerSave();
+            });
+        }
     });
 </script>

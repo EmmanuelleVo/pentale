@@ -1,9 +1,6 @@
 <div class="o-wrapper" x-data="{ 'showModal': false }" @keydown.escape="showModal = false" x-cloak>
     <div class="header">
         <div class="chapter__actions-container chapter__actions-container--top">
-            {{--<x-commons.button title="Bookmark the novel" link="#"><span class="u-visually-hidden">Bookmark</span>
-                <x-svg.bookmark/>
-            </x-commons.button>--}}
             @livewire('bookmark', [$book])
             <x-commons.button @click.prevent="showModal = ! showModal" {{--id="modalBtn"--}} class="chapterOption"
                               title="Display reader preferences" link="#">
@@ -15,15 +12,10 @@
         <div class="chapter__actions">
             <form class="chapter__form form" wire:submit.prevent>
                 @csrf
-                <span wire:model="chapterNumber">{{ $chapterNumber }}</span>
                 <x-forms.select wire:model="chapterNumber" name="chapterNumber"
-                                {{--wire:change="$emit('changeChapter('497')')"--}}
-                                wire:submit="submit"
                                 label_name="Choose chapter">
                     @foreach($chapters as $chapterItem)
-                        <option {{--wire:click="changeChapter('{{$chapterItem->chapter_number}}')"--}}
-                                {{--wire:key="{{ $chapterNumber }} "--}}
-                                {{ $chapter->chapter_number === $chapterItem->chapter_number ? 'selected' : '' }}
+                        <option {{ $chapter->chapter_number === $chapterItem->chapter_number ? 'selected' : '' }}
                                 value="{{ $chapterItem->chapter_number }}">
                             Chapter {{$chapterItem->chapter_number}} : {{$chapterItem->title}}
                         </option>
@@ -82,16 +74,14 @@
         </div>
     </section>
 
-    <section class="chapter__comments">
 
-    </section>
 
     <div id="modal" class="modal" :class="{ 'modal--active': showModal }" x-show="showModal">
         <div class="modal__container">
             <div class="modal__content">
                 <form action="#" class="form">
                     <div class="modal__filter form__field">
-                        <span for="fontFamily" class="form__label form__label--title">Status</span>
+                        <span for="fontFamily" class="form__label form__label--title">Font family</span>
                         <div class="form__checkbox-container">
                             @foreach($fonts as $font)
                                 <x-forms.field class="form__field--checkbox">
@@ -149,7 +139,7 @@
                         <button wire:click.prevent="resetPreferences()" class="form__reset c-btn c-btn--secondary">
                             Reset
                         </button>
-                        <x-forms.button value="Change preferences"/>
+                        <x-forms.button class="u-visually-hidden" value="Change preferences"/>
                     </div>
                 </form>
             </div>
