@@ -79,10 +79,10 @@
 
             @include mq($until: laptop) {
                 border: none;
-                color: $cWhite;
+                color: $cDarkGrey;
                 background-color: $cLightGrey;
                 &::placeholder {
-                    color: $cWhite;
+                    color: $cDarkGrey;
                 }
             }
         }

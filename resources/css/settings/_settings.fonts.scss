@@ -6,12 +6,12 @@
 
 // @include font-face('Gotham', 'gotham/GothamBook', ttf)
 
-/*@font-face {
+@font-face {
     font-family: "Merriweather";
     src: url("/assets/fonts/Merriweather/Merriweather-Regular.ttf");
-    !*src: url('../fonts/Gotham-Book.woff') format('woff'),
+    /*src: url('../fonts/Gotham-Book.woff') format('woff'),
          url('../fonts/Gotham-Book.woff2') format('woff2'),
-         url('../fonts/Gotham-Book.ttf') format('truetype');*!
+         url('../fonts/Gotham-Book.ttf') format('truetype');*/
     font-weight: 400;
     font-style: normal;
 }
@@ -32,9 +32,8 @@
     src: url("/assets/fonts/Merriweather/Merriweather-BoldItalic.ttf");
     font-weight: 700;
     font-style: italic;
-}*/
+}
 
-/*
 @font-face {
     font-family: "Lato";
     src: url("/assets/fonts/Lato/Lato-Regular.ttf");
@@ -58,4 +57,4 @@
     src: url("/assets/fonts/Lato/Lato-BoldItalic.ttf");
     font-weight: 700;
     font-style: italic;
-}*/
+}

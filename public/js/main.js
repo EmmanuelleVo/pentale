@@ -14251,39 +14251,42 @@ function Search() {
   _classCallCheck(this, Search);
   this.searchGroup = document.querySelector('.searchContainer');
   //this.searchGroup.querySelector('[type="submit"]').remove()
-  this.searchGroup.querySelector('.form__search').remove();
-  this.searchGroup.insertAdjacentHTML('beforeend', "\n            <div>\n                <div id=\"searchbox\" class=\"searchbox\"></div>\n                <div id=\"hits\" class=\"hits\"></div>\n            </div>\n        ");
-  this.search = (0,instantsearch_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    indexName: "posts_index",
-    searchClient: (0,_meilisearch_instant_meilisearch__WEBPACK_IMPORTED_MODULE_1__.instantMeiliSearch)("https://meilisearch.captain.knok.be", 'febb49a839e211c5dc4b7f64a92e1ddf4523f2bec6d20a89a02adf7ed3744d59',
-    /*"http://127.0.0.1:7700/",
-    '',*/
-    {
-      paginationTotalHits: 15,
-      placeholderSearch: false
-    })
-  });
-  this.search.addWidgets([(0,instantsearch_js_es_widgets__WEBPACK_IMPORTED_MODULE_2__["default"])({
-    container: '#searchbox',
-    placeholder: 'Search'
-  }), (0,instantsearch_js_es_widgets__WEBPACK_IMPORTED_MODULE_3__["default"])({
-    container: '#hits',
-    templates: {
-      item: function item(hit, _ref) {
-        var html = _ref.html,
-          components = _ref.components;
-        return html(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n\n                                <div class=\"hit-name hover:bg-light-blue\">\n                                    <a href=\"/novels/", "\" class=\"u-absolute\"></a>\n                                    <figure>\n                                        <img src=\"", "\" alt=\"Cover of ", "\">\n                                    </figure>\n                                    <div>\n                                        <span class=\"hit-link\">\n                                            ", "\n                                        </span>\n                                    </div>\n                                </div>\n                            </div>"])), hit.slug, hit.cover, hit.title, components.Highlight({
-          hit: hit,
-          attribute: 'title'
-        }));
-      },
-      empty: function empty(results, _ref2) {
-        var html = _ref2.html;
-        return html(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral([""])));
+
+  if (this.searchGroup) {
+    this.searchGroup.querySelector('.form__search').remove();
+    this.searchGroup.insertAdjacentHTML('beforeend', "\n                <div>\n                    <div id=\"searchbox\" class=\"searchbox\"></div>\n                    <div id=\"hits\" class=\"hits\"></div>\n                </div>\n            ");
+    this.search = (0,instantsearch_js__WEBPACK_IMPORTED_MODULE_0__["default"])({
+      indexName: "posts_index",
+      searchClient: (0,_meilisearch_instant_meilisearch__WEBPACK_IMPORTED_MODULE_1__.instantMeiliSearch)("https://meilisearch.captain.knok.be", 'febb49a839e211c5dc4b7f64a92e1ddf4523f2bec6d20a89a02adf7ed3744d59',
+      /*"http://127.0.0.1:7700/",
+      '',*/
+      {
+        paginationTotalHits: 15,
+        placeholderSearch: false
+      })
+    });
+    this.search.addWidgets([(0,instantsearch_js_es_widgets__WEBPACK_IMPORTED_MODULE_2__["default"])({
+      container: '#searchbox',
+      placeholder: 'Search'
+    }), (0,instantsearch_js_es_widgets__WEBPACK_IMPORTED_MODULE_3__["default"])({
+      container: '#hits',
+      templates: {
+        item: function item(hit, _ref) {
+          var html = _ref.html,
+            components = _ref.components;
+          return html(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n\n                                    <div class=\"hit-name hover:bg-light-blue\">\n                                        <a href=\"/novels/", "\" class=\"u-absolute\"></a>\n                                        <figure>\n                                            <img src=\"", "\" alt=\"Cover of ", "\">\n                                        </figure>\n                                        <div>\n                                            <span class=\"hit-link\">\n                                                ", "\n                                            </span>\n                                        </div>\n                                    </div>\n                                </div>"])), hit.slug, hit.cover, hit.title, components.Highlight({
+            hit: hit,
+            attribute: 'title'
+          }));
+        },
+        empty: function empty(results, _ref2) {
+          var html = _ref2.html;
+          return html(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral([""])));
+        }
       }
-    }
-  })]);
-  this.search.start();
+    })]);
+    this.search.start();
+  }
 });
 
 /***/ }),

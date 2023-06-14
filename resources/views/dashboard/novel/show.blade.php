@@ -15,7 +15,7 @@
 
                                 <div x-show="dropdownMenu" class="dropdown__container">
                                     <a href="/dashboard/novels/{{ $book->slug }}/edit"
-                                       class="dropdown__link nav__sublink">
+                                         class="dropdown__link nav__sublink">
                                         <span class="nav__sublink__label">Edit</span>
                                     </a>
                                     <form action="/dashboard/novels/{{ $book->slug }}/destroy" method="post"
@@ -57,11 +57,11 @@
                        :class="{[tab==='#chapters']: 'tab__link--active'}"
                        class="tab__link"> Chapters
                     </a>
-                    <a id="tabLink" href="#details"
+                    {{--<a id="tabLink" href="#details"
                        @click="tab='#details'"
                        :class="{[tab==='#details']: 'tab__link--active'}"
                        class="tab__link"> Details
-                    </a>
+                    </a>--}}
                 </div>
 
                 <section x-show="tab === '#about'" x-cloak id="About" class="tab__content tab__content--active">
@@ -70,9 +70,9 @@
                 <section x-show="tab === '#chapters'" x-cloak id="Chapters" class="tab__content">
                     <livewire:dashboard.chapter-index :book="$book"/>
                 </section>
-                <section x-show="tab === '#details'" x-cloak id="Details" class="tab__content">
+                {{--<section x-show="tab === '#details'" x-cloak id="Details" class="tab__content">
                     <x-dashboard.tab-details :book="$book" :characters="$characters"/>
-                </section>
+                </section>--}}
             </div>
         </div>
     </main>

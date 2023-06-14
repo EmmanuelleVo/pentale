@@ -29,10 +29,10 @@
             align-items: center;
         }
 
-        @include mq($until: mobile) {
-            width: 250px;
-            transform: translateX(250px);
-        }
+        /*@include mq($until: mobile) {
+            width: 300px;
+            transform: translateX(300px);
+        }*/
 
         & a:hover {
             @include mq($until: laptop) {

@@ -28,5 +28,10 @@
 
     & .nav__sublink {
         text-align: left;
+
+        & .nav__sublink__label {
+            color: $cBlack;
+            margin-left: rem(20px);
+        }
     }
 }

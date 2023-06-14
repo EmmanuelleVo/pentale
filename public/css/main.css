@@ -103,58 +103,57 @@
  * Social colors
  */
 /* stylelint-disable */
-/*@font-face {
-    font-family: "Merriweather";
-    src: url("/assets/fonts/Merriweather/Merriweather-Regular.ttf");
-    !*src: url('../fonts/Gotham-Book.woff') format('woff'),
-         url('../fonts/Gotham-Book.woff2') format('woff2'),
-         url('../fonts/Gotham-Book.ttf') format('truetype');*!
-    font-weight: 400;
-    font-style: normal;
+@font-face {
+  font-family: "Merriweather";
+  src: url("/assets/fonts/Merriweather/Merriweather-Regular.ttf");
+  /*src: url('../fonts/Gotham-Book.woff') format('woff'),
+       url('../fonts/Gotham-Book.woff2') format('woff2'),
+       url('../fonts/Gotham-Book.ttf') format('truetype');*/
+  font-weight: 400;
+  font-style: normal;
 }
 @font-face {
-    font-family: "Merriweather";
-    src: url("/assets/fonts/Merriweather/Merriweather-Bold.ttf");
-    font-weight: 700;
-    font-style: normal;
+  font-family: "Merriweather";
+  src: url("/assets/fonts/Merriweather/Merriweather-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
 }
 @font-face {
-    font-family: "Merriweather";
-    src: url("/assets/fonts/Merriweather/Merriweather-Italic.ttf");
-    font-weight: 400;
-    font-style: italic;
+  font-family: "Merriweather";
+  src: url("/assets/fonts/Merriweather/Merriweather-Italic.ttf");
+  font-weight: 400;
+  font-style: italic;
 }
 @font-face {
-    font-family: "Merriweather";
-    src: url("/assets/fonts/Merriweather/Merriweather-BoldItalic.ttf");
-    font-weight: 700;
-    font-style: italic;
-}*/
-/*
-@font-face {
-    font-family: "Lato";
-    src: url("/assets/fonts/Lato/Lato-Regular.ttf");
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Merriweather";
+  src: url("/assets/fonts/Merriweather/Merriweather-BoldItalic.ttf");
+  font-weight: 700;
+  font-style: italic;
 }
 @font-face {
-    font-family: "Lato";
-    src: url("/assets/fonts/Lato/Lato-Bold.ttf");
-    font-weight: 700;
-    font-style: normal;
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
 }
 @font-face {
-    font-family: "Lato";
-    src: url("/assets/fonts/Lato/Lato-Italic.ttf");
-    font-weight: 400;
-    font-style: italic;
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
 }
 @font-face {
-    font-family: "Lato";
-    src: url("/assets/fonts/Lato/Lato-BoldItalic.ttf");
-    font-weight: 700;
-    font-style: italic;
-}*/
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-Italic.ttf");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato/Lato-BoldItalic.ttf");
+  font-weight: 700;
+  font-style: italic;
+}
 /**
 * Sass CSS triangle mixin, create any kind of triangles with ease
 
@@ -1738,14 +1737,14 @@ p {
 @media (max-width: 63.99em) {
   .searchContainer .ais-SearchBox-form input {
     border: none;
-    color: #FFF;
+    color: #333333;
     background-color: #F2F2F2;
   }
   .searchContainer .ais-SearchBox-form input::-moz-placeholder {
-    color: #FFF;
+    color: #333333;
   }
   .searchContainer .ais-SearchBox-form input::placeholder {
-    color: #FFF;
+    color: #333333;
   }
 }
 
@@ -1776,6 +1775,10 @@ p {
 }
 .dropdown .nav__sublink {
   text-align: left;
+}
+.dropdown .nav__sublink .nav__sublink__label {
+  color: #000;
+  margin-left: 1.25rem;
 }
 
 .form .search-select {
@@ -1919,6 +1922,10 @@ p {
 .nav__links-container {
   display: flex;
   align-items: center;
+  /*@include mq($until: mobile) {
+      width: 300px;
+      transform: translateX(300px);
+  }*/
 }
 @media (max-width: 63.99em) {
   .nav__links-container {
@@ -1938,12 +1945,6 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-}
-@media (max-width: 26.5525em) {
-  .nav__links-container {
-    width: 250px;
-    transform: translateX(250px);
   }
 }
 @media (max-width: 63.99em) {
@@ -2974,7 +2975,7 @@ a {
   display: block;
   border-radius: 5px;
 }
-@media (max-width: 26.5525em) {
+@media (max-width: 47.99em) {
   .tags__link, .genres__link {
     font-size: 0.9375rem;
   }
@@ -3024,6 +3025,11 @@ a {
   font-weight: 700;
   font-size: 2rem;
   opacity: 0.7;
+}
+@media (max-width: 63.99em) {
+  .tab__link {
+    font-size: 1.75rem;
+  }
 }
 @media (max-width: 47.99em) {
   .tab__link {
@@ -3192,6 +3198,16 @@ a {
   display: flex;
   flex-direction: column;
   gap: 3.125rem;
+}
+@media (max-width: 47.99em) {
+  .novel__about-synopsis {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 26.5525em) {
+  .novel__about-synopsis {
+    font-size: 0.9375rem;
+  }
 }
 .novel__chapters-actions {
   display: flex;
