@@ -12,6 +12,10 @@
             align-items: flex-start;
             margin: rem(50px) 0 rem(30px);
         }
+
+        & .title {
+            margin-bottom: 0;
+        }
     }
 
     &__list {

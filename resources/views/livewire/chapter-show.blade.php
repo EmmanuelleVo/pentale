@@ -76,7 +76,7 @@
 
 
 
-    <div id="modal" class="modal" :class="{ 'modal--active': showModal }" x-show="showModal">
+    <div id="modal" class="modal" @click.outside="showModal = false" :class="{ 'modal--active': showModal }" x-show="showModal">
         <div class="modal__container">
             <div class="modal__content">
                 <form action="#" class="form">

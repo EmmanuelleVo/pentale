@@ -2,7 +2,14 @@
     display: flex;
     align-items: center;
     gap: rem(15px);
-    justify-content: center;
+
+    @include mq($until: tablet) {
+        justify-content: center;
+    }
+
+    &.meta--image {
+        gap: rem(10px);
+    }
 
     &__container {
         display: flex;

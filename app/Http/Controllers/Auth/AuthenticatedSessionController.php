@@ -20,7 +20,9 @@ class AuthenticatedSessionController extends Controller
     {
         Meta::prependTitle('Login');
 
-        session(['link' => url()->previous()]);
+        if (url()->previous() !== 'http://pentale.test/register') {
+            session(['link' => url()->previous()]);
+        }
 
         return view('auth.login');
     }

@@ -32,14 +32,13 @@
             <section class="home__updates">
                 <div class="home__updates-container title-container">
                     <x-titles.section-title title="Latest Releases"/>
-                    <x-commons.button link="{{ route('novel.index') }}" title="View all latest releases">View all</x-commons.button>
+                    <x-commons.button link="/novels?sort=latest-releases" title="View all latest releases">View all</x-commons.button>
                 </div>
 
                 <div class="home__updates-list swiper">
                     <div class="swiper-wrapper">
                         @foreach($latestReleases as $latestRelease)
-                            <x-cards.novel :book="$latestRelease"/>
-
+                            <x-cards.novel :chapter="$latestRelease"/>
                         @endforeach
                     </div>
                     <div class="swiper-button-prev"></div>
@@ -53,7 +52,7 @@
             <section class="home__ranking">
                 <div class="home__updates-container title-container">
                     <x-titles.section-title title="Popular novels"/>
-                    <x-commons.arrow-link title="View all popular novels" link="/novels">View all</x-commons.arrow-link>
+                    <x-commons.arrow-link title="View all popular novels" link="/novels?sort=popular">View all</x-commons.arrow-link>
                 </div>
                 <div class="card-list--small">
                     @foreach($popularBooks as $popularBook)
@@ -66,7 +65,7 @@
             <section class="home__ranking">
                 <div class="home__updates-container title-container">
                     <x-titles.section-title title="newest novels"/>
-                    <x-commons.arrow-link title="View all newest novels" link="/novels">View all</x-commons.arrow-link>
+                    <x-commons.arrow-link title="View all newest novels" link="/novels?sort=newest-novels">View all</x-commons.arrow-link>
                 </div>
                 <div class="card-list--small">
                     @foreach($latestBooks as $latestBook)

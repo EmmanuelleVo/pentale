@@ -25,6 +25,10 @@ class RegisteredUserController extends Controller
     {
         Meta::prependTitle('Register');
 
+        if (url()->previous() !== 'http://pentale.test/login') {
+            session(['link' => url()->previous()]);
+        }
+
         return view('auth.register');
     }
 

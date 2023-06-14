@@ -436,3 +436,14 @@
         }
     }
 }
+
+
+.nav__links-container {
+    form.nav__link-container button {
+        font-size: inherit;
+    }
+
+    form .nav__sublink {
+        text-align: left;
+    }
+}

@@ -43,6 +43,8 @@
 
     &--novel {
         background-color: $cLightGrey;
+        top: rem(50px);
+        margin-bottom: rem(100px);
 
         & .header__wrapper {
             grid-template-columns: 4fr 6fr;

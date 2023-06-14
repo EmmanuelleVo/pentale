@@ -18,7 +18,7 @@
                             <h2 aria-level="2" role="heading" class="title title--section title--page" itemprop="name">{{ $book->title }}</h2>
                             <dl class="novel__info-meta meta__container">
                                 <x-commons.meta-image name="Views count" attribute="{{ \App\Helpers\Helper::convert($view_count) }} views">
-                                    <x-svg.star/>
+                                    <x-svg.view/>
                                 </x-commons.meta-image>
                                 <x-commons.meta-image name="Chapters count" attribute="{{ count($book->chapters()->get()) }} chapters">
                                     <x-svg.chapter/>
@@ -39,7 +39,7 @@
                             </div>
                             <dl class="novel__info-meta tags__container">
                                 <x-commons.meta-text itemprop="author" itemscope itemtype="https://schema.org/Person" name="Author" attribute="{{ $book->user->username }}"/>
-                                <x-commons.meta-text name="Editor" attribute="editor123"/>
+                                {{--<x-commons.meta-text name="Editor" attribute="editor123"/>--}}
                             </dl>
                             <div class="novel__info-genres genres">
                                 <span class="title title--small">Genre</span>

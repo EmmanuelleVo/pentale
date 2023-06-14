@@ -40,14 +40,14 @@ class HomeController extends Controller
             ->paginate(12);
 
 
-
-        /*$latestReleases = Chapter::with('book')
+        $latestReleases = Chapter::with('book')
             ->whereDate('published_at', '<=', now())
-            ->orderBy('published_at', 'DESC')
-            ->latest('published_at')->paginate(12);*/
+            ->latest('published_at')->paginate(12);
 
-        $popularBooks = Book::with('genres')->paginate(10);
-        $latestBooks = Book::with('genres')->paginate(10);
+
+
+        $popularBooks = Book::with('genres')->has('chapters')->paginate(10);
+        $latestBooks = Book::with('genres')->has('chapters')->paginate(10);
 
         return view('home', compact('latestReleases', 'popularBooks', 'latestBooks'));
     }
