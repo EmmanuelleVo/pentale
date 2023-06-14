@@ -52,7 +52,7 @@ Route::get('/dashboard/novels/{book:slug}', [BookController::class, 'showDashboa
 Route::post('/dashboard/novels/store', [BookController::class, 'store']);
 Route::get('/dashboard/novels/{book:slug}/edit', [BookController::class, 'edit'])->name('book.edit');
 Route::patch('/dashboard/novels/{book:slug}/update', [BookController::class, 'update']);
-Route::post('/dashboard/novels/{book:slug}/destroy', [BookController::class, 'destroy']);
+Route::delete('/dashboard/novels/{book:slug}', [BookController::class, 'destroy']);
 
 //-- REVIEWS --//
 Route::post('/novels/{book:slug}/review/store', [ReviewController::class, 'store']);

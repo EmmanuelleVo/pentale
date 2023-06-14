@@ -19,11 +19,11 @@
                                          class="dropdown__link nav__sublink">
                                         <span class="nav__sublink__label">Edit</span>
                                     </a>
-                                    <form action="/dashboard/novels/{{ $book->slug }}/destroy" method="post"
+                                    <form action="/dashboard/novels/{{ $book->slug }}" method="POST"
                                           class="form">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="nav__sublink">
+                                        <button type="submit" class="nav__sublink">
                                             <span class="nav__sublink__label">Delete</span>
                                         </button>
                                     </form>

@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('chapters', function (Blueprint $table) {
-            $table->foreignId('book_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('book_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('role_id')->constrained()->onUpdate('cascade');
         });
         Schema::table('books', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
         Schema::table('characters', function (Blueprint $table) {
-            $table->foreignId('book_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('book_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
         Schema::table('threads', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()->onUpdate('cascade');
@@ -31,15 +31,15 @@ return new class extends Migration
             $table->foreignId('thread_id')->constrained()->onUpdate('cascade');
         });
         Schema::table('reviews', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade');
-            $table->foreignId('book_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('book_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
         Schema::table('comments', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade');
-            $table->foreignId('chapter_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('chapter_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
         Schema::table('thread_category', function (Blueprint $table) {
-            $table->foreignId('thread_id')->constrained()->onUpdate('cascade')->onDelete('cascade'); // ->onDelete('cascade') ?
+            $table->foreignId('thread_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
         Schema::table('book_tag', function (Blueprint $table) {

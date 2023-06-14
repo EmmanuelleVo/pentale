@@ -164,7 +164,9 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+
+        return redirect()->route('dashboard.novels')->with('success', 'You have deleted your book.');
     }
 
 
