@@ -9,7 +9,7 @@ RUN sudo chmod -R 777 storage
 echo "🎬 artisan commands"
 php artisan storage:link
 # 💡 Group into a custom command e.g. php artisan app:on-deploy
-php artisan migrate --no-interaction --force
+php artisan migrate:fresh --no-interaction --force
 php artisan cache:clear
 php artisan config:clear
 php artisan config:cache
