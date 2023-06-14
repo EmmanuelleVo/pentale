@@ -15,6 +15,7 @@ php artisan config:clear
 php artisan config:cache
 php artisan db:seed
 # php artisan queue:work
+php artisan scout:import "App\Models\Book"
 
 echo "🎬 start supervisord"
 
