@@ -1125,8 +1125,6 @@ p {
   margin: 0 0.625rem;
 }
 .breadcrumb a {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
   font-size: 1rem;
   color: #000;
   transition: all 300ms ease-in-out;
@@ -1137,7 +1135,6 @@ p {
   color: #5158BB;
 }
 .breadcrumb a:not(:last-child):hover {
-  background-color: rgba(255, 255, 255, 0.5);
   transition: all 300ms ease-in-out;
 }
 @media (max-width: 63.99em) {
@@ -2212,6 +2209,13 @@ p {
   background-color: #F2F2F2 !important;
 }
 
+.nav__links-container form.nav__link-container button {
+  font-size: inherit;
+}
+.nav__links-container form .nav__sublink {
+  text-align: left;
+}
+
 .header {
   position: relative;
 }
@@ -2249,6 +2253,8 @@ p {
 }
 .header--novel {
   background-color: #F2F2F2;
+  top: 3.125rem;
+  margin-bottom: 6.25rem;
 }
 .header--novel .header__wrapper {
   grid-template-columns: 4fr 6fr;
@@ -2804,7 +2810,14 @@ a {
   display: flex;
   align-items: center;
   gap: 0.9375rem;
-  justify-content: center;
+}
+@media (max-width: 47.99em) {
+  .meta {
+    justify-content: center;
+  }
+}
+.meta.meta--image {
+  gap: 0.625rem;
 }
 .meta__container {
   display: flex;
@@ -2943,6 +2956,9 @@ a {
     align-items: flex-start;
     margin: 3.125rem 0 1.875rem;
   }
+}
+.reviews__header .title {
+  margin-bottom: 0;
 }
 .reviews__list {
   display: flex;
