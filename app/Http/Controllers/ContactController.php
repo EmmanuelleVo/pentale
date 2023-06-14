@@ -29,7 +29,7 @@ class ContactController extends Controller
         $info = $request->validated();
 
         if ($info) {
-            Mail::to('info@pentale.com')
+            Mail::to('thienan_vo@live.be')
                 ->queue(new SendMessageWithContactForm($info));
             return redirect('/contact')->with('form-success', 'Your message has been sent. We\'ll get back to you within 24 hours');
         }

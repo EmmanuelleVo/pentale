@@ -14,8 +14,8 @@ php artisan cache:clear
 php artisan config:clear
 php artisan config:cache
 php artisan db:seed
-# php artisan queue:work
+php artisan queue:work
 
-echo "🎬 start supervisord"
+# echo "🎬 start supervisord"
 
-supervisord -c $LARAVEL_PATH/.deploy/config/supervisor.conf
+# supervisord -c $LARAVEL_PATH/.deploy/config/supervisor.conf
