@@ -10,6 +10,8 @@
     {{--@vite(['resources/js/app.ts', 'js/tinymce/tinymce.min.js'])--}}
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link href=" https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     @livewireStyles
