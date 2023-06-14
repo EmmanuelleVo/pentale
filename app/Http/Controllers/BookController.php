@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
+use App\Http\Uploads\HandleImageUploads;
 use App\Models\Book;
 use App\Models\Chapter;
 use App\Models\Genre;
@@ -17,6 +18,8 @@ use Maize\Markable\Models\Like;
 
 class BookController extends Controller
 {
+    use HandleImageUploads;
+
     /**
      * Display a listing of the resource.
      */
@@ -60,33 +63,35 @@ class BookController extends Controller
      */
     public function store(BookRequest $request)
     {
-        dd($request->validated());
         $validated = $request->validated();
         if ($validated) {
+
+            $uploaded_image = $request->file('cover');
+            $path = $this->resizeAndSave($uploaded_image, 'covers', 500, 600);
+            // = http://pentale.test/img/covers/0cf15b22471adb084522e57986481979809ecacb.png
+
             $book = Book::create([
                 'title' => $validated['title'],
                 'slug' => Str::slug($validated['title']),
                 'synopsis' => $validated['synopsis'],
                 'language' => $validated['language'],
-                'cover' => $validated['cover'],
+                'cover' => $path,
                 'published_at' => now(),
                 'status' => 'ongoing',
-                'user_id' => auth()->user(),
+                'user_id' => auth()->user()->id,
                 'patreon' => '',
             ]);
 
             $book_id = $book->id;
 
             foreach ($validated['genres'] as $genre_id) {
-                dd($genre_id);
                 DB::table('book_genre')->insert(compact('genre_id', 'book_id'));
             }
             foreach ($validated['tags'] as $tag_id) {
-                dd($tag_id);
-                DB::table('book_genre')->insert(compact('tag_id', 'book_id'));
+                DB::table('book_tag')->insert(compact('tag_id', 'book_id'));
             }
 
-            return redirect('/dashboard/novels/' . $book->slug . '#chapters')->with('success', 'Chapter published');
+            return redirect('/dashboard/novels/' . $book->slug . '#about')->with('success', 'Book created');
         }
 
         return back()->withInput();

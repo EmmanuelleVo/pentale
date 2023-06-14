@@ -1,7 +1,7 @@
 <div class="form__container">
     <x-forms.input type="file" label_name="Cover" name="cover" wire:model="photo" value="{{ $photo ?  : '' }}"/>
     @if($photo && !is_string($photo))
-        <figure>
+        <figure class="file-figure">
             <img id="imgCover" src="{{ $photo->temporaryUrl() }}" alt="cover"/>
         </figure>
     @endif

@@ -23,12 +23,12 @@ class BookRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'synopsis' => 'required|min:30|max:255',
+            'synopsis' => 'required|min:30|max:1000',
             'genres' => 'required|array|min:1',
             'tags' => 'required|array|min:1',
             'language' => 'required',
             'cover' => 'required',
-            //'mature' => 'required|boolean',
+            'mature' => 'required',
 
         ];
     }

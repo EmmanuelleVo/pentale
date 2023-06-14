@@ -4,6 +4,7 @@
         <div class="o-wrapper">
             <div class="novel__info">
                 <div class="story story__item">
+
                     <figure class="story__item-figure">
                         <img src="{{ $book->cover }}" alt="" class="story__item-img">
                     </figure>

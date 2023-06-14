@@ -5,4 +5,5 @@
     <select name="{{ $name }}" id="{{ $name }}" {{ $attributes->merge(['class' => 'form__select']) }}>
         {{ $slot }}
     </select>
+    <x-forms.error :name="$name"/>
 </x-forms.field>

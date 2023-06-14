@@ -16,6 +16,13 @@
             grid-template-columns: 1fr 3fr;
             gap: rem(30px);
         }
+
+        &--radio {
+            &-container {
+                display: flex;
+                gap: rem(20px);
+            }
+        }
     }
 
     &__container {
@@ -79,6 +86,12 @@
         border-color: $cBlue;
     }
 
+    &__input--radio {
+        visibility: hidden;
+        opacity: 0;
+        display: none;
+    }
+
     &__input, &__textarea, &__select {
         border: darken($cLightGrey, 20%) solid 1px;
         padding: rem(10px) rem(20px);
@@ -137,7 +150,7 @@
         display: none;
     }
 
-    &__select {
+    &__select:not(.form__select-multiple) {
         -webkit-appearance: none;
         -moz-appearance: none;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 15.487 8.855'%3E%3Cpath id='Icon_ionic-ios-arrow-down' data-name='Icon ionic-ios-arrow-down' d='M13.934 17.432l5.856-5.861a1.1 1.1 0 0 1 1.563 0 1.116 1.116 0 0 1 0 1.568l-6.635 6.64a1.1 1.1 0 0 1-1.526.032L6.51 13.144a1.107 1.107 0 1 1 1.563-1.568Z' transform='translate(-6.188 -11.246)'/%3E%3C/svg%3E");
@@ -209,6 +222,10 @@
 
     &__text {
         margin-bottom: 30px;
+    }
+
+    & .file-figure {
+        max-height: rem(500px);
     }
 }
 
