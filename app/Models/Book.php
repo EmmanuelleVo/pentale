@@ -13,7 +13,7 @@ use Maize\Markable\Models\Bookmark;
 
 class Book extends Model
 {
-    use HasFactory, Markable;// Searchable;
+    use HasFactory, Markable, Searchable;
 
     /*use Searchable {
         Searchable::search as parentSearch;
