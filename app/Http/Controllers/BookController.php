@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
+use App\Http\Requests\UpdateBookRequest;
 use App\Http\Uploads\HandleImageUploads;
 use App\Models\Book;
 use App\Models\Chapter;
@@ -146,17 +147,48 @@ class BookController extends Controller
         $genres = Genre::get();
         $tags = Tag::get();
         $languages = ['en' => 'English', 'fr' => 'Français'];
-        $book_genres = $book->genres()->select('slug')->get()->toArray();
+        $status = ['ongoing', 'completed', 'hiatus'];
 
-        return view('dashboard.novel.edit', compact('book', 'genres', 'tags', 'languages'));
+        return view('dashboard.novel.edit', compact('book', 'genres', 'tags', 'languages', 'status'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(BookRequest $request, Book $book)
+    public function update(UpdateBookRequest $request, Book $book)
     {
-        //
+        $validated = $request->validated();
+        if ($validated) {
+            if ($validated['cover'] !== '') {
+                $uploaded_image = $request->file('cover');
+                $path = $this->resizeAndSave($uploaded_image, 'covers', 500, 600);
+            }
+
+            $book->update([
+                'title' => $validated['title'],
+                'slug' => Str::slug($validated['title']),
+                'synopsis' => $validated['synopsis'],
+                'language' => $validated['language'],
+                'cover' => $path,
+                'updated_at' => now(),
+                'status' => $validated['status'],
+                'patreon' => $validated['patreon'],
+            ]);
+
+            $book_id = $book->id;
+
+            foreach ($validated['genres'] as $genre_id) {
+                DB::table('book_genre')->where('book_id', $book_id)->update(compact('genre_id'));
+            }
+            foreach ($validated['tags'] as $tag_id) {
+                DB::table('book_tag')->where('book_id', $book_id)->update(compact('tag_id'));
+            }
+
+
+            return redirect('/dashboard/novels/' . Str::slug($validated['title']) . '#about')->with('success', 'Book updated');
+        }
+
+        return back()->withInput();
     }
 
     /**

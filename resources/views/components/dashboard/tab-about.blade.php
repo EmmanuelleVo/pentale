@@ -28,6 +28,17 @@
     </div>
 
     <div class="novel__about-container">
+        <x-titles.small-title title="Patreon url"/>
+        <div class="novel__about-patreon">
+            @if($book->patreon)
+                <a href="{{ $book->patreon }}" title="Go to your patreon page">{{ $book->patreon }}</a>
+            @else
+                <x-commons.no-collection>You have no patreon link.</x-commons.no-collection>
+            @endif
+        </div>
+    </div>
+
+    <div class="novel__about-container">
         <x-titles.small-title title="Synopsis"/>
         <div class="wysiwyg novel__about-synopsis">
             {!! $book->synopsis !!}

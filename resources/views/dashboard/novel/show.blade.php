@@ -38,7 +38,7 @@
                                 number="{{ \App\Helpers\Helper::convert($book->chapters()->sum('views')) }}"
                                 term="Views"/>
                             <x-commons.meta-text-dashboard number="{{ $book->reviews()->count() }}" term="Reviews"/>
-                            <x-commons.meta-text-dashboard number="194K" term="Words"/>
+                            <x-commons.meta-text-dashboard number="{{ ucfirst($book->status) }}" term="Status"/>
                         </div>
                     </div>
                 </div>

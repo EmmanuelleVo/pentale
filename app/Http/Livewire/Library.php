@@ -28,6 +28,7 @@ class Library extends Component
     public function render()
     {
         $books = Book::whereHasBookmark($this->user)->paginate(12);
+
         return view('livewire.library', compact('books'));
     }
 }
