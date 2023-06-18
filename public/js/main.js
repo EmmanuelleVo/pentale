@@ -13809,13 +13809,13 @@ var BurgerMenu = /** @class */function () {
     this.nav = document.body.querySelector('.nav__links-container');
     this.burger = document.querySelector('.hamburger');
     this.overlay = document.querySelector('.overlay');
+    this.dropdownBtn = document.querySelectorAll('.dropdownBtn');
     this.burger.addEventListener('click', function (e) {
       e.preventDefault();
       _this.toggleMenu();
     });
     document.addEventListener('click', function (e) {
       if (_this.top.classList.contains('menu-open')) {
-        console.log(e.target);
         if (e.target !== _this.nav && e.target !== _this.burger && e.target !== document.querySelector('.hamburger-inner') && e.target !== document.querySelector('.hamburger-box') && e.target !== document.querySelector('input[type="search"]') && e.target !== document.querySelector('.nav__link-dropdown .nav__link__textWrapper')) {
           _this.top.classList.remove('menu-open');
           _this.burger.classList.remove('is-active');
@@ -13823,8 +13823,23 @@ var BurgerMenu = /** @class */function () {
         }
       }
     });
-  }
 
+    if (this.dropdownBtn) {
+      this.dropdownBtn.forEach(function (button) {
+        button.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (button.parentNode.classList.contains("dropdown") && !button.parentNode.classList.contains("open")) {
+            button.parentNode.classList.add('open');
+            button.setAttribute('aria-expanded', "true");
+          } else {
+            button.parentNode.classList.remove('open');
+            button.setAttribute('aria-expanded', "false");
+          }
+          return false;
+        });
+      });
+    }
+  }
   BurgerMenu.prototype.toggleMenu = function () {
     this.top.classList.toggle('menu-open');
     this.burger.classList.toggle('is-active');
@@ -13853,9 +13868,18 @@ exports.Commons = void 0;
 var Commons = /** @class */function () {
   function Commons() {
     this.search = document.querySelector('.form__search--nav');
+    this.filterButton = document.querySelector('.form.accordion__content input[type="submit"]');
     if (this.search) {
       this.searchBtn = this.search.querySelector('[type="submit"]');
       this.searchBtn.setAttribute('style', 'display:none !important');
+    }
+    // Hide the JavaScript disabled message
+    if (document.getElementById('js-disabled-message')) {
+      document.getElementById('js-disabled-message').style.display = 'none';
+    }
+    if (this.filterButton) {
+      console.log(this.filterButton);
+      this.filterButton.classList.add('u-visually-hidden');
     }
   }
   return Commons;
@@ -13957,9 +13981,12 @@ var PasswordVisibility = /** @class */function () {
     this.passwordConfirmation = document.querySelector('#password_confirmation');
     this.registerPasswordVisibilityCheckbox = document.querySelector('#register-password-visibility');
     this.registerPassword = document.querySelector('#register-password');
+    this.newPasswordVisibilityCheckbox = document.querySelector('#new-password-visibility');
+    this.newPassword = document.querySelector('#new_password');
     this.passwordCheckboxLabel = document.querySelector('label[for="password-visibility"]');
     this.passwordConfirmationCheckboxLabel = document.querySelector('label[for="password-confirmation-visibility"]');
     this.registerPasswordCheckboxLabel = document.querySelector('label[for="register-password-visibility"]');
+    this.newPasswordCheckboxLabel = document.querySelector('label[for="new-password-visibility"]');
     if (this.passwordVisibilityCheckbox) {
       this.passwordVisibilityCheckbox.addEventListener('change', function (e) {
         if (_this.password.type === 'text') {
@@ -13990,6 +14017,17 @@ var PasswordVisibility = /** @class */function () {
         } else {
           _this.registerPassword.type = 'text';
           _this.registerPasswordCheckboxLabel.textContent = 'Hide';
+        }
+      });
+    }
+    if (this.newPasswordVisibilityCheckbox) {
+      this.newPasswordVisibilityCheckbox.addEventListener('change', function (e) {
+        if (_this.newPassword.type === 'text') {
+          _this.newPassword.type = 'password';
+          _this.newPasswordCheckboxLabel.textContent = 'Show';
+        } else {
+          _this.newPassword.type = 'text';
+          _this.newPasswordCheckboxLabel.textContent = 'Hide';
         }
       });
     }
@@ -14167,6 +14205,7 @@ var Main = /** @class */function () {
 }();
 window.addEventListener('load', function () {
   new Main();
+  //document.addEventListener('alpine:init', () => Alpine.prefix('data-x-'))
   alpinejs_1["default"].start();
 });
 
@@ -14274,9 +14313,12 @@ function Search() {
         item: function item(hit, _ref) {
           var html = _ref.html,
             components = _ref.components;
-          return html(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n\n                                    <div class=\"hit-name hover:bg-light-blue\">\n                                        <a href=\"/novels/", "\" class=\"u-absolute\"></a>\n                                        <figure>\n                                            <img src=\"", "\" alt=\"Cover of ", "\">\n                                        </figure>\n                                        <div>\n                                            <span class=\"hit-link\">\n                                                ", "\n                                            </span>\n                                        </div>\n                                    </div>\n                                </div>"])), hit.slug, hit.cover, hit.title, components.Highlight({
+          return html(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n\n                                    <div class=\"hit-name hover:bg-light-blue\">\n                                        <a href=\"/novels/", "\" class=\"u-absolute\"></a>\n                                        <figure>\n                                            <img src=\"", "\" alt=\"Cover of ", "\">\n                                        </figure>\n                                        <div>\n                                            <span class=\"hit-link\">\n                                                ", "\n                                            </span>\n                                            <span class=\"hit-link\">\n                                                ", "\n                                            </span>\n                                        </div>\n                                    </div>\n                                </div>"])), hit.slug, hit.cover, hit.title, components.Highlight({
             hit: hit,
             attribute: 'title'
+          }), components.Highlight({
+            hit: hit,
+            attribute: 'author'
           }));
         },
         empty: function empty(results, _ref2) {
@@ -14286,6 +14328,8 @@ function Search() {
       }
     })]);
     this.search.start();
+    document.querySelector('.ais-SearchBox-input').insertAdjacentHTML('beforebegin', '<label for="meilisearch" class="u-visually-hidden">Search a novel</label>');
+    document.querySelector('.ais-SearchBox-input').setAttribute('id', 'meilisearch');
   }
 });
 

@@ -282,7 +282,7 @@
 
             @include mq($until: mobile) {
                 width: 250px;
-                transform: translateX(250px);
+                //transform: translateX(250px);
             }
         }
 
@@ -333,6 +333,13 @@
                     }
                 }
             }
+        }
+    }
+
+    & .nav__sublink__label {
+        @include mq($until: laptop) {
+            margin-left: 0 !important;
+            color: $cWhite !important;
         }
     }
 }

@@ -4,12 +4,14 @@ export class BurgerMenu {
     private overlay: Element;
     private top: Element;
     private nav: Element;
+    private dropdownBtn: NodeListOf<HTMLElement>;
 
     constructor() {
         this.top = document.querySelector('.top')
         this.nav = document.body.querySelector('.nav__links-container')
         this.burger = document.querySelector('.hamburger')
         this.overlay = document.querySelector('.overlay')
+        this.dropdownBtn = document.querySelectorAll('.dropdownBtn')
 
         this.burger.addEventListener('click', (e) => {
             e.preventDefault()
@@ -18,7 +20,6 @@ export class BurgerMenu {
 
         document.addEventListener('click', (e) => {
             if (this.top.classList.contains('menu-open')) {
-                console.log(e.target)
                 if (e.target !== this.nav
                     && e.target !== this.burger
                     && e.target !== document.querySelector('.hamburger-inner')
@@ -31,9 +32,24 @@ export class BurgerMenu {
                     //this.overlay.classList.remove('is-active')
                 }
             }
-
-
         })
+
+
+        if (this.dropdownBtn) {
+            this.dropdownBtn.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    if (button.parentNode.classList.contains("dropdown") && !button.parentNode.classList.contains("open")) {
+                        button.parentNode.classList.add('open');
+                        button.setAttribute('aria-expanded', "true");
+                    } else {
+                        button.parentNode.classList.remove('open');
+                        button.setAttribute('aria-expanded', "false");
+                    }
+                    return false
+                })
+            })
+        }
     }
 
     toggleMenu() {

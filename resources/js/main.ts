@@ -33,6 +33,6 @@ class Main {
 
 window.addEventListener('load', () => {
     new Main()
+    //document.addEventListener('alpine:init', () => Alpine.prefix('data-x-'))
     Alpine.start()
-
 })

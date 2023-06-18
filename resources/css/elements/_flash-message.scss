@@ -1,0 +1,39 @@
+.flash-message {
+    position: fixed;
+    z-index: 10;
+    right: 30px;
+    bottom: 30px;
+    background-color: $cWhite;
+    padding: rem(20px) rem(50px);
+    border-radius: 5px;
+    border: $cGrey 1px solid;
+    //box-shadow: $cLightGrey 0 0 2px 0;
+
+    @include mq($until: tablet) {
+        right: 10px;
+        bottom: 10px;
+    }
+
+    &--success {
+        border: $cGreen 1px solid;
+        color: $cGreen;
+    }
+
+    &--error {
+        border: $cRed 1px solid;
+        color: $cRed;
+    }
+}
+
+
+#js-disabled-message {
+    z-index: 10;
+    position: relative;
+    margin-top: rem(10px);
+    background-color: $cWhite;
+    padding: rem(20px) rem(50px);
+    border-radius: 5px;
+    border: $cRed 1px solid;
+    color: $cRed;
+    text-align: center;
+}

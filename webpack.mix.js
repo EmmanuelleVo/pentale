@@ -14,10 +14,12 @@ mix.ts('resources/js/main.ts', 'public/js')
     .sass('resources/css/main.scss', 'public/css')
     .copyDirectory('resources/assets/img', 'public/assets/img')
     .copyDirectory('resources/assets/fonts', 'public/assets/fonts')
-    //.css('resources/css/app.css', 'public/css')
+    //.combine('public/css/main.css', 'public/css/app.css')
+    //.combine('public/js/main.js', 'public/js/app.js')
     //.copyDirectory('wp-content/themes/portfolio/resources/fonts', 'wp-content/themes/portfolio/public/fonts')
     .browserSync({
         proxy: 'http://pentale.test',
         notify: false
     });
+
 //mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');

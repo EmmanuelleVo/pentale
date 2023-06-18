@@ -17,5 +17,7 @@
     "/assets/fonts/Merriweather/Merriweather-Italic.ttf": "/assets/fonts/Merriweather/Merriweather-Italic.ttf",
     "/assets/fonts/Merriweather/Merriweather-Light.ttf": "/assets/fonts/Merriweather/Merriweather-Light.ttf",
     "/assets/fonts/Merriweather/Merriweather-LightItalic.ttf": "/assets/fonts/Merriweather/Merriweather-LightItalic.ttf",
-    "/assets/fonts/Merriweather/Merriweather-Regular.ttf": "/assets/fonts/Merriweather/Merriweather-Regular.ttf"
+    "/assets/fonts/Merriweather/Merriweather-Regular.ttf": "/assets/fonts/Merriweather/Merriweather-Regular.ttf",
+    "/css/app.css": "/css/app.css",
+    "/js/app.js": "/js/app.js"
 }

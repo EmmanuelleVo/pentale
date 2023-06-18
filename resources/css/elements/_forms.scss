@@ -29,6 +29,18 @@
         display: flex;
         flex-direction: column;
         gap: rem(30px);
+        @include mq($until: tablet) {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        &--file {
+            gap: 0;
+        }
+
+        .file-figure {
+            margin: 0 auto rem(20px);
+        }
     }
 
     &__meta {
@@ -220,12 +232,35 @@
         color: red;
     }
 
+    &__success {
+        border: $cGreen 1px solid;
+        color: $cGreen;
+        background-color: $cWhite;
+        padding: rem(20px) rem(30px);
+        border-radius: 5px;
+        width: 100%;
+        box-sizing: border-box;
+        line-height: 1.6;
+        text-align: center;
+    }
+
     &__text {
         margin-bottom: 30px;
     }
 
     & .file-figure {
         max-height: rem(500px);
+    }
+
+    &__delete {
+        display: flex;
+        flex-direction: column;
+        gap: rem(20px);
+        margin-top: rem(50px);
+
+        & .c-btn {
+            width: fit-content;
+        }
     }
 }
 

@@ -48,6 +48,12 @@
                 font-size: rem(15px);
             }
         }
+
+        & .novel__about-item .novel__info-stars {
+            display: flex;
+            flex-direction: column;
+            gap: rem(5px);
+        }
     }
 
     &__chapters {

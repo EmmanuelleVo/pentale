@@ -15,7 +15,6 @@
             font-size: rem(15px);
         }
 
-
         &--filter:not(&--filter--active) {
             background-color: $cLightGrey;
             color: $cBlack;
@@ -27,6 +26,11 @@
                 transition: background-color .3s ease;
             }
 
+        }
+
+        &--filter.true {
+            background-color: $cBlue !important;
+            color: $cWhite !important;
         }
 
         &--filter--active {
