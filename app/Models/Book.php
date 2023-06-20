@@ -17,7 +17,8 @@ class Book extends Model
     use HasFactory, Markable, SoftDeletes, Searchable;
 
     protected $guarded = [];
-    //protected $with = ['genres', 'tags'];
+    //protected $with = ['genres', 'chapters'];
+    protected $withCount = ['chapters'];
     protected array $dates = ['published_at'];
 
     protected static $marks = [

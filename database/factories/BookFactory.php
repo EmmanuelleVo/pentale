@@ -31,8 +31,6 @@ class BookFactory extends Factory
             'cover' => fake()->imageUrl(300, 300),
             'status' => 'ongoing',
             'patreon' => fake()->url(),
-            //'views' => 0,
-            //'rating' => 0,
             'published_at' => $created_at->addDays(rand(0, 1) * rand(2, 20)),
             'created_at' => $created_at,
             'updated_at' => rand(0, 10) ? $created_at : $created_at->addWeeks(rand(2, 8)),

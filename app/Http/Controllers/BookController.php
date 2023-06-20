@@ -54,15 +54,11 @@ class BookController extends Controller
      */
     public function store(Book $book, BookRequest $request)
     {
-
-        // {{ asset('storage/' . $post->thumbnail_path) }}
-
         $validated = $request->validated();
         if ($validated) {
 
             $uploaded_image = $request->file('cover');
             $path = $this->resizeAndSave($uploaded_image, 'covers', 500, 600);
-            // = http://pentale.test/img/covers/0cf15b22471adb084522e57986481979809ecacb.png
 
             $book = Book::create([
                 'title' => $validated['title'],

@@ -61,7 +61,7 @@
                 </div>
                 <div class="card-list--small">
                     @foreach($popularBooks as $popularBook)
-                            <x-cards.novel-small :book="$popularBook"/>
+                            <x-cards.novel-small :rating="$popularBook->reviews_avg_overall" :book="$popularBook"/>
                     @endforeach
                 </div>
 
@@ -74,7 +74,7 @@
                 </div>
                 <div class="card-list--small">
                     @foreach($latestBooks as $latestBook)
-                        <x-cards.novel-small :book="$latestBook"/>
+                        <x-cards.novel-small :rating="$latestBook->reviews_avg_overall" :book="$latestBook"/>
                     @endforeach
                 </div>
             </section>

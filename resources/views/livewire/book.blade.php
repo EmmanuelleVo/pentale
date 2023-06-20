@@ -92,7 +92,8 @@
     @if(count($books) > 0)
         <div class="novels__list">
             @foreach($books as $book)
-                <x-cards.novel-full wire:key="book-{{ $book->id }}" :book="$book"/>
+                <x-cards.novel-full :rating="$book->reviews_avg_overall" :chapter_count="$book->chapters_count"
+                                    :view_count="$book->chapters_sum_views" wire:key="book-{{ $book->id }}" :book="$book"/>
             @endforeach
         </div>
         <div class="novel__chapters-pagination">
@@ -102,20 +103,4 @@
         <x-commons.no-collection>There are no books matching your filters.</x-commons.no-collection>
     @endif
 </div>
-
-{{--@push('body_script') // this section name can be whatever you want...
-<script type="text/javascript">
-
-    // waiting for DOM loaded
-    document.addEventListener('DOMContentLoaded', function () {
-
-        // listen for the event
-        window.livewire.on('urlChanged', param => {
-
-            // pushing on the history by passing the current url with the param appended
-            history.pushState(null, null, `${document.location.pathname}?${param}`);
-        });
-    });
-</script>
-@endpush--}}
 

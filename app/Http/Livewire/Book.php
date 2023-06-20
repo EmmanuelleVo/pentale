@@ -60,6 +60,10 @@ class Book extends Component
             $books = $this->sortNovelsByRating($this->filters['genres']);
         }
 
+        $books->loadSum('chapters', 'views')
+            ->loadCount('chapters')
+            ->loadAvg('reviews', 'overall');
+
         return $books;
     }
 

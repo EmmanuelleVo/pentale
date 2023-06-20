@@ -111,7 +111,6 @@ $mq-static-breakpoint: desktop;
 // ELEMENTS
 @import "elements/headings";
 @import "elements/images";
-@import "elements/tables";
 @import "elements/modal";
 @import "elements/overlay";
 @import "elements/pagination";
@@ -121,9 +120,7 @@ $mq-static-breakpoint: desktop;
 @import "elements/_wysiwyg.sass";
 @import "elements/text";
 @import "elements/card";
-@import "elements/lang";
 @import "elements/breadcrumb";
-@import "elements/gallery";
 @import "elements/card-novel";
 @import "elements/card-novel-full";
 @import "elements/card-novel-small";

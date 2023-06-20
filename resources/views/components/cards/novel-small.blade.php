@@ -1,4 +1,4 @@
-@props(['book'])
+@props(['book', 'rating'])
 
 <div class="novel__item novel__item--small">
     <a href="/novels/{{ $book->slug }}" title="Learn more about {{ $book->title }}" class="u-absolute"></a>
@@ -14,15 +14,15 @@
                 <i class='bx bx-star star' style="--i: 4;"></i>
                 <i class='bx bx-star star' style="--i: 5;"></i>
             </div>
-            <span class="book__average">{{ \App\Helpers\Helper::convert($book->reviews()->avg('overall')) }}</span>
+            <span class="book__average">{{ \App\Helpers\Helper::convert($rating) }}</span>
         </div>
         <h3 class="title title--card" aria-level="3" role="heading">{{ $book->title }}</h3>
         <div class="novel__item-genres genres">
             <span class="u-visually-hidden">Genres :</span>
             <ul class="genres__list">
-                @foreach($book->genres()->orderBy('name')->paginate(3) as $book_genre)
+                @foreach($book->genres()->orderBy('name')->take(3)->get() as $book_genre)
                     <li class="genres__item">
-                        <a href="#" class="genres__link genres__link--filter" title="List novels with the genre {{ $book_genre->name }}">
+                        <a href="/novels?sort=popular&genres[genres][{{ $book_genre->slug }}]=1" class="genres__link genres__link--filter" title="List novels with the genre {{ $book_genre->name }}">
                             <x-commons.tag name="{{ $book_genre->name }}"/>
                         </a>
                     </li>

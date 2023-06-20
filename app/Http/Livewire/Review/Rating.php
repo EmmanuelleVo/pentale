@@ -84,7 +84,6 @@ class Rating extends Component
                     throw $th;
                 }
                 session()->flash('success', 'You have successfully updated your review.');
-                //session()->put('success', 'You have successfully updated your review.');
             } else {
                 $rating = new Review();
                 $rating->user_id = auth()->user()->id;
