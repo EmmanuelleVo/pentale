@@ -1,6 +1,6 @@
 @props(['book'])
 
-<div class="novel__item novel__item--full">
+<div {{ $attributes->merge(['class' => 'novel__item novel__item--full']) }}>
     <div class="novel__item-container--left">
         <figure class="novel__item-figure">
             <img src="{{ $book->cover }}" alt="Cover of {{ $book->title }}" class="novel__item-img">

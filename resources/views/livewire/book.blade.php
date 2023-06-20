@@ -92,7 +92,7 @@
     @if(count($books) > 0)
         <div class="novels__list">
             @foreach($books as $book)
-                <x-cards.novel-full :book="$book"/>
+                <x-cards.novel-full wire:key="book-{{ $book->id }}" :book="$book"/>
             @endforeach
         </div>
         <div class="novel__chapters-pagination">
