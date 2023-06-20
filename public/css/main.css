@@ -242,16 +242,6 @@ img[height] {
   max-width: none;
 }
 
-/* ==========================================================================
-   #TABLES
-   ========================================================================== */
-/**
- * 1. Ensure tables fill up as much space as possible.
- */
-table {
-  width: 100%; /* [1] */
-}
-
 .modal__btn {
   cursor: pointer;
 }
@@ -1117,60 +1107,6 @@ p {
   gap: 0.9375rem;
 }
 
-.lang__current {
-  display: flex;
-  align-items: center;
-  position: relative;
-  text-transform: uppercase;
-  color: #000;
-  margin-left: 0.625rem;
-  padding: 0.9375rem 0;
-  cursor: pointer;
-}
-.lang__current span {
-  display: inline-block;
-  margin-right: 0.3125rem;
-}
-.lang__current--open .lang__choice {
-  visibility: visible;
-  opacity: 1;
-  transition: 300ms ease visibility, 300ms ease opacity, 300ms ease transform;
-  transform: translateY(0) scaleY(1);
-}
-.lang__name {
-  text-transform: uppercase;
-  color: #FFF;
-}
-.lang__choice {
-  position: absolute;
-  top: 50px;
-  visibility: hidden;
-  opacity: 0;
-  padding: 0.625rem;
-  background-color: #000;
-  border-radius: 0.3125rem;
-  transform: translateY(0.625rem) scaleY(0.98);
-  z-index: 11;
-  transition: 300ms ease visibility, 300ms ease opacity, 300ms ease transform;
-}
-.lang__choice:before {
-  position: absolute;
-  top: -0.25rem;
-  margin: 0 auto;
-  z-index: 2;
-  content: "";
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 0.0625rem;
-  background-color: #000;
-  transform: rotate(45deg);
-}
-@media (max-width: 63.99em) {
-  .lang__choice:before {
-    content: none;
-  }
-}
-
 .breadcrumb {
   display: flex;
   align-items: center;
@@ -1208,78 +1144,6 @@ p {
 }
 .breadcrumb__arrow {
   margin: 0 0.9375rem;
-}
-
-.gallery__figure {
-  overflow: hidden;
-}
-.gallery__item {
-  position: relative;
-}
-.gallery__item:hover figure {
-  transform: scale(1.1);
-  transition: all 300ms ease-in-out;
-}
-.gallery__item:hover figure::before {
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: all 350ms ease-in-out;
-}
-.gallery__item figure {
-  height: 200px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  transition: all 300ms ease-in-out;
-}
-.gallery__item figure::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  background-color: rgba(0, 0, 0, 0);
-  transition: all 350ms ease-in-out;
-}
-.gallery__title {
-  font-size: 1.25rem;
-  color: #FFF;
-  font-weight: 600;
-}
-.gallery__bloc-item {
-  background-color: #000;
-  padding: 1.25rem;
-  text-align: center;
-}
-.gallery__link-item {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  z-index: 10;
-}
-
-.my-gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-}
-.my-gallery figure {
-  position: relative;
-  display: inline-block !important;
-  margin: 0 !important;
-  cursor: pointer;
-}
-.my-gallery figure img {
-  width: 100%;
-  height: auto;
 }
 
 .novel__item {
@@ -3017,6 +2881,10 @@ a {
   max-width: 18.75rem;
 }
 
+table {
+  width: 100%;
+}
+
 .meta {
   display: flex;
   align-items: center;
@@ -3637,8 +3505,12 @@ a {
   }
 }
 .chapter__actions .form__select {
-  max-width: 480px;
-  width: 100%;
+  width: 31.25rem;
+}
+@media (max-width: 47.99em) {
+  .chapter__actions .form__select {
+    width: 100%;
+  }
 }
 .chapter__actions-container {
   display: flex;

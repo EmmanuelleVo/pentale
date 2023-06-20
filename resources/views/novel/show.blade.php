@@ -109,10 +109,9 @@
                    class="tab__link tabLink"> Reviews
                 </a>
             </div>
-
             <section x-show="tab === '#about'" x-cloak id="About" class="tab__content tab__content--active">
                 <x-titles.section-title class="u-visually-hidden" title="About"/>
-                <x-novel.tab-about :synopsis="$book->synopsis" patreon__link="{{ $book->patreon }}" :books="$other_books"/>
+                <x-novel.tab-about :genre="$book_genre" :synopsis="$book->synopsis" patreon__link="{{ $book->patreon }}" :books="$other_books"/>
             </section>
             <section x-show="tab === '#chapters'" x-cloak id="Chapters" class="tab__content">
                 <x-titles.section-title class="u-visually-hidden" title="Chapters"/>

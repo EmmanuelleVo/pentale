@@ -46,7 +46,7 @@
                     <div class="dashboard__comments-container title-container">
                         <x-titles.section-title title="Latest comments"/>
                         @if(count($latestReviews) > 1)
-                            <x-commons.arrow-link link="{{ route('dashboard.comments') }}" title="View all latest comments">See more</x-commons.arrow-link>
+                            <x-commons.arrow-link link="#" title="View all latest comments">See more</x-commons.arrow-link>
                         @endif
                     </div>
                         <div class="dashboard__reviews-list">

@@ -12,7 +12,7 @@
                 <x-forms.input value="{{ old('title') ? old('title') : $chapter->title }}" label_name="Chapter title" name="title" place_holder="New chapter title"/>
                 <x-forms.tinymce-editor value="{!! old('body') ? old('body') : $chapter->body !!}" name="body" label_name="Chapter content"/>
                 {{--<x-forms.textarea label_name="Chapter content" name="body" placeholder=""/>--}}
-                <x-forms.tinymce-editor value="{!! old('note') ? old('note') : $chapter->note !!}" name="note" label_name="Author’s note (optional)" placeholder="Add author's note at the end of the chapter"/>
+                <x-forms.tinymce-editor value="{!! old('note') ? old('note') : $chapter->author_note !!}" name="note" label_name="Author’s note (optional)" placeholder="Add author's note at the end of the chapter"/>
                 <div class="form__actions">
                     <x-forms.button value="Update chapter"/>
                 </div>

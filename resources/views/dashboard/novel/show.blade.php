@@ -16,6 +16,7 @@
 
                                 <div x-show="dropdownMenu" class="dropdown__container">
                                     <a href="/novels/{{ $book->slug }}"
+                                        target="_blank"
                                        title="Go to detail page of the book on main website"
                                        class="dropdown__link nav__sublink">
                                         <span class="nav__sublink__label">View on website</span>

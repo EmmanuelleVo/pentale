@@ -17,7 +17,7 @@
                     @foreach($chapters as $chapterItem)
                         <option {{ $chapter->chapter_number === $chapterItem->chapter_number ? 'selected' : '' }}
                                 value="{{ $chapterItem->chapter_number }}">
-                            Chapter {{$chapterItem->chapter_number}} : {{$chapterItem->title}}
+                            Chapter {{$chapterItem->chapter_number}} : {{ \Illuminate\Support\Str::limit($chapterItem->title, 30, $end='...') }}
                         </option>
                     @endforeach
                 </x-forms.select>

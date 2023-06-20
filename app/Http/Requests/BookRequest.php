@@ -28,7 +28,7 @@ class BookRequest extends FormRequest
             'tags' => 'required|array|min:1',
             'language' => 'required',
             'cover' => 'required|image|mimes:jpg,jpeg,png',
-            'mature' => 'required',
+            'mature' => 'required|boolean',
 
         ];
     }

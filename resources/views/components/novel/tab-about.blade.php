@@ -1,4 +1,4 @@
-@props(['synopsis', 'patreon__link', 'books'])
+@props(['synopsis', 'patreon__link', 'books', 'genre'])
 
 <div class="novel__about">
     <div class="novel__about-container">
@@ -20,7 +20,7 @@
     <div class="novel__about-container">
         <div class="home__updates-container title-container">
             <x-titles.small-title title="Novels of the same genre"/>
-            <x-commons.button link="/novels?sort=popular" title="View other novels of the same genre">View all</x-commons.button>
+            <x-commons.button link="/novels?sort=popular&genres[genres][{{ $genre->slug }}]=1" title="View other novels of the same genre">View all</x-commons.button>
         </div>
         <div class="novel__about-list swiper">
             <ul class="swiper-wrapper">

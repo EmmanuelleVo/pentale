@@ -69,8 +69,8 @@
                                 <input type="radio"
                                        class="form__input--radio"
                                        name="mature"
-                                       checked
-                                       value="true"
+                                       {{ old('mature') === '1' ? 'checked' : '' }}
+                                       value="1"
                                        id="yes">
                                 <x-forms.label class="form__label--radio" name="yes" label_name="Yes"/>
 
@@ -80,7 +80,8 @@
                                 <input type="radio"
                                        class="form__input--radio"
                                        name="mature"
-                                       value="false"
+                                       {{ old('mature') === '0' ? 'checked' : '' }}
+                                       value="0"
                                        id="no">
                                 <x-forms.label class="form__label--radio" name="no" label_name="No"/>
                             </div>

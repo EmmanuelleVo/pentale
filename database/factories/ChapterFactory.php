@@ -20,7 +20,7 @@ class ChapterFactory extends Factory
     public function definition(): array
     {
         $title = fake()->sentence(5);
-        $created_at = Carbon::create(fake()->dateTimeBetween('-3 years', 'now')->format('Y-m-d H:i:s'));
+        $created_at = Carbon::create(fake()->dateTimeBetween('-3 years', '-2 months')->format('Y-m-d H:i:s'));
         $published_at = $created_at->addDays(rand(0, 1) * rand(2, 20));
         static $chapterNumber = 1;
         return [
