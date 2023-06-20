@@ -20,62 +20,9 @@ html {
     overflow-y: scroll; /* [2] */
     min-height: 100%; /* [3] */
     font-family: $global-font-title-stack !important;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
-
-.grecaptcha-badge {
-    visibility: hidden !important;
-}
-
-.page {
-    &__wrapper {
-        padding: rem($paddingBig) 0;
-        @include mq($until: tablet) {
-            padding: rem($paddingMedium) 0;
-        }
-        @include mq($until: mobile) {
-            padding: rem($paddingSmall) 0;
-        }
-    }
-
-    &__error {
-        padding: rem($paddingBig) 0;
-        text-align: center;
-        @include mq($until: tablet) {
-            padding: rem($paddingMedium) 0;
-        }
-        @include mq($until: mobile) {
-            padding: rem($paddingSmall) 0;
-        }
-
-        & .wysiwyg {
-            margin-bottom: rem($marginSmall);
-        }
-    }
-
-    &__btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: rem($marginMedium);
-    }
-
-    &__archive {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 50px;
-        @include mq($until: laptop) {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        @include mq($until: mobile) {
-            grid-template-columns: 1fr;
-        }
-    }
-}
-
 
 // -- GLOBAL -- //
 
@@ -202,5 +149,51 @@ a {
 
 table {
     width: 100%;
+}
+
+.page {
+    &__wrapper {
+        padding: rem($paddingBig) 0;
+        @include mq($until: tablet) {
+            padding: rem($paddingMedium) 0;
+        }
+        @include mq($until: mobile) {
+            padding: rem($paddingSmall) 0;
+        }
+    }
+
+    &__error {
+        padding: rem($paddingBig) 0;
+        text-align: center;
+        @include mq($until: tablet) {
+            padding: rem($paddingMedium) 0;
+        }
+        @include mq($until: mobile) {
+            padding: rem($paddingSmall) 0;
+        }
+
+        & .wysiwyg {
+            margin-bottom: rem($marginSmall);
+        }
+    }
+
+    &__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: rem($marginMedium);
+    }
+
+    &__archive {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 50px;
+        @include mq($until: laptop) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @include mq($until: mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
 }
 

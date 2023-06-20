@@ -20,7 +20,7 @@ img {
 // on `<img>` elements in your markup, but still want the images to be fluid,
 // set this to `false`.
 
-/* FOR SET STATIC-IMAGES VAR, GO TO SETTINGS/GLOBAL.SCSS */
+$static-images: true !default;
 
 @if ($static-images == true) {
 

@@ -1,7 +1,8 @@
-// - @include hidden()
-// **********************************************************
-// Hides an element but keeps it usable by Screen-readers
-// **********************************************************
+///* ========================================================================
+//   #HIDDEN-VISUALLY
+//   ======================================================================== */
+
+// Mixin to quickly apply accessible hiding to elements.
 
 @mixin visually-hidden(){
   border: 0;
@@ -16,10 +17,6 @@
   width: 1px;
 }
 
-// - @include visible()
-// **********************************************************
-// Reset properties applied by @include hidden()
-// **********************************************************
 
 @mixin visually-visible(){
   position: relative;

@@ -85,7 +85,6 @@ $mq-breakpoints: (
 );
 $mq-static-breakpoint: desktop;
 
-// TOOLS
 @import "tools/tools.fontface";
 
 // SETTINGS
@@ -93,18 +92,15 @@ $mq-static-breakpoint: desktop;
 @import "settings/settings.colors";
 @import "settings/settings.easing";
 @import "settings/settings.fonts";
-@import "settings/settings.icons";
 
 // TOOLS
 @import "~sass-mq/mq";
 @import "tools/tools.font-size";
 @import "tools/tools.clearfix";
-@import "tools/tools.utils";
 @import "tools/tools.hidden";
 @import "tools/tools.units";
 @import "tools/tools.decimals";
 @import "tools/tools.positionning";
-@import "tools/tools.triangles";
 @import "tools/tools.overlay";
 
 
@@ -114,8 +110,6 @@ $mq-static-breakpoint: desktop;
 @import "elements/modal";
 @import "elements/overlay";
 @import "elements/pagination";
-
-/* ------- CUSTOM ELEMENTS ------- */
 @import "elements/forms";
 @import "elements/_wysiwyg.sass";
 @import "elements/text";
@@ -151,7 +145,6 @@ $mq-static-breakpoint: desktop;
 @import "components/review";
 
 // PAGES
-
 @import "pages/home";
 @import "pages/novel";
 @import "pages/novels";
@@ -166,10 +159,8 @@ $mq-static-breakpoint: desktop;
 @import "utils/generic.meyer";
 @import "utils/generic.formreset";
 @import "utils/generic.boxsizing";
-
 @import "utils/utilities.hidden";
 @import "utils/utilities.headings";
 @import "utils/utilities.print";
 @import "utils/utilities.positionning";
-@import "utils/utilities.margin";
 @import "utils/wrapper";
