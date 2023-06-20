@@ -40,12 +40,16 @@ class ChapterShow extends Component
         if ($user = auth()->user()) {
             $user_preferences = $user->preferences;
             session()->put(['user_preferences' => $user_preferences]);
+
+            //$user->books()->sync([$this->book->id => ['chapter_id' => $this->chapter->id]]);
+
         }
 
         $this->fontfamily = session()->get('user_preferences.fontfamily');
         $this->fontSize = session()->get('user_preferences.fontSize');
         $this->lineHeight = session()->get('user_preferences.lineHeight');
         $this->nightMode = session()->get('user_preferences.night');
+
     }
 
     public function changePreferences($key, $value) {

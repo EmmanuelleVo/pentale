@@ -7,6 +7,7 @@ use App\Models\Chapter;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Meilisearch\Endpoints\Indexes;
 
 class SearchController extends Controller
 {
@@ -19,17 +20,7 @@ class SearchController extends Controller
         $books = Book::search($query)
             ->paginate(10);
 
-
-        /*$books = Book::search($query)
-            ->query(function ($query) {
-                $query->join('users', 'books.user_id', 'users.id')
-                    ->select(['books.*', 'users.*']);
-                    //->orderBy('books.id', 'DESC');
-            })
-            ->paginate(10);*/
-
-        $authors = User::search($query)->get(); // TODO: role author
-
+        // $authors = User::search($query)->get();
 
         return view('search', compact('books', 'query'));
     }

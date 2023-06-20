@@ -1,9 +1,9 @@
 @props(['name', 'label_name', 'place_holder' => '', 'type' => 'text'])
 
 <x-forms.field>
-    <div class="{{ $name === 'password' || $name === 'password_confirmation' || $name === 'register-password' ? 'form__label-container' : '' }}">
+    <div class="{{ $name === 'password' || $name === 'password_confirmation' || $name === 'register-password' || $name === 'new_password' ? 'form__label-container' : '' }}">
         <x-forms.label name="{{ $name }}" label_name="{{ $label_name }}"></x-forms.label>
-        @if($name === 'password' || $name === 'password_confirmation' || $name === 'register-password')
+        @if($name === 'password' || $name === 'password_confirmation' || $name === 'register-password' || $name === 'new_password')
             @php
                 if ($name === 'password') {
                     $visibilityName = 'password-visibility';
@@ -11,6 +11,8 @@
                     $visibilityName = 'password-confirmation-visibility';
                 } elseif($name === 'register-password') {
                     $visibilityName = 'register-password-visibility';
+                } elseif($name === 'new_password') {
+                    $visibilityName = 'new-password-visibility';
                 }
             @endphp
             <div class="form__input--visibility">

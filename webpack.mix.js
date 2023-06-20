@@ -14,12 +14,9 @@ mix.ts('resources/js/main.ts', 'public/js')
     .sass('resources/css/main.scss', 'public/css')
     .copyDirectory('resources/assets/img', 'public/assets/img')
     .copyDirectory('resources/assets/fonts', 'public/assets/fonts')
-    //.combine('public/css/main.css', 'public/css/app.css')
-    //.combine('public/js/main.js', 'public/js/app.js')
-    //.copyDirectory('wp-content/themes/portfolio/resources/fonts', 'wp-content/themes/portfolio/public/fonts')
+    .minify('public/css/main.css', 'public/css/app.css')
+    .minify('public/js/main.js', 'public/js/app.js')
     .browserSync({
         proxy: 'http://pentale.test',
         notify: false
     });
-
-//mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');

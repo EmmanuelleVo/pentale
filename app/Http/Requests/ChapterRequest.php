@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ChapterRequest extends FormRequest
 {
@@ -25,7 +27,9 @@ class ChapterRequest extends FormRequest
             'title' => 'required',
             'body' => 'required|min:255',
             'note' => '',
-            'chapter_number' => '',
+            'chapter_number' => ['required', Rule::unique('chapters', 'chapter_number')
+                ->where('chapters.book_id', $this->input('book_id'))
+            ],
 
         ];
     }

@@ -3,13 +3,13 @@
         <div class="novel__chapters-actions">
             <div class="tags">
                 <div class="tags__list" x-data="{ activeButton: 'desc'}">
-                    <button wire:click="sortBy('published_at', 'DESC')"
+                    <button wire:click="sortBy('chapter_number', 'DESC')"
                             x-on:click="activeButton = 'desc'"
                             :class="{ 'c-btn--active': activeButton === 'desc', '': activeButton !== 'desc' }"
                             class="tags__link tags__link--filter">
                         Newest
                     </button>
-                    <button wire:click="sortBy('published_at', 'ASC')"
+                    <button wire:click="sortBy('chapter_number', 'ASC')"
                             x-on:click="activeButton = 'asc'"
                             :class="{ 'c-btn--active': activeButton === 'asc', '': activeButton !== 'asc' }"
                             class="tags__link tags__link--filter">
@@ -24,7 +24,7 @@
         <ul class="novel__chapters-list">
             @foreach($chapters as $chapter)
                 <li class="novel__chapters-item chapter">
-                    <a href="/novels/{{ $chapter->book->slug }}/chapter-{{ $chapter->chapter_number }}" class="u-absolute" title="Read chapter {{ $chapter->chapter_number }}"></a>
+                    <a href="/dashboard/novels/{{ $chapter->book->slug }}/chapter-{{ $chapter->chapter_number }}/edit" class="u-absolute" title="Read chapter {{ $chapter->chapter_number }}"></a>
                     <span class="chapter__number">Chapter {{ $chapter->chapter_number }}</span>
                     <div class="chapter__container">
                         <span class="chapter__title">{{ $chapter->title }}</span>

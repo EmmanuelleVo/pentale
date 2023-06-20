@@ -17,7 +17,7 @@ class ReviewController extends Controller
             $input = $request->all();
             $input['user_id'] = auth()->user()->id;
             Review::create($input);
-            return back()->with('success', 'Review created');
+            return back()->with('success', 'You have successfully created a review.');
         }
 
 

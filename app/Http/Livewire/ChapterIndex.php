@@ -19,14 +19,17 @@ class ChapterIndex extends Component
     public function mount(Book $book)
     {
         $this->book = $book;
-        $this->sortField = 'published_at';
+        $this->sortField = 'chapter_number';
         $this->sortOrder = 'DESC';
     }
 
     public function render()
     {
+        //$lastChapter = $book->chapters()->orderByRaw('CONVERT(chapter_number, SIGNED) desc')->first();
+
         $chapters = $this->book->chapters()
-            ->orderBy($this->sortField, $this->sortOrder)
+            //->orderBy($this->sortField, $this->sortOrder)
+            ->orderByRaw('CONVERT(' . $this->sortField .', SIGNED) ' . $this->sortOrder)
             ->paginate(10, ['*'], 'chaptersPage');
         return view('livewire.chapter-index', compact('chapters'));
     }

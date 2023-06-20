@@ -1,8 +1,13 @@
 <x-layout>
-    <x-header.novel-header :book="$book" :book_genres="$book_genres" :book_tags="$book_tags" :book_average="$book_average" title="{{ $book->title }} - Pentale"/>
+    <x-header.novel-header :book="$book" title="{{ $book->title }} - Pentale"/>
     <main id="main" class="novel" lang="{{ $book->language }}" itemscope="" itemtype="https://schema.org/Book">
         <div class="header header--novel">
             <div class="o-wrapper header__container">
+                <noscript>
+                    <div id="js-disabled-message">
+                        <p>Please enable JavaScript in your browser to fully experience this website.</p>
+                    </div>
+                </noscript>
                 <x-breadcrumbs.breadcrumb>
                         <x-breadcrumbs.breadcrumb-link title="Novels" link="/novels" index="2"/>
                         <x-breadcrumbs.breadcrumb-separator/>
@@ -46,7 +51,7 @@
                                 <ul class="genres__list">
                                     @foreach($book_genres as $book_genre)
                                         <li class="genres__item">
-                                            <a href="#" class="genres__link">
+                                            <a href="/novels?sort=popular&genres[genres][{{ $book_genre->slug }}]=1" class="genres__link" title="View popular novels with genre as {{ $book_genre->name }}">
                                                 <x-commons.tag itemprop="genre" name="{{ $book_genre->name }}"/>
                                             </a>
                                         </li>
@@ -59,7 +64,7 @@
                                 <ul class="tags__list">
                                     @foreach($book_tags as $book_tag)
                                         <li class="tags__item">
-                                            <a href="#" class="tags__link">
+                                            <a href="#" class="tags__link" title="View popular novels with tag as {{ $book_tag->name }}">
                                                 <x-commons.tag name="{{ $book_tag->name }}"/>
                                             </a>
                                         </li>
@@ -85,26 +90,29 @@
         </div>
         <div class="o-wrapper" x-data="{ tab: window.location.hash ? window.location.hash : '#about' }">
             <div class="tab">
-                <a id="tabLink" href="#about"
+                <a href="#about"
+                   title="Open about tab"
                    @click="tab='#about'"
                    :class="{[tab==='#about']: 'tab__link--active'}"
-                   class="tab__link"> About
+                   class="tab__link tabLink"> About
                 </a>
-                <a id="tabLink" href="#chapters"
+                <a href="#chapters"
+                   title="Open chapters tab"
                    @click="tab='#chapters'"
                    :class="{[tab==='#chapters']: 'tab__link--active'}"
-                   class="tab__link"> Chapters
+                   class="tab__link tabLink"> Chapters
                 </a>
-                <a id="tabLink" href="#reviews"
+                <a href="#reviews"
+                   title="Open reviews tab"
                    @click="tab='#reviews'"
                    :class="{[tab==='#reviews']: 'tab__link--active'}"
-                   class="tab__link"> Reviews
+                   class="tab__link tabLink"> Reviews
                 </a>
             </div>
 
             <section x-show="tab === '#about'" x-cloak id="About" class="tab__content tab__content--active">
                 <x-titles.section-title class="u-visually-hidden" title="About"/>
-                <x-novel.tab-about :synopsis="$book->synopsis" patreon__link="#" :books="$other_books"/>
+                <x-novel.tab-about :synopsis="$book->synopsis" patreon__link="{{ $book->patreon }}" :books="$other_books"/>
             </section>
             <section x-show="tab === '#chapters'" x-cloak id="Chapters" class="tab__content">
                 <x-titles.section-title class="u-visually-hidden" title="Chapters"/>
@@ -112,7 +120,7 @@
             </section>
             <section x-show="tab === '#reviews'" x-cloak id="Reviews" class="tab__content">
                 <x-titles.section-title class="u-visually-hidden" title="Reviews"/>
-                <x-novel.tab-reviews :reviews="$book_reviews" :book="$book"/>
+                <x-novel.tab-reviews :book="$book"/>
             </section>
         </div>
 

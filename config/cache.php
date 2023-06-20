@@ -52,6 +52,7 @@ return [
         'file' => [
             'driver' => 'file',
             'path' => storage_path('framework/cache/data'),
+            'lifetime' => 60 * 24 * 7,
         ],
 
         'memcached' => [

@@ -12,7 +12,7 @@
                 </div>
                 <form action="{{ route('password.email') }}" method="post" class="form">
                     @csrf
-                    <x-forms.input name="email" label_name="Email" place_holder="test@test.com" type="email" required autofocus/>
+                    <x-forms.input name="email" label_name="Email" place_holder="test@test.com" type="email"/>
 
                     <x-forms.button value="{{ __('Email Password Reset Link') }}"/>
                 </form>
@@ -21,9 +21,6 @@
                     <span><a href="{{ route('login') }}" title="Back to login">Back to login</a></span>
                 </div>
             </div>
-            {{--<figure class="login__figure">
-                <img src="" alt="" class="login__img">
-            </figure>--}}
         </div>
     </main>
     <x-footer.footer/>

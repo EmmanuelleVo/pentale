@@ -74,6 +74,13 @@ class User extends Authenticatable
         return $this->hasMany(Book::class);
     }
 
+    /*public function books(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Book::class, 'reading_logs')
+            ->withPivot('chapter_id')
+            ->withTimestamps();
+    }*/
+
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);

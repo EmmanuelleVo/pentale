@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Chapter;
 use Butschster\Head\Facades\Meta;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -15,24 +16,42 @@ class HomeController extends Controller
     {
         Meta::prependTitle('Home');
 
-        /*$latestReleases = Book::with(['chapters' => function ($query) {
-            $query->whereDate('chapters.published_at', '<=', now())
-                ->orderBy('chapters.published_at', 'DESC')
-                ->take(2);
-        }])
-            //->join('chapters', 'chapters.book_id', '=', 'books.id')
-            ->join("chapters", function($join){
-                $join->on("chapters.book_id", "=", "books.id");
+        $startDate = Carbon::now()->subDays(3);
+        $endDate = Carbon::now();
+
+        $latestReleases = Book::select('books.*')
+            ->join('chapters', function ($join) {
+                $join->on('books.id', '=', 'chapters.book_id')
+                    ->whereNull('chapters.deleted_at')
+                    ->whereNull('books.deleted_at')
+                    ->whereRaw('chapters.published_at = (SELECT MAX(published_at) FROM chapters WHERE book_id = books.id)');
             })
-            ->select('books.title as book_title', 'chapters.title as chapter_title', 'books.slug as book_slug', 'chapters.slug as chapter_slug', 'books.*', 'chapters.*')
-            ->where("chapters.published_at", "<=", now())
-            ->orderBy('chapters.published_at', 'DESC')
-            ->paginate(12);*/
+            ->whereNull('books.deleted_at')
+            ->groupBy('books.id')
+            ->orderByDesc(DB::raw('(SELECT MAX(published_at) FROM chapters WHERE book_id = books.id)'))
+            ->take(12)
+            ->get();
+
+        /*$latestReleases = Book::select('books.*')
+            ->leftJoin('chapters', 'books.id', '=', 'chapters.book_id')
+            ->whereNotNull('chapters.published_at')
+            ->whereNull('books.deleted_at')
+            ->groupBy('books.id')
+            ->orderByDesc(function ($query) {
+                $query->select('published_at')
+                    ->from('chapters')
+                    ->whereColumn('book_id', 'books.id')
+                    ->orderByDesc('published_at', 'desc')
+                    ->limit(1);
+            })
+            ->take(12)
+            ->get();*/
 
 
-        $latestReleases = Chapter::with('book')
+        /*$latestReleases = Chapter::with('book')
+            ->has('book')
             ->whereDate('published_at', '<=', now())
-            ->latest('published_at')->paginate(12);
+            ->latest('published_at')->paginate(12)*/;
 
         $popularBooks = Book::with('genres')
             ->select('books.*', DB::raw('sum(chapters.views)'))

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('discord')->nullable();
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
+            $table->string('patreon')->nullable();
             $table->tinyText('biography')->nullable();
             $table->json('preferences');
             $table->rememberToken();

@@ -2,13 +2,13 @@
     <div class="novel__chapters-actions">
         <div class="novel__chapters-actions tags">
             <div class="tags__list" x-data="{ activeButton: 'desc'}">
-                <button wire:click="sortBy('published_at', 'DESC')"
+                <button wire:click="sortBy('chapter_number', 'DESC')"
                         x-on:click="activeButton = 'desc'"
                         :class="{ 'c-btn--active': activeButton === 'desc', '': activeButton !== 'desc' }"
                         class="tags__link tags__link--filter">
                     Newest
                 </button>
-                <button wire:click="sortBy('published_at', 'ASC')"
+                <button wire:click="sortBy('chapter_number', 'ASC')"
                         x-on:click="activeButton = 'asc'"
                         :class="{ 'c-btn--active': activeButton === 'asc', '': activeButton !== 'asc' }"
                         class="tags__link tags__link--filter">

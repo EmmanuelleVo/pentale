@@ -17,6 +17,7 @@ class BooksSeeder extends Seeder
     public function run()
     {
         $status = ['ongoing', 'completed', 'hiatus'];
+
         $body = ['When I opened my eyes, I was inside a novel.
                 [The Birth of a Hero].
                 [The Birth of a Hero] was a novel focused on the adventures of the main character, Choi Han, a high school boy who was transported to a different dimension from Earth, along with the birth of the numerous heroes of the continent.

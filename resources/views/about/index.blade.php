@@ -4,12 +4,17 @@
         <div class="header header--home header--about">
             <div class="o-wrapper">
                 <div class="header__container">
+                    <noscript>
+                        <div id="js-disabled-message">
+                            <p>Please enable JavaScript in your browser to fully experience this website.</p>
+                        </div>
+                    </noscript>
                     <h2 aria-level="2" role="heading" class="title title--big title--black">
                         About <span class="colored">Pentale</span>
                     </h2>
                     <div class="header__wrapper">
                         <figure class="header__figure">
-                            <img src="img/header.jpg" alt="" class="header__img">
+                            <img src="img/header.jpg" alt="header image" class="header__img">
                         </figure>
                         <div class="header__content wysiwyg">
                             <div class="header__content--container">

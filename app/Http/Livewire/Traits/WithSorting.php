@@ -21,64 +21,93 @@ trait WithSorting
 
     public function sortNovelsByPopularity($genres) {
 
-        $books = Book::query()
+        /*$books = Book::query()
             ->select('books.*', DB::raw('count(chapters.book_id)'), DB::raw('sum(chapters.views)'))
             ->has('chapters')
             ->join('chapters', 'books.id', '=', 'chapters.book_id')
             ->groupBy('books.id')
             ->orderByRaw("sum(chapters.views) DESC")
-            ->when($genres ?? false, fn($query, $genres) => $query->whereHas('genres', fn($query) =>
-                $query->where('genres.slug', array_keys($genres)),
-            ))
-            ->paginate(20)->withQueryString();
+            ->when(count($genres), function ($query) use ($genres) {
+                $query->where(function ($subQuery) use ($genres) {
+                    foreach (array_keys($genres) as $genre) {
+                        $subQuery->orWhereHas('genres', function ($subSubQuery) use ($genre) {
+                            $subSubQuery->where('name', $genre);
+                        });
+                    }
+                });
+            })
+            ->paginate(20)->withQueryString();*/
 
-/*
- ->when($genres ?? false, function($query) use ($genres) {
-                    $query->whereHas('genres', fn($query) =>
-                 $query->whereIn('genres.slug', array_keys($genres)));
-//->join('book_genre', 'book_genre.book_id', '=', 'books.id')
-            //->join('genres', 'genres.id', '=', 'book_genre.genre_id')
-            //->whereIn('genre_id', array_keys($genres))
- */
+        $books = Book::with(['chapters', 'reviews'])
+            ->select('books.*')
+            ->has('chapters')
+            ->join('chapters', 'books.id', '=', 'chapters.book_id')
+            ->where('chapters.published_at', '<=', now())
+            ->when(count($genres), function ($query) use ($genres) {
+                $query->whereHas('genres', function ($subQuery) use ($genres) {
+                    $subQuery->whereIn('slug', array_keys($genres));
+                }, '=', count($genres));
+            })
+            ->groupBy('books.id')
+            //->orderByRaw('MAX(chapters.published_at) DESC')
+            ->orderByRaw('(SELECT SUM(views) FROM chapters WHERE chapters.book_id = books.id) DESC')
+            ->paginate(20)
+            ->withQueryString();
 
         return $books;
     }
 
-    public function sortNovelsByRating() {
-        $books = \App\Models\Book::query()
+    public function sortNovelsByRating($genres) {
+        $books = Book::with(['chapters', 'reviews'])
             ->select('books.*', DB::raw('avg(reviews.overall)'))
             ->has('chapters')
             ->join('reviews', 'books.id', '=', 'reviews.book_id')
+            ->when(count($genres), function ($query) use ($genres) {
+                $query->whereHas('genres', function ($subQuery) use ($genres) {
+                    $subQuery->whereIn('slug', array_keys($genres));
+                }, '=', count($genres));
+            })
             ->groupBy('books.id')
             ->orderByRaw("avg(reviews.overall) DESC")
-            //->orderBy('chapters.published_at', $this->sortOrder)
             ->paginate(20)->withQueryString();
 
         return $books;
     }
 
     public function sortNovelsByLatestReleases($genres) {
-        $books = \App\Models\Book::query() //::filter($filters)
-        ->select('books.*')
+
+        $books = Book::withCount('chapters')
+            ->with(['chapters', 'reviews'])
+            ->withAvg('reviews', 'overall')
             ->has('chapters')
-            ->join('chapters', 'books.id', '=', 'chapters.book_id')
-            ->join('book_genre', 'book_genre.book_id', '=', 'books.id')
-            ->join('genres', 'genres.id', '=', 'book_genre.genre_id')
-            //->whereIn('genre_id', array_keys($genres))
-            ->latest('chapters.published_at')
-            //->orderBy('chapters.published_at', $this->sortOrder)
-            ->paginate(20)->withQueryString();
+            ->join(DB::raw('(SELECT MAX(published_at) AS latest_published_at, book_id, SUM(views) AS total_views FROM chapters GROUP BY book_id) AS latest_chapter'), function ($join) {
+                $join->on('books.id', '=', 'latest_chapter.book_id');
+            })
+            ->when(count($genres), function ($query) use ($genres) {
+                $query->whereHas('genres', function ($subQuery) use ($genres) {
+                    $subQuery->whereIn('slug', array_keys($genres));
+                }, '=', count($genres));
+            })
+            ->orderByDesc('latest_published_at')
+            ->groupBy('books.id')
+            ->paginate(20)->withQueryString();;
 
         return $books;
     }
 
-    public function sortNovelsByNewestNovels() {
-        $books = \App\Models\Book::query()
+    public function sortNovelsByNewestNovels($genres) {
+        $books = Book::with(['chapters', 'reviews'])
             ->has('chapters')
             ->select('books.*')
-            //->join('chapters', 'books.id', '=', 'chapters.book_id')
+            ->when(count($genres), function ($query) use ($genres) {
+                $query->whereHas('genres', function ($subQuery) use ($genres) {
+                    $subQuery->whereIn('slug', array_keys($genres));
+                }, '=', count($genres));
+            })
             ->latest('books.published_at')
-            //->orderBy('chapters.published_at', $this->sortOrder)
+            ->when($genres ?? false, fn($query, $genres) => $query->whereHas('genres', fn($query) =>
+            $query->where('genres.slug', array_keys($genres)),
+            ))
             ->paginate(20)->withQueryString();
 
         return $books;

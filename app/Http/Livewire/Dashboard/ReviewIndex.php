@@ -19,6 +19,7 @@ class ReviewIndex extends Component
     public function render()
     {
         $reviews = Review::query()
+            ->has('book')
             ->select('books.*', 'reviews.*')
             ->join('books', 'books.id', '=', 'book_id')
             ->where('books.user_id', '=', auth()->user()->id)

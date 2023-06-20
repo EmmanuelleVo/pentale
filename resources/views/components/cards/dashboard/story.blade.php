@@ -2,7 +2,7 @@
 
 <div class="story story__item">
     <figure class="story__item-figure">
-        <img src="{{ $book->cover }}" alt="" class="story__item-img">
+        <img src="{{ $book->cover }}" alt="Cover of {{ $book->title }}" class="story__item-img">
     </figure>
     <div class="story__item-content">
         <h3 class="title title--card" aria-level="3" role="heading">{{ $book->title }}</h3>

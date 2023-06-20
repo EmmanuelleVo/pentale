@@ -12,6 +12,7 @@ use Livewire\WithPagination;
 class Library extends Component
 {
     use WithPagination;
+    public $lastReadChapters;
 
     public $hasBookmarks = false;
     public User $user;
@@ -19,16 +20,18 @@ class Library extends Component
 
 
     public function mount() {
-        //$this->book = $book;
         $this->user = auth()->user();
-        //$books = Book::whereHasBookmark($this->user)->paginate(12);
-        //$this->books = $books;
     }
 
     public function render()
     {
         $books = Book::whereHasBookmark($this->user)->paginate(12);
+        //$this->lastReadChapters = $this->user->books()->with('lastReadChapter')->get();
 
+        //dd($this->lastReadChapters);
+        /*if ($this->lastReadChapters) {
+            $this->lastReadChapters = 1;
+        }*/
         return view('livewire.library', compact('books'));
     }
 }

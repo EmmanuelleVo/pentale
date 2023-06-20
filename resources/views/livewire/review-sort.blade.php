@@ -7,18 +7,21 @@
             <div class="tags__list" x-data="{ activeButton: 'likes'}">
                 <button wire:click="sortBy('likes', 'DESC')"
                         x-on:click="activeButton = 'likes'"
+                        role="button"
                         :class="{ 'c-btn--active': activeButton === 'likes', '': activeButton !== 'likes' }"
                         class="tags__link tags__link--filter">
                     Popular
                 </button>
                 <button wire:click="sortBy('created_at', 'DESC')"
                         x-on:click="activeButton = 'desc'"
+                        role="button"
                         :class="{ 'c-btn--active': activeButton === 'desc', '': activeButton !== 'desc' }"
                         class="tags__link tags__link--filter">
                     Newest
                 </button>
                 <button wire:click="sortBy('created_at', 'ASC')"
                         x-on:click="activeButton = 'asc'"
+                        role="button"
                         :class="{ 'c-btn--active': activeButton === 'asc', '': activeButton !== 'asc' }"
                         class="tags__link tags__link--filter">
                     Oldest

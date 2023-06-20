@@ -10,9 +10,9 @@
                     </figure>
                     <div class="novel__item-container">
                         <x-titles.card-title :title="\Illuminate\Support\Str::limit($book->title, 50, $end='...')"/>
-                        <a href="/novels/{{ $book->slug }}/chapter-" title="Read chapter " class="novel__item-chapter">
-                            <span>55</span> / <span>56</span>
-                        </a>
+                        {{--<a href="/novels/{{ $book->slug }}/chapter-" title="Read chapter " class="novel__item-chapter">
+                            <span>{{ $book->lastReadChapter()->first() ? $book->lastReadChapter()->first()->chapter_number : 1 }}</span> / <span>56</span>
+                        </a>--}}
                     </div>
                 </section>
             @endforeach

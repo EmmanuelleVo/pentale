@@ -7,7 +7,6 @@
 @php
     $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
 @endphp
-
 <header class="header header--dashboard">
     <h1 aria-level="1" role="heading" class="u-visually-hidden">{{ $title ?? 'Dashboard - Pentale' }}</h1>
     <x-navigation.dashboard-navigation/>

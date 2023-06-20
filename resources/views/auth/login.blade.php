@@ -5,7 +5,11 @@
             <div class="o-wrapper">
                 <!-- Session Status -->
                 <x-auth-session-status class="mb-4" :status="session('status')" />
-
+                <noscript>
+                    <div id="js-disabled-message">
+                        <p>Please enable JavaScript in your browser to fully experience this website.</p>
+                    </div>
+                </noscript>
                 <div class="login__header">
                     <x-titles.section-title title="Login"/>
                     <p class="login__header-content">Welcome back !</p>
@@ -26,21 +30,18 @@
                     <x-forms.button value="{{ __('Log in') }}"/>
                 </form>
 
-                <div class="login__google">
+                {{--<div class="login__google">
                     <p class="login__separator"><span class="login__separator-content">Or</span></p>
                     <span class="login__google-link">
                         <x-svg.google/>
                         <a href="" title="Sign in with Google">Sign in with Google</a>
                     </span>
-                </div>
+                </div>--}}
 
                 <div class="login__option">
                     <span>New to Pentale? <a href="{{ route('register') }}" title="Create an account">Create an account</a></span>
                 </div>
             </div>
-            {{--<figure class="login__figure">
-                <img src="" alt="" class="login__img">
-            </figure>--}}
         </div>
     </main>
     <x-footer.footer/>

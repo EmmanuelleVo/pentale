@@ -29,6 +29,7 @@ class UserFactory extends Factory
             'discord' => fake()->url,
             'instagram' => fake()->url,
             'twitter' => fake()->url,
+            'patreon' => fake()->url,
             'biography' => fake()->sentence(10),
             'preferences' => [
                 'fontFamily' => 'Merriweather',

@@ -11,7 +11,12 @@
 
     <div class="o-wrapper">
         <div class="header__container">
-            <h1 class="title title--section" aria-level="1" role="heading">
+            <noscript>
+                <div id="js-disabled-message">
+                    <p>Please enable JavaScript in your browser to fully experience this website.</p>
+                </div>
+            </noscript>
+            <h1 class="title title--section title--top" aria-level="1" role="heading">
                 {{ $book->title }}
             </h1>
             <x-breadcrumbs.breadcrumb>

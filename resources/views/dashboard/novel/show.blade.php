@@ -6,16 +6,22 @@
                 <div class="story story__item">
 
                     <figure class="story__item-figure">
-                        <img src="{{ $book->cover }}" alt="" class="story__item-img">
+                        <img src="{{ $book->cover }}" alt="Cover of {{ $book->title }}" class="story__item-img">
                     </figure>
                     <div class="story__item-content">
                         <div class="title-container">
                             <h3 class="title title--card" aria-level="3" role="heading">{{ $book->title }}</h3>
-                            <div class="dropdown" x-data="{dropdownMenu: false}">
-                                <button @click="dropdownMenu = ! dropdownMenu" class="dropdown__btn">...</button>
+                            <div class="dropdown" x-data="{dropdownMenu: false}" @click.outside="dropdownMenu = false">
+                                <button @click="dropdownMenu = ! dropdownMenu" class="dropdown__btn" role="button">...</button>
 
                                 <div x-show="dropdownMenu" class="dropdown__container">
+                                    <a href="/novels/{{ $book->slug }}"
+                                       title="Go to detail page of the book on main website"
+                                       class="dropdown__link nav__sublink">
+                                        <span class="nav__sublink__label">View on website</span>
+                                    </a>
                                     <a href="/dashboard/novels/{{ $book->slug }}/edit"
+                                       title="Edit novel"
                                          class="dropdown__link nav__sublink">
                                         <span class="nav__sublink__label">Edit</span>
                                     </a>
@@ -23,7 +29,7 @@
                                           class="form">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="nav__sublink">
+                                        <button type="submit" class="nav__sublink dropdown__link">
                                             <span class="nav__sublink__label">Delete</span>
                                         </button>
                                     </form>
@@ -39,6 +45,7 @@
                                 term="Views"/>
                             <x-commons.meta-text-dashboard number="{{ $book->reviews()->count() }}" term="Reviews"/>
                             <x-commons.meta-text-dashboard number="{{ ucfirst($book->status) }}" term="Status"/>
+                            <x-commons.meta-text-dashboard number="{{ $book->language }}" term="Language"/>
                         </div>
                     </div>
                 </div>
@@ -48,17 +55,19 @@
                     {{--<x-commons.tab class="tab__link--active" link="#about" name="About"/>
                     <x-commons.tab link="#chapters" name="Chapters"/>
                     <x-commons.tab link="#details" name="Details"/>--}}
-                    <a id="tabLink" href="#about"
+                    <a href="#about"
                        @click="tab='#about'"
+                       title="Open about tab"
                        :class="{[tab==='#about']: 'tab__link--active'}"
                        class="tab__link"> About
                     </a>
-                    <a id="tabLink" href="#chapters"
+                    <a href="#chapters"
                        @click="tab='#chapters'"
+                       title="Open chapters tab"
                        :class="{[tab==='#chapters']: 'tab__link--active'}"
                        class="tab__link"> Chapters
                     </a>
-                    {{--<a id="tabLink" href="#details"
+                    {{--<a href="#details"
                        @click="tab='#details'"
                        :class="{[tab==='#details']: 'tab__link--active'}"
                        class="tab__link"> Details

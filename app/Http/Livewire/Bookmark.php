@@ -27,6 +27,11 @@ class Bookmark extends Component
             \Maize\Markable\Models\Bookmark::toggle($this->book, $this->user);
             //$this->emit('updateBookmarkCount');
             $this->hasBookmarked = !$this->hasBookmarked;
+            if ($this->hasBookmarked === true) {
+                session()->flash('success', 'You have bookmarked this novel.');
+            } else {
+                session()->flash('success', 'You have unbookmarked this novel.');
+            }
         } else {
             return redirect()->route('login');
         }

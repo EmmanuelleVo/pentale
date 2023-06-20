@@ -3,7 +3,7 @@
 <div class="novel__item swiper-slide">
     <figure class="novel__item-figure">
         <a href="/novels/{{ $chapter->book->slug }}" class="u-absolute" title="Learn more about {{ $chapter->book->title }}"></a>
-        <img src="{{ $chapter->book->cover }}" alt="" class="novel__item-img">
+        <img src="{{ $chapter->book->cover }}" alt="Cover of {{ $chapter->book->title }}" class="novel__item-img">
     </figure>
     <div class="novel__item-content">
         <h3 class="title title--card" aria-level="3" role="heading">

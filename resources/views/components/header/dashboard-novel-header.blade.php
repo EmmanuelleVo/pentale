@@ -16,10 +16,10 @@
             <h2 aria-level="2" role="heading" class="title title--big">
                 {{ $page_title }}
             </h2>
-            <div>
+            {{--<div>
                 <x-commons.button title="Save" link="">Save</x-commons.button>
                 <x-commons.button title="Publish" link="">Publish</x-commons.button>
-            </div>
+            </div>--}}
         </div>
         <div class="d-wrapper">
             <x-breadcrumbs.breadcrumb>

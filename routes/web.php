@@ -16,6 +16,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TermsAndConditionsController;
 use App\Http\Controllers\UserController;
+use App\Models\Book;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,31 +45,40 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 //-- NOVELS --//
 Route::get('/novels', [BookController::class, 'index'])->name('novel.index');
 Route::get('/novels/{book:slug}', [BookController::class, 'show'])->name('novels.show');
+
 // Novels dashboard
-Route::get('/dashboard', [AuthorDashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/dashboard/novels', [BookController::class, 'indexDashboard'])->name('dashboard.novels');
-Route::get('/dashboard/novels/create', [BookController::class, 'create'])->name('book.create');
-Route::get('/dashboard/novels/{book:slug}', [BookController::class, 'showDashboard'])->name('dashboard.novels.book:slug');
-Route::post('/dashboard/novels/store', [BookController::class, 'store']);
-Route::get('/dashboard/novels/{book:slug}/edit', [BookController::class, 'edit'])->name('book.edit');
-Route::patch('/dashboard/novels/{book:slug}/update', [BookController::class, 'update']);
-Route::delete('/dashboard/novels/{book:slug}', [BookController::class, 'destroy']);
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [AuthorDashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/dashboard/novels', [BookController::class, 'indexDashboard'])->name('dashboard.novels');
+    Route::get('/dashboard/novels/create', [BookController::class, 'create'])->name('book.create');
+    Route::get('/dashboard/novels/{book:slug}', [BookController::class, 'showDashboard'])->name('dashboard.novels.book:slug');
+    Route::post('/dashboard/novels/store', [BookController::class, 'store']);//->can('create', Book::class);
+    Route::get('/dashboard/novels/{book:slug}/edit', [BookController::class, 'edit'])->name('book.edit');
+    Route::patch('/dashboard/novels/{book:slug}/update', [BookController::class, 'update'])->can('update', 'book');
+    Route::delete('/dashboard/novels/{book:slug}', [BookController::class, 'destroy'])->can('delete', 'book');
+
+});
+
 
 //-- REVIEWS --//
 Route::post('/novels/{book:slug}/review/store', [ReviewController::class, 'store']);
 
 //-- CHAPTERS --//
 Route::get('/novels/{book:slug}/chapter-{chapter:chapter_number}', [ChapterController::class, 'show'])->name('chapter.show');
-Route::get('/dashboard/novels/{book:slug}/create', [ChapterController::class, 'create'])->name('chapter.create');
-Route::post('/dashboard/novels/{book:slug}/store', [ChapterController::class, 'store']);
-Route::get('/dashboard/novels/{book:slug}/chapter-{chapter:chapter_number}/edit', [ChapterController::class, 'edit'])->name('chapter.edit');
-Route::patch('/dashboard/novels/{book:slug}/chapter-{chapter:chapter_number}/update', [ChapterController::class, 'update']);
-Route::post('/dashboard/novels/{book:slug}/chapter-{chapter:chapter_number}/destroy', [ChapterController::class, 'destroy']);
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard/novels/{book:slug}/create', [ChapterController::class, 'create'])->name('chapter.create');
+    Route::post('/dashboard/novels/{book:slug}/store', [ChapterController::class, 'store']);
+    Route::get('/dashboard/novels/{book:slug}/chapter-{chapter:chapter_number}/edit', [ChapterController::class, 'edit'])->name('chapter.edit');
+    Route::patch('/dashboard/novels/{book:slug}/chapter-{chapter:chapter_number}/update', [ChapterController::class, 'update']);
+    Route::delete('/dashboard/novels/{book:slug}/chapter-{chapter:chapter_number}/destroy', [ChapterController::class, 'destroy']);
+});
 
 // DASHBOARD
-Route::get('/dashboard/reviews', [AuthorDashboardController::class, 'indexReviews'])->middleware(['auth', 'verified'])->name('dashboard.reviews');
-Route::get('/dashboard/comments', [AuthorDashboardController::class, 'indexComments'])->middleware(['auth', 'verified'])->name('dashboard.comments');
-Route::get('/dashboard/profile/{user:slug}/edit', [UserController::class, 'editDashboard'])->name('dashboard.profile.user:slug.edit');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard/reviews', [AuthorDashboardController::class, 'indexReviews'])->middleware(['auth', 'verified'])->name('dashboard.reviews');
+    Route::get('/dashboard/comments', [AuthorDashboardController::class, 'indexComments'])->middleware(['auth', 'verified'])->name('dashboard.comments');
+    Route::get('/dashboard/profile/{user:slug}/edit', [UserController::class, 'editDashboard'])->name('dashboard.profile.user:slug.edit');
+});
 
 //-- FORUM --//
 
@@ -93,7 +103,7 @@ Route::get('/search', SearchController::class);
 
 
 //-- USER LIBRARY --//
-Route::get('/library', LibraryController::class);
+Route::get('/library', LibraryController::class)->middleware('auth');
 
 
 //-- PRIVACY POLICY AND TERMS & CONDITIONS --//

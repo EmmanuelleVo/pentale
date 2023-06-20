@@ -3,12 +3,11 @@
 <head>
     <meta name="author" content="Pentale">
     {!! Meta::toHtml() !!}
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
     <link rel="manifest" href="/img/site.webmanifest">
-    {{--@vite(['resources/js/app.ts', 'js/tinymce/tinymce.min.js'])--}}
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href=" https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
@@ -18,12 +17,11 @@
     <x-head.tinymce-config/>
 </head>
 <body itemscope itemtype="https://schema.org/Organization" class="sans text-lg bg-white overflow-x-hidden leading-9">
-<a href="#main" title="Aller au contenu principal" class="sr-only"></a>
+<a href="#main" title="Go to main content" class="u-visually-hidden">Go to main content</a>
 {{ $slot }}
-
-{{--<x-commons.flash-message/>--}}
+<x-commons.flash-message/>
 @livewireScripts
-<script src="{{ asset('js/main.js') }}" defer></script>
+<script src="{{ asset('js/app.js') }}" defer></script>
 <script type="application/ld+json">
     {
       "@context": "https://schema.org/",

@@ -131,10 +131,10 @@
                             </button>
                         </div>
                     </div>
-                    <div class="form__field form__field--number">
+                    {{--<div class="form__field form__field--number">
                         <span class="form__label">Night mode</span>
                         @include('livewire.toggle-button')
-                    </div>
+                    </div>--}}
                     <div class="form__actions-container">
                         <button wire:click.prevent="resetPreferences()" class="form__reset c-btn c-btn--secondary">
                             Reset

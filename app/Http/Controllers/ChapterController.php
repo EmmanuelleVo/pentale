@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ChapterRequest;
+use App\Http\Requests\UpdateChapterRequest;
 use App\Models\Book;
 use App\Models\Chapter;
 use Butschster\Head\Facades\Meta;
@@ -30,8 +31,9 @@ class ChapterController extends Controller
         $lastChapter = $book->chapters()->orderByRaw('CONVERT(chapter_number, SIGNED) desc')->first();
         if (is_null($lastChapter)) {
             $lastChapter = 0;
+        } else {
+            $lastChapter = $lastChapter->chapter_number+1;
         }
-
 
         return view('chapter.create', compact('book', 'page_title', 'lastChapter'));
     }
@@ -46,6 +48,8 @@ class ChapterController extends Controller
             $lastChapter = $book->chapters()->orderByRaw('CONVERT(chapter_number, SIGNED) desc')->first();
             if (is_null($lastChapter)) {
                 $lastChapter = 1;
+            } else {
+                $lastChapter = $lastChapter->chapter_number+1;
             }
 
             $chapter = Chapter::create([
@@ -53,12 +57,16 @@ class ChapterController extends Controller
                 'slug' => Str::slug($validated['title']),
                 'body' => $validated['body'],
                 'author_note' => $validated['note'],
-                'chapter_number' => $lastChapter,
+                'chapter_number' => $validated['chapter_number'],
                 'book_id' => $book->id,
                 'published_at' => now(),
             ]);
 
-            return redirect('/dashboard/novels/' . $book->slug . '#chapters')->with('success', 'Chapter published');
+            //CommentPosted::dispatch($comment);
+            //$user->notify(new \App\Notifications\CommentPosted($comment));
+            //Notification::send($user, new \App\Notifications\CommentPosted($comment));
+
+            return redirect('/dashboard/novels/' . $book->slug . '#chapters')->with('success', 'You have successfully published a chapter.');
         }
 
         return back()->withInput();
@@ -105,27 +113,25 @@ class ChapterController extends Controller
         $page_title = $chapter->title;
         Meta::prependTitle($chapter->title);
 
-        return view('chapter.edit', compact('book', 'page_title'));
+        return view('chapter.edit', compact('book', 'page_title', 'chapter'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Book $book, ChapterRequest $request)
+    public function update(Book $book, Chapter $chapter, UpdateChapterRequest $request)
     {
         $validated = $request->validated();
         if ($validated) {
-            $chapter = Chapter::update([
+            $chapter->update([
                 'title' => $validated['title'],
                 'slug' => Str::slug($validated['title']),
                 'body' => $validated['body'],
                 'author_note' => $validated['note'],
-                'chapter_number' => $validated['chapter_number'],
-                'book_id' => $book->id,
-                'published_at' => now(),
+                'updated_at' => now(),
             ]);
 
-            return redirect('/dashboard/novels/' . $book->slug . '#chapters')->with('success', 'Chapter updated');
+            return redirect('/dashboard/novels/' . $book->slug . '#chapters')->with('success', 'You have successfully updated your chapter.');
         }
 
         return back()->withInput();
@@ -138,6 +144,6 @@ class ChapterController extends Controller
     {
         $chapter->delete();
 
-        return redirect('/dashboard/novels/' . $book->slug . '#chapters')->with('success', 'Chapter deleted');
+        return redirect('/dashboard/novels/' . $book->slug . '#chapters')->with('success', 'You have successfully deleted your chapter.');
     }
 }

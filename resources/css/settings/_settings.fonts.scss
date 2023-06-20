@@ -14,24 +14,28 @@
          url('../fonts/Gotham-Book.ttf') format('truetype');*/
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: "Merriweather";
     src: url("/assets/fonts/Merriweather/Merriweather-Bold.ttf");
     font-weight: 700;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: "Merriweather";
     src: url("/assets/fonts/Merriweather/Merriweather-Italic.ttf");
     font-weight: 400;
     font-style: italic;
+    font-display: swap;
 }
 @font-face {
     font-family: "Merriweather";
     src: url("/assets/fonts/Merriweather/Merriweather-BoldItalic.ttf");
     font-weight: 700;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
@@ -39,22 +43,26 @@
     src: url("/assets/fonts/Lato/Lato-Regular.ttf");
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: "Lato";
     src: url("/assets/fonts/Lato/Lato-Bold.ttf");
     font-weight: 700;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: "Lato";
     src: url("/assets/fonts/Lato/Lato-Italic.ttf");
     font-weight: 400;
     font-style: italic;
+    font-display: swap;
 }
 @font-face {
     font-family: "Lato";
     src: url("/assets/fonts/Lato/Lato-BoldItalic.ttf");
     font-weight: 700;
     font-style: italic;
+    font-display: swap;
 }

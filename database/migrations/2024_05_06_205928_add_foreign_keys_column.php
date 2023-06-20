@@ -52,8 +52,8 @@ return new class extends Migration
         });
         Schema::table('reading_logs', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained()->onUpdate('cascade');
-            $table->foreignId('chapter_id')->constrained()->onUpdate('cascade');
             $table->foreignId('book_id')->constrained()->onUpdate('cascade');
+            $table->foreignId('chapter_id')->constrained()->onUpdate('cascade');
         });
     }
 

@@ -14,6 +14,7 @@ use Butschster\Head\Facades\Meta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Maize\Markable\Models\Like;
 
@@ -28,22 +29,11 @@ class BookController extends Controller
     {
         Meta::prependTitle('All novels');
 
-        $genres = Genre::all();
-        $status = ['all', 'ongoing', 'completed', 'hiatus'];
+        if (!request()->has('sort')) {
+            return Redirect::to(route('novel.index', ['sort' => 'popular']));
+        }
 
-        $books = Book::with(['genres', 'reviews'])->paginate(20); //::filter($filters)
-
-        /*$books = Book::with(['genres', 'reviews' => function($query) {
-            $query->with(['reviews', 'city']);
-        }])->get();*/
-
-        /*$test = $book->join('chapters', 'chapters.book_id', '=', 'books.id')
-            ->groupBy('books.id')
-            ->get(['books.id', 'books.title', DB::raw('count(chapters.id) as chapters')]);*/
-
-        return view('novel.index',
-            compact('books', 'genres', 'status')
-        );
+        return view('novel.index',);
     }
 
     /**
@@ -62,8 +52,11 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(BookRequest $request)
+    public function store(Book $book, BookRequest $request)
     {
+
+        // {{ asset('storage/' . $post->thumbnail_path) }}
+
         $validated = $request->validated();
         if ($validated) {
 
@@ -77,6 +70,7 @@ class BookController extends Controller
                 'synopsis' => $validated['synopsis'],
                 'language' => $validated['language'],
                 'cover' => $path,
+                //'cover' => request()->file('cover')?->store('covers'),
                 'published_at' => now(),
                 'status' => 'ongoing',
                 'user_id' => auth()->user()->id,
@@ -92,7 +86,7 @@ class BookController extends Controller
                 DB::table('book_tag')->insert(compact('tag_id', 'book_id'));
             }
 
-            return redirect('/dashboard/novels/' . $book->slug . '#about')->with('success', 'Book created');
+            return redirect('/dashboard/novels/' . $book->slug . '#about')->with('success', 'You have successfully created a book.');
         }
 
         return back()->withInput();
@@ -109,18 +103,18 @@ class BookController extends Controller
 
         $book_genres = $book->genres()->orderBy('name')->get();
         $book_tags = $book->tags()->orderBy('name')->get();
-        $chapters = $book->chapters()->orderBy('chapter_number')->paginate(20);
-        $book_reviews = $book->reviews()->groupBy('id')->paginate(10);
 
         $view_count = Chapter::where('book_id', '=', $book->id)->sum('views');
         $book_average = round(Review::where('book_id', '=', $book->id)->avg('overall'), 2);
         $other_books = [];
         foreach ($book_genres as $book_genre) {
-            $other_books[] = Book::query()
+            $other_books[] = Book::with('reviews')
+                ->select('books.*')
+                ->has('chapters')
                 ->join('book_genre', 'book_id', '=', 'books.id')
                 ->join('genres', 'genres.id', '=', 'book_genre.genre_id')
                 ->where('genres.name', '=', $book_genre->name)
-                ->get();
+                ->paginate(16);
         }
 
 
@@ -128,12 +122,10 @@ class BookController extends Controller
             compact('page_title',
                 'book',
                 'book_genres',
-                'book_tags',
-                'other_books',
-                'chapters',
-                'book_reviews',
                 'book_average',
                 'view_count',
+                'book_tags',
+                'other_books',
             )
         );
     }
@@ -159,33 +151,35 @@ class BookController extends Controller
     {
         $validated = $request->validated();
         if ($validated) {
-            if ($validated['cover'] !== '') {
+            //dd($validated);
+            if (isset($validated['cover']) && $validated['cover'] !== '') {
                 $uploaded_image = $request->file('cover');
                 $path = $this->resizeAndSave($uploaded_image, 'covers', 500, 600);
             }
-
             $book->update([
                 'title' => $validated['title'],
                 'slug' => Str::slug($validated['title']),
                 'synopsis' => $validated['synopsis'],
                 'language' => $validated['language'],
-                'cover' => $path,
+                'cover' => $path ?? $book->cover,
                 'updated_at' => now(),
                 'status' => $validated['status'],
                 'patreon' => $validated['patreon'],
             ]);
 
             $book_id = $book->id;
-
-            foreach ($validated['genres'] as $genre_id) {
+            $book->genres()->sync($validated['genres']);
+            $book->tags()->sync($validated['tags']);
+            $book->save();
+            /*foreach ($validated['genres'] as $genre_id) {
                 DB::table('book_genre')->where('book_id', $book_id)->update(compact('genre_id'));
-            }
-            foreach ($validated['tags'] as $tag_id) {
+            }*/
+            /*foreach ($validated['tags'] as $tag_id) {
                 DB::table('book_tag')->where('book_id', $book_id)->update(compact('tag_id'));
-            }
+            }*/
 
 
-            return redirect('/dashboard/novels/' . Str::slug($validated['title']) . '#about')->with('success', 'Book updated');
+            return redirect('/dashboard/novels/' . Str::slug($validated['title']) . '#about')->with('success', 'You have successfully updated a book');
         }
 
         return back()->withInput();
@@ -221,6 +215,7 @@ class BookController extends Controller
     {
         Meta::prependTitle($book->title);
         $page_title = $book->title;
+
         $genres = $book->genres()->get();
         $tags = $book->tags()->get();
         $chapters = $book->chapters()->paginate(20);

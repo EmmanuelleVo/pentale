@@ -1,19 +1,19 @@
 <div class="top top--dashboard">
     <div class="dn-wrapper">
         <div class="top__nav-logo top__nav-logo-dashboard">
-            <a href="/" class="u-absolute"></a>
+            <a href="/" class="u-absolute" title="Go to home page"></a>
             <x-svg.site-logo/>
         </div>
         <nav class="nav nav--dashboard" role="navigation" aria-label="Main Navigation">
             <h2 role="heading" aria-level="2" class="u-visually-hidden">Main navigation</h2>
             <div class="nav__links">
-                <button class="hamburger" type="button">
+                <button class="hamburger" type="button" aria-haspopup="true" id="menubutton">
               <span class="hamburger-box">
                 <span class="hamburger-inner"></span>
               </span>
                 </button>
 
-                <div class="nav__links-container">
+                <div class="nav__links-container" aria-labelledby="menubutton">
                     <div class="nav__links-wrapper">
                         <x-navigation.link name="Dashboard" link="/dashboard">
                             <div class="svg">
@@ -30,11 +30,11 @@
                                 <x-svg.reply-2/>
                             </div>
                         </x-navigation.link>
-                        <x-navigation.link name="Comments" link="/dashboard/comments">
+                        {{--<x-navigation.link name="Comments" link="/dashboard/comments">
                             <div class="svg">
                                 <x-svg.reply-1/>
                             </div>
-                        </x-navigation.link>
+                        </x-navigation.link>--}}
                         <x-navigation.link name="Profile" link="/dashboard/profile/{{ auth()->user()->slug }}/edit">
                             <div class="svg">
                                 <x-svg.profile/>

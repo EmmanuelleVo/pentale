@@ -1,3 +1,3 @@
-<span class="breadcrumb__separator">
+<li class="breadcrumb__separator">
     /
-</span>
+</li>

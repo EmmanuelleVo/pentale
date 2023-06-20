@@ -3,7 +3,7 @@
 <div class="novel__item novel__item--small">
     <a href="/novels/{{ $book->slug }}" title="Learn more about {{ $book->title }}" class="u-absolute"></a>
     <figure class="novel__item-figure">
-        <img src="{{ $book->cover }}" alt="" class="novel__item-img">
+        <img src="{{ $book->cover }}" alt="Cover of {{ $book->title }}" class="novel__item-img">
     </figure>
     <div class="novel__item-content">
         <div class="novel__info-stars starContainer">
@@ -22,7 +22,7 @@
             <ul class="genres__list">
                 @foreach($book->genres()->orderBy('name')->paginate(3) as $book_genre)
                     <li class="genres__item">
-                        <a href="#" class="genres__link genres__link--filter">
+                        <a href="#" class="genres__link genres__link--filter" title="List novels with the genre {{ $book_genre->name }}">
                             <x-commons.tag name="{{ $book_genre->name }}"/>
                         </a>
                     </li>

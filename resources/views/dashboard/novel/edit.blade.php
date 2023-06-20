@@ -103,12 +103,11 @@
 
                     <x-forms.select name="status" label_name="Status">
                         @foreach($status as $statusItem)
-                            <x-forms.option :name="ucfirst($statusItem)" :value="$statusItem"/>
+                            <option @if($statusItem == $book->status) selected @endif value="{{ $statusItem }}">{{ ucfirst($statusItem) }}</option>
                         @endforeach
                     </x-forms.select>
 
                     <x-forms.input label_name="Patreon url (optional)" name="patreon" :value="$book->patreon" place_holder="https://www.patreon.com/"/>
-
 
                     <x-forms.button value="Edit novel"/>
                 </div>

@@ -15,7 +15,7 @@
 
     <div class="review__container">
         <div class="review__header">
-            <a href="/profile/{{ $review->user->slug }}" title="View profile"
+            <a href="/profile/{{ $review->user->slug }}" title="View {{ $review->user->username }}'s profile"
                class="title title--small">{{ $review->user->username }}</a>
             <time class="review__date"
                   datetime="{{ $review->published_at }}">{{ \Carbon\Carbon::parse($review->created_at)->diffForHumans() }}</time>

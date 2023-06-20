@@ -7,17 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use Maize\Markable\Markable;
 use Maize\Markable\Models\Bookmark;
 
 class Book extends Model
 {
-    use HasFactory, Markable, Searchable;
-
-    /*use Searchable {
-        Searchable::search as parentSearch;
-    }*/
+    use HasFactory, Markable, SoftDeletes, Searchable;
 
     protected $guarded = [];
     //protected $with = ['genres', 'tags'];
@@ -26,6 +23,21 @@ class Book extends Model
     protected static $marks = [
         Bookmark::class,
     ];
+
+    public function lastReadChapter(): BelongsToMany
+    {
+        return $this->belongsToMany(Chapter::class, 'reading_logs')
+            ->wherePivotNotNull('chapter_id')
+            ->orderByDesc('reading_logs.created_at')
+            ->limit(1);
+    }
+
+    /*public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'reading_logs')
+            ->withPivot('chapter_id')
+            ->withTimestamps();
+    }*/
 
     public function user(): BelongsTo
     {
@@ -69,12 +81,27 @@ class Book extends Model
 
     public function toSearchableArray()
     {
-        //$array = $this->toArray();
+        /*$author = $this->user()->first()->username;
+        $book = $this->has('chapters')
+                ->where('id', '=', $this->id)
+                ->get(['cover', 'title', 'slug'])
+                ->first()
+                ;//->toArray();
 
+        $book['user'] = $author;
+
+        return $book;*/
         return [
+            'cover' => $this->cover,
             'title' => $this->title,
-            //'users.username' => $this->user()->username,
+            'slug' => $this->slug,
+            'author' => $this->user->username,
         ];
+    }
+
+    protected function makeAllSearchableUsing($query)
+    {
+        return $query->with('user');
     }
 
     /**
@@ -104,15 +131,15 @@ class Book extends Model
         );
     }
 
-    /* public function scopeFilter($query, string $filter)
+    public function filterByGenres($query, array $genres)
     {
-        if ($filter !== '') {
-            $course = Course::where('slug', $filter)->first();
-            $course_id = $course->id;
-        }
 
-        $query->when($filter ?? false, fn($query)
-        => $query->whereHas('courses', fn ($query)
-        => $query->where('course_teacher.course_id', $course_id)));
-    }*/
+        // Query books based on selected genres
+        $books = Book::whereHas('genres', function ($query) use ($genres) {
+            $query->whereIn('id', $genres);
+        })->get();
+
+        // Return the filtered books to the view or API response
+        return $books;
+    }
 }

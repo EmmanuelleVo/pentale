@@ -19,11 +19,9 @@ class Book extends Component
     public $genreFilters = [];
 
     protected $queryString = [
-        //'filters' => ['except' => '', 'as' => 'filters'],
         'filters' => ['except' => [
-            'genres' => '',
-        ]],
-        //'filters.genres' => ['except' => '', 'compact' => ','],
+            'genres' => [], // Set the default value for the genres filter as an empty array
+        ], 'as' => 'genres'], // Set the query parameter name as 'genres'
         'sortField' => ['except' => 1, 'as' => 'sort'],
     ];
 
@@ -52,40 +50,14 @@ class Book extends Component
         // this is where we remove the categories with a false value
         $this->filters['genres'] = array_filter($this->filters['genres']);
 
-        if (empty($this->filters['genres'])) {
-            if ($this->sortField === 'popular') { // $book->chapters()->sum('views')
-                $books = $this->sortNovelsByPopularity($this->filters['genres']);
-            } elseif ($this->sortField === 'latest-releases') {
-                $books = $this->sortNovelsByLatestReleases($this->filters['genres']);
-            } elseif ($this->sortField === 'newest-novels') {
-                $books = $this->sortNovelsByNewestNovels();
-            } elseif ($this->sortField === 'rating') {
-                $books = $this->sortNovelsByRating();
-            }
-
-            return $books;
-        }
-
         if ($this->sortField === 'popular') { // $book->chapters()->sum('views')
             $books = $this->sortNovelsByPopularity($this->filters['genres']);
-            /*$books = \App\Models\Book::query()
-                ->select('books.title', 'chapters.views')
-                ->join('chapters', "books.id", "=", "chapters.book_id")
-                //->groupBy("books.id")
-                ->orderByRaw('SUM(chapters.views) DESC')
-                ->paginate(20);*/
-            /* $books = \App\Models\Book::query() //::filter($filters)
-             ->join("chapters", function ($join) {
-                 $join->on("chapters.book_id", "=", "books.id");
-             })
-             ->orderBy('chapters.views', 'DESC')
-             ->paginate(20);*/
         } elseif ($this->sortField === 'latest-releases') {
             $books = $this->sortNovelsByLatestReleases($this->filters['genres']);
         } elseif ($this->sortField === 'newest-novels') {
-            $books = $this->sortNovelsByNewestNovels();
+            $books = $this->sortNovelsByNewestNovels($this->filters['genres']);
         } elseif ($this->sortField === 'rating') {
-            $books = $this->sortNovelsByRating();
+            $books = $this->sortNovelsByRating($this->filters['genres']);
         }
 
         return $books;
