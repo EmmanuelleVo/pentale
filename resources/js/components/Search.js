@@ -25,10 +25,10 @@ export class Search {
             this.search = instantsearch({
                 indexName: "posts_index",
                 searchClient: instantMeiliSearch(
-                    /*"https://meilisearch.captain.knok.be",
-                    'febb49a839e211c5dc4b7f64a92e1ddf4523f2bec6d20a89a02adf7ed3744d59',*/
-                    "http://127.0.0.1:7700/",
-                    '',
+                    "https://meilisearch.captain.knok.be",
+                    'febb49a839e211c5dc4b7f64a92e1ddf4523f2bec6d20a89a02adf7ed3744d59',
+                    /*"http://127.0.0.1:7700/",
+                    '',*/
                     {
                         paginationTotalHits: 15,
                         placeholderSearch: false,
